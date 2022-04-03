@@ -7,6 +7,7 @@ import {createRouter, createWebHistory} from 'vue-router';
 import store from '../store';
 import LayoutApp from '../layouts/LayoutApp';
 import LayoutGuest from '../layouts/LayoutGuest';
+import PageTreats from '../pages/PageTreats';
 
 const routes = [
     {
@@ -34,12 +35,20 @@ const routes = [
         }
     },
     {
-        path: '/spa',
+        path: '/dashboard',
         component: PageDashboard,
         meta: {
             layout: 'LayoutApp',
             requiresAuth: false
         }
+    },
+    {
+        path: '/treats',
+        component: PageTreats,
+        meta: {
+            layout: 'LayoutApp',
+            requiresAuth: true
+        },
     },
     {
         path: '/deeds',

@@ -66,7 +66,7 @@ export default {
             });
 
             await this.$router.push({
-                path: this.$route.query.redirect || '/spa'
+                path: this.$route.query.redirect || '/dashboard'
             });
         }
     }

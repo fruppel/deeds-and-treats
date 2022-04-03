@@ -25,7 +25,6 @@ const actions = {
     [AUTH_LOGIN](context, credentials) {
         return new Promise(async resolve => {
             const response = await apiClient.post('/api/login', credentials);
-            console.log(AUTH_LOGIN);
             context.commit(AUTH_SET_USER, response.data.user);
             resolve(response.data.user);
         });
@@ -47,7 +46,6 @@ const mutations = {
     },
 
     [AUTH_SET_ERROR](state, error) {
-        console.log('auth error');
         state.errors = error;
     }
 };

@@ -1,6 +1,6 @@
 import apiClient from '../../services/api-client';
 import {DEED_FETCH_ALL, DEED_FETCH_BY_ID, DEED_STORE, DEED_UPDATE} from '../types/actions';
-import {DEEDS_SET_DEED, DEEDS_SET_DEEDS, DEEDS_SET_ERROR} from '../types/mutations';
+import {DEEDS_SET_DEED, DEEDS_SET_DEEDS, ERRORS_SET_ERRORS} from '../types/mutations';
 
 const state = {
     errors: {},
@@ -12,14 +12,9 @@ const getters = {
     deed(state) {
         return state.deed;
     },
-
     deeds(state) {
         return state.deeds;
     },
-
-    errors(state) {
-        return state.errors;
-    }
 };
 
 const actions = {
@@ -40,16 +35,15 @@ const actions = {
         try {
             await apiClient.patch(`/api/deeds/${deed.id}`, deed);
         } catch (error) {
-            context.commit(DEEDS_SET_ERROR, error.response.data.errors);
+            context.commit(ERRORS_SET_ERRORS, error.response.data.errors);
         }
     },
 
     async [DEED_STORE](context, deed) {
-        console.log(DEED_STORE);
         try {
             await apiClient.post('/api/deeds', deed);
         } catch (error) {
-            context.commit(DEEDS_SET_ERROR, error.response.data.errors);
+            context.commit(ERRORS_SET_ERRORS, error.response.data.errors);
         }
     },
 };
@@ -58,15 +52,9 @@ const mutations = {
     [DEEDS_SET_DEED](state, deed) {
         state.deed = deed;
     },
-
     [DEEDS_SET_DEEDS](state, deeds) {
         state.deeds = deeds;
     },
-
-    [DEEDS_SET_ERROR](state, errors) {
-        console.log('deed error');
-        state.errors = errors;
-    }
 };
 
 export default {

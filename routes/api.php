@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\DeedController;
+use App\Http\Controllers\Api\DeedLogController;
+use App\Http\Controllers\Api\SavingController;
 use App\Http\Controllers\AuthenticationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,4 +29,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/deeds/{deed}/edit', [DeedController::class, 'edit']);
     Route::post('/deeds', [DeedController::class, 'store']);
     Route::patch('/deeds/{deed}', [DeedController::class, 'update']);
+    Route::get('/deedlogs', [DeedLogController::class, 'index']);
+    Route::post('/deedlogs', [DeedLogController::class, 'store']);
+    Route::delete('/deedlogs/{deedLog}', [DeedLogController::class, 'destroy']);
+    Route::get('/savings', [SavingController::class, 'index']);
 });

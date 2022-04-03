@@ -42,8 +42,12 @@ export default {
             open: false,
             routes: [
                 {
-                    href: '/spa',
+                    href: '/dashboard',
                     label: 'Dashboard',
+                },
+                {
+                    href: '/treats',
+                    label: 'Treats',
                 },
                 {
                     href: '/deeds',

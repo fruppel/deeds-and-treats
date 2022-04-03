@@ -21,14 +21,11 @@ const getters = {
 
 const actions = {
     [DRAWER_OPEN](context, {component, componentProps}) {
-        console.log(componentProps);
         context.commit(DRAWER_SET_OPEN, true);
         context.commit(DRAWER_SET_COMPONENT, {component, componentProps});
     },
 
     [DRAWER_CLOSE](context) {
-        console.log(context);
-        console.log(DRAWER_SET_OPEN);
         context.commit(DRAWER_SET_OPEN, false)
         context.commit(DRAWER_SET_COMPONENT, {component: null, componentProps: null});
     },

@@ -69,7 +69,6 @@ export default {
     },
 
     async beforeRouteEnter(to, from, next) {
-        console.log('beforeRouteEnter');
         await store.dispatch(DEED_FETCH_ALL);
         next();
     },

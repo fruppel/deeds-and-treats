@@ -47,4 +47,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Deed::class);
     }
+
+    public function treats(): Relation
+    {
+        return $this->hasMany(Treat::class);
+    }
+
+    public function deedLogs(): Relation
+    {
+        return $this->hasMany(DeedLog::class);
+    }
 }

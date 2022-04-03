@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import LayoutGuest from '../layouts/LayoutGuest';
+import LayoutGuest from '@/layouts/LayoutGuest';
 import {shallowRef, watch} from 'vue';
 import { useRoute } from 'vue-router'
 

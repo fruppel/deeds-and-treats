@@ -41,10 +41,22 @@
 import FormLabel from './FormLabel';
 import FormInput from './FormInput';
 import FormError from './FormError';
-import {DEED_FETCH_BY_ID, DEED_FETCH_ALL, DEED_STORE, DEED_UPDATE, DRAWER_CLOSE} from '../store/types/actions';
-import {mapGetters} from 'vuex';
+import useDeedsStore from '@/stores/deeds';
+import useDrawerStore from '@/stores/drawer';
 
 export default {
+    setup() {
+        const deedsStore = useDeedsStore();
+        const drawerStore = useDrawerStore();
+
+        const close = () => drawerStore.close();
+
+        return {
+            deedsStore,
+            drawerStore,
+            close
+        };
+    },
     components: {FormInput, FormLabel, FormError},
 
     props: {
@@ -62,8 +74,9 @@ export default {
     },
 
     computed: {
-        ...mapGetters(['deed', 'errors']),
-
+        errors() {
+            return this.deedsStore.errors;
+        },
         title() {
             return this.hasDeed() ? 'Deed bearbeiten' : 'Deed erstellen';
         }
@@ -71,21 +84,18 @@ export default {
 
     methods: {
         async submit() {
-            const action = this.id ? DEED_UPDATE : DEED_STORE;
-            await this.$store.dispatch(action, this.form);
-            await this.$store.dispatch(DEED_FETCH_ALL);
+            this.hasDeed()
+                ? await this.deedsStore.update(this.form)
+                : await this.deedsStore.store(this.form);
+            await this.deedsStore.fetchAll();
             this.close();
         },
 
-        close() {
-            this.$store.dispatch(DRAWER_CLOSE);
-        },
-
         async loadDeedById() {
-            await this.$store.dispatch(DEED_FETCH_BY_ID, this.id);
-            this.form.id = this.deed.id;
-            this.form.name = this.deed.name;
-            this.form.value = this.deed.value;
+            await this.deedsStore.fetchById(this.id);
+            this.form.id = this.deedsStore.deed.id;
+            this.form.name = this.deedsStore.deed.name;
+            this.form.value = this.deedsStore.deed.value;
         },
 
         hasDeed() {

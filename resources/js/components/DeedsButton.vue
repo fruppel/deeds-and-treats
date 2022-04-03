@@ -9,16 +9,21 @@
 </template>
 
 <script>
-import store from '../store';
-import {
-    DEEDLOG_DESTROY,
-    DEEDLOG_FETCH_ALL,
-    DEEDLOG_STORE,
-    SAVINGS_FETCH
-} from '../store/types/actions';
-import {mapGetters} from 'vuex';
+import useDeedlogsStore from '@/stores/deedlogs';
+import useSavingsStore from '@/stores/savings';
 
 export default {
+    setup() {
+        const deedlogsStore = useDeedlogsStore();
+        deedlogsStore.fetchAll();
+
+        const savingsStore = useSavingsStore();
+
+        return {
+            deedlogsStore,
+            savingsStore
+        };
+    },
     props: {
         deed: {
             type: Object,
@@ -29,28 +34,24 @@ export default {
             required: true,
         },
     },
-    computed: {
-        ...mapGetters(['deedlogs']),
-    },
     methods: {
         async toggleDeed(deed, day) {
             if (this.hasDeedDone(deed, day)) {
-                await store.dispatch(
-                    DEEDLOG_DESTROY,
-                    this.deedlogs[day][deed.id]['id']
+                await this.deedlogsStore.destroy(
+                    this.deedlogsStore.deedlogs[day][deed.id]['id']
                 );
             } else {
-                await store.dispatch(DEEDLOG_STORE, {
+                await this.deedlogsStore.store({
                     deed_id: deed.id,
                     day: day
                 });
             }
 
-            await store.dispatch(DEEDLOG_FETCH_ALL);
-            await store.dispatch(SAVINGS_FETCH);
+            await this.deedlogsStore.fetchAll();
+            await this.savingsStore.fetch();
         },
         hasDeedDone(deed, day) {
-            return this.deedlogs[day]?.[deed.id] !== undefined;
+            return this.deedlogsStore.deedlogs[day]?.[deed.id] !== undefined;
         },
     }
 }

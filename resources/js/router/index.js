@@ -4,10 +4,10 @@ import PageDeeds from '../pages/PageDeeds';
 import PageLogin from '../pages/PageLogin';
 import PageRegister from '../pages/PageRegister';
 import {createRouter, createWebHistory} from 'vue-router';
-import store from '../store';
 import LayoutApp from '../layouts/LayoutApp';
 import LayoutGuest from '../layouts/LayoutGuest';
 import PageTreats from '../pages/PageTreats';
+import useAuthStore from '@/stores/auth';
 
 const routes = [
     {
@@ -75,9 +75,10 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from) => {
-    if (
-        to.meta.requiresAuth && store.getters.isAuthenticated === false
-    ) {
+    //const authStore = useAuthStore();
+
+    //if (to.meta.requiresAuth && authStore.isAuthenticated === false) {
+    if (to.meta.requiresAuth) {
         // return false;
         return {
             path: '/login',

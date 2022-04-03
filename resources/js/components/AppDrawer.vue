@@ -4,24 +4,34 @@
         :class="drawerClass"
         class="fixed h-screen bg-gray-300 left-0 top-0 shadow-xl transition-width transition-slowest ease overflow-hidden"
     >
-        <component :is="this.component" v-bind="this.componentProps"></component>
+        <component :is="this.drawerStore.component" v-bind="this.drawerStore.componentProps"></component>
     </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
-import {DRAWER_CLOSE} from '../store/types/actions';
+import useDrawerStore from '@/stores/drawer';
 
 export default {
+    setup() {
+        const drawerStore = useDrawerStore();
+
+        console.log(drawerStore);
+
+        return {
+            drawerStore
+        };
+    },
     computed: {
-        ...mapGetters(['drawerOpen', 'component', 'componentProps']),
+        //...mapGetters(['drawerOpen', 'component', 'componentProps']),
         drawerClass() {
-            return this.drawerOpen === true
+            console.log(this.drawerStore.drawerOpen === true);
+            console.log(this.drawerStore.component);
+            return this.drawerStore.drawerOpen === true
                 ? ['w-80']
                 : ['w-0']
         },
         maskClass() {
-            return this.drawerOpen === true
+            return this.drawerStore.drawerOpen === true
                 ? ['w-full']
                 : ['w-0']
         }
@@ -30,7 +40,8 @@ export default {
     methods: {
         close() {
             console.log('method close');
-            this.$store.dispatch(DRAWER_CLOSE);
+            //this.$store.dispatch(DRAWER_CLOSE);
+            this.drawerStore.close();
         }
     }
 }

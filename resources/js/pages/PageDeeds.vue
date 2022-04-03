@@ -18,7 +18,7 @@
                 <th></th>
             </tr>
 
-            <tr v-for="deed in deeds">
+            <tr v-for="deed in deedsStore.deeds">
                 <td class="py-1 border-b">{{ deed.name }}</td>
                 <td class="py-1 border-b text-right">{{ deed.value }}</td>
                 <td>{{ deed.created }}</td>
@@ -35,42 +35,23 @@
     </app-page-content>
 </template>
 
-<script>
-import { mapGetters } from 'vuex';
-import store from '../store';
+<script setup>
 import AppPageTitle from '../components/AppPageTitle';
 import AppPageContent from '../components/AppPageContent';
 import DeedsForm from '../components/DeedsForm';
-import {DEED_FETCH_ALL, DRAWER_OPEN} from '../store/types/actions';
 import { PencilIcon } from 'vue-tabler-icons';
 import {markRaw} from 'vue';
-import FormInput from '../components/FormInput';
+import useDrawerStore from '@/stores/drawer';
+import useDeedsStore from '@/stores/deeds';
 
-export default {
-    components: {
-        FormInput,
-        AppPageContent,
-        AppPageTitle,
-        PencilIcon
-    },
+const drawerStore = useDrawerStore();
 
-    computed: {
-        ...mapGetters(['deeds'])
-    },
+const deedsStore = useDeedsStore();
+await deedsStore.fetchAll();
 
-    methods: {
-        async loadEditForm(deedId) {
-            await store.dispatch(DRAWER_OPEN, {component: markRaw(DeedsForm), componentProps: {id: deedId}});
-        },
+const loadEditForm = async (deedId) => {
+    drawerStore.open(markRaw(DeedsForm), {id: deedId});
+};
 
-        loadCreateForm() {
-            store.dispatch(DRAWER_OPEN, {component: markRaw(DeedsForm)})
-        }
-    },
-
-    async beforeRouteEnter(to, from, next) {
-        await store.dispatch(DEED_FETCH_ALL);
-        next();
-    },
-}
+const loadCreateForm = () => drawerStore.open(markRaw(DeedsForm));
 </script>

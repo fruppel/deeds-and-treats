@@ -7,7 +7,7 @@
         </div>
 
         <div>
-            Gesamt: {{ formatEuro(savings) }}
+            Gesamt: {{ formatEuro(savingsStore.sum) }}
         </div>
 
         <div class="mt-2">
@@ -64,10 +64,13 @@
 </template>
 
 <script>
-import AppPageTitle from '../components/AppPageTitle';
-import AppPageContent from '../components/AppPageContent';
-import DeedsButton from '../components/DeedsButton';
-import DeedsRow from '../components/DeedsRow';
+import AppPageTitle from '@/components/AppPageTitle';
+import AppPageContent from '@/components/AppPageContent';
+import DeedsButton from '@/components/DeedsButton';
+import DeedsRow from '@/components/DeedsRow';
+import useSavingsStore from '@/stores/savings';
+import useDeedsStore from '@/stores/deeds';
+import useDeedlogsStore from '@/stores/deedlogs';
 
 import {
     getDatesForCurrentMonth,
@@ -75,17 +78,29 @@ import {
     getGermanMonth,
     getGermanDate,
     getIsoDate
-} from '../services/date-service';
-import {formatEuro} from '../services/formatting-service';
-import store from '../store';
-import {DEED_FETCH_ALL, DEEDLOG_FETCH_ALL, SAVINGS_FETCH} from '../store/types/actions';
-import {mapGetters} from 'vuex';
+} from '@/services/date-service';
+import {formatEuro} from '@/services/formatting-service';
 
 const MONTH_DECEMBER = 11;
 const MONTH_JANUARY = 0;
 const TODAY = new Date();
 
 export default {
+    async setup() {
+        const savingsStore = useSavingsStore();
+        await savingsStore.fetch();
+
+        const deedsStore = useDeedsStore();
+        await deedsStore.fetchAll();
+
+        const deedlogsStore = useDeedlogsStore();
+        await deedlogsStore.fetchAll();
+
+        return {
+            savingsStore,
+            deedsStore
+        };
+    },
     components: {
         DeedsRow,
         DeedsButton,
@@ -102,7 +117,6 @@ export default {
     },
 
     computed: {
-        ...mapGetters(['deeds', 'savings']),
         todayIso() {
             return getIsoDate(TODAY.toISOString());
         },
@@ -167,18 +181,5 @@ export default {
             return formatEuro(value);
         }
     },
-
-    async beforeRouteEnter(to, from, next) {
-        await store.dispatch(DEED_FETCH_ALL);
-        await store.dispatch(DEEDLOG_FETCH_ALL);
-        await store.dispatch(SAVINGS_FETCH);
-
-        next();
-    },
-
-    async mounted() {
-        console.log(this.historyDates);
-        console.log(TODAY);
-    }
 }
 </script>

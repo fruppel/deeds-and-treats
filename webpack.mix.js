@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const path = require('path');
 
 mix.js('resources/js/app.js', 'public/js')
     .vue()
@@ -8,4 +9,7 @@ mix.js('resources/js/app.js', 'public/js')
             require('tailwindcss'),
             require('autoprefixer'),
         ]
-    );
+    )
+    .alias({
+        '@': path.join(__dirname, 'resources/js'),
+    });

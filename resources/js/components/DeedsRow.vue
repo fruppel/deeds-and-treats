@@ -3,9 +3,9 @@
         <div
             class="flex-1 text-center items-center py-3 my-1"
         >
-            {{ germanDate(date) }}
+            {{ getGermanDate(date) }}
         </div>
-        <template v-for="deed in deeds.slice(0, 3)">
+        <template v-for="deed in deedsStore.deeds.slice(0, 3)">
             <deeds-button
                 :deed="deed"
                 :date="date"
@@ -14,28 +14,18 @@
     </div>
 </template>
 
-<script>
-import DeedsButton from './DeedsButton';
-import {getGermanDate} from '../services/date-service';
-import {mapGetters} from 'vuex';
+<script setup>
+import DeedsButton from '@/components/DeedsButton.vue';
+import {getGermanDate} from '@/services/date-service';
+import useDeedsStore from '@/stores/deeds';
+import {defineProps} from 'vue';
 
-export default {
-    components: {
-        DeedsButton,
+const deedsStore = useDeedsStore();
+
+const props = defineProps({
+    date: {
+        type: String,
+        required: true,
     },
-    props: {
-        date: {
-            type: String,
-            required: true,
-        },
-    },
-    computed: {
-        ...mapGetters(['deeds']),
-    },
-    methods: {
-        germanDate(date) {
-            return getGermanDate(date);
-        },
-    }
-}
+});
 </script>

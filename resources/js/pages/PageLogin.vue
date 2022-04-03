@@ -39,9 +39,16 @@ import AuthScreen from '../components/AuthScreen';
 import FormLabel from '../components/FormLabel';
 import FormInput from '../components/FormInput';
 import { RouterLink } from 'vue-router';
-import {AUTH_LOGIN} from '../store/types/actions';
+import useAuthStore from '@/stores/auth';
 
 export default {
+    setup() {
+        const authStore = useAuthStore();
+
+        return {
+            authStore
+        };
+    },
     components: {
         AuthScreen,
         FormInput,
@@ -60,11 +67,10 @@ export default {
 
     methods: {
         async submit() {
-            const user = await this.$store.dispatch(AUTH_LOGIN, {
+            await this.authStore.login({
                 email: this.form.email,
                 password: this.form.password
             });
-
             await this.$router.push({
                 path: this.$route.query.redirect || '/dashboard'
             });

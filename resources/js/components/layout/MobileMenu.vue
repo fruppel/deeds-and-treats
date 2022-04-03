@@ -34,9 +34,16 @@
 </template>
 
 <script>
-import {AUTH_LOGOUT} from '../../store/types/actions';
+import useAuthStore from '@/stores/auth';
 
 export default {
+    setup() {
+        const authStore = useAuthStore();
+
+        return {
+            authStore
+        };
+    },
     data() {
         return {
             open: false,
@@ -76,7 +83,7 @@ export default {
         },
 
         logout() {
-            this.$store.dispatch(AUTH_LOGOUT);
+            this.authStore.logout();
             this.$router.push({
                 path: '/login'
             });

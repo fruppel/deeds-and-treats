@@ -14,8 +14,6 @@
 
 <script>
 import {markRaw} from 'vue';
-import store from '../store';
-import {DRAWER_OPEN} from '../store/types/actions';
 import AppPageTitle from '../components/AppPageTitle';
 import AppPageContent from '../components/AppPageContent';
 import TreatsForm from '../components/TreatsForm';
@@ -27,11 +25,11 @@ export default {
     },
     methods: {
         async loadEditForm(treatId) {
-            await store.dispatch(DRAWER_OPEN, {component: markRaw(TreatsForm), componentProps: {id: treatId}});
+            //await store.dispatch(DRAWER_OPEN, {component: markRaw(TreatsForm), componentProps: {id: treatId}});
         },
 
         loadCreateForm() {
-            store.dispatch(DRAWER_OPEN, {component: markRaw(TreatsForm)})
+            //store.dispatch(DRAWER_OPEN, {component: markRaw(TreatsForm)})
         }
     },
 }

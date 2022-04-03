@@ -38,17 +38,9 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
 import FormLabel from './FormLabel';
 import FormInput from './FormInput';
 import FormError from './FormError';
-import {
-    TREAT_FETCH_BY_ID,
-    TREAT_FETCH_ALL,
-    TREAT_STORE,
-    TREAT_UPDATE,
-    DRAWER_CLOSE
-} from '../store/types/actions';
 
 export default {
     components: {FormInput, FormLabel, FormError},
@@ -68,8 +60,6 @@ export default {
     },
 
     computed: {
-        ...mapGetters(['treat', 'errors']),
-
         title() {
             return this.hasTreat() ? 'Treat bearbeiten' : 'Treat erstellen';
         }
@@ -77,21 +67,21 @@ export default {
 
     methods: {
         async submit() {
-            const action = this.id ? TREAT_UPDATE : TREAT_STORE;
-            await this.$store.dispatch(action, this.form);
-            await this.$store.dispatch(TREAT_FETCH_ALL);
+            // const action = this.id ? TREAT_UPDATE : TREAT_STORE;
+            // await this.$store.dispatch(action, this.form);
+            // await this.$store.dispatch(TREAT_FETCH_ALL);
             this.close();
         },
 
         close() {
-            this.$store.dispatch(DRAWER_CLOSE);
+            // this.$store.dispatch(DRAWER_CLOSE);
         },
 
         async loadTreatById() {
-            await this.$store.dispatch(TREAT_FETCH_BY_ID, this.id);
-            this.form.id = this.treat.id;
-            this.form.name = this.treat.name;
-            this.form.value = this.treat.value;
+            // await this.$store.dispatch(TREAT_FETCH_BY_ID, this.id);
+            // this.form.id = this.treat.id;
+            // this.form.name = this.treat.name;
+            // this.form.value = this.treat.value;
         },
 
         hasTreat() {

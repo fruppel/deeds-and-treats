@@ -8,51 +8,41 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import useDeedlogsStore from '@/stores/deedlogs';
 import useSavingsStore from '@/stores/savings';
 
-export default {
-    setup() {
-        const deedlogsStore = useDeedlogsStore();
-        deedlogsStore.fetchAll();
-
-        const savingsStore = useSavingsStore();
-
-        return {
-            deedlogsStore,
-            savingsStore
-        };
+const props = defineProps({
+    deed: {
+        type: Object,
+        required: true,
     },
-    props: {
-        deed: {
-            type: Object,
-            required: true,
-        },
-        date: {
-            type: String,
-            required: true,
-        },
+    date: {
+        type: String,
+        required: true,
     },
-    methods: {
-        async toggleDeed(deed, day) {
-            if (this.hasDeedDone(deed, day)) {
-                await this.deedlogsStore.destroy(
-                    this.deedlogsStore.deedlogs[day][deed.id]['id']
-                );
-            } else {
-                await this.deedlogsStore.store({
-                    deed_id: deed.id,
-                    day: day
-                });
-            }
+})
 
-            await this.deedlogsStore.fetchAll();
-            await this.savingsStore.fetch();
-        },
-        hasDeedDone(deed, day) {
-            return this.deedlogsStore.deedlogs[day]?.[deed.id] !== undefined;
-        },
+const deedlogsStore = useDeedlogsStore();
+const savingsStore = useSavingsStore();
+
+const hasDeedDone = (deed, day) => {
+    return deedlogsStore.deedlogs[day]?.[deed.id] !== undefined;
+}
+
+const toggleDeed = async (deed, day) => {
+    if (hasDeedDone(deed, day)) {
+        await deedlogsStore.destroy(
+            deedlogsStore.deedlogs[day][deed.id]['id']
+        );
+    } else {
+        await deedlogsStore.store({
+            deed_id: deed.id,
+            day: day
+        });
     }
+
+    await deedlogsStore.fetchAll();
+    await savingsStore.fetch();
 }
 </script>

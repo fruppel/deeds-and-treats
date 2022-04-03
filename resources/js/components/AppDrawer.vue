@@ -8,41 +8,23 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import useDrawerStore from '@/stores/drawer';
+import {computed} from 'vue';
 
-export default {
-    setup() {
-        const drawerStore = useDrawerStore();
+const drawerStore = useDrawerStore();
 
-        console.log(drawerStore);
+const drawerClass = computed(() => {
+    return drawerStore.drawerOpen === true
+        ? ['w-80']
+        : ['w-0']
+});
 
-        return {
-            drawerStore
-        };
-    },
-    computed: {
-        //...mapGetters(['drawerOpen', 'component', 'componentProps']),
-        drawerClass() {
-            console.log(this.drawerStore.drawerOpen === true);
-            console.log(this.drawerStore.component);
-            return this.drawerStore.drawerOpen === true
-                ? ['w-80']
-                : ['w-0']
-        },
-        maskClass() {
-            return this.drawerStore.drawerOpen === true
-                ? ['w-full']
-                : ['w-0']
-        }
-    },
+const maskClass = computed(() => {
+    return drawerStore.drawerOpen === true
+        ? ['w-full']
+        : ['w-0']
+});
 
-    methods: {
-        close() {
-            console.log('method close');
-            //this.$store.dispatch(DRAWER_CLOSE);
-            this.drawerStore.close();
-        }
-    }
-}
+const close = () =>  drawerStore.close();
 </script>

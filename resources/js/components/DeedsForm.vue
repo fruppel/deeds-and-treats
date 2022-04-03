@@ -37,76 +37,53 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import FormLabel from './FormLabel';
 import FormInput from './FormInput';
 import FormError from './FormError';
 import useDeedsStore from '@/stores/deeds';
 import useDrawerStore from '@/stores/drawer';
+import {computed, onMounted, ref} from 'vue';
 
-export default {
-    setup() {
-        const deedsStore = useDeedsStore();
-        const drawerStore = useDrawerStore();
+const props = defineProps({
+    id: {
+        type: Number,
+    }
+});
 
-        const close = () => drawerStore.close();
+const deedsStore = useDeedsStore();
+const drawerStore = useDrawerStore();
 
-        return {
-            deedsStore,
-            drawerStore,
-            close
-        };
-    },
-    components: {FormInput, FormLabel, FormError},
+const form = ref({
+    id: props.id,
+    name: null,
+    value: null,
+});
 
-    props: {
-        id: Number,
-    },
+const errors = computed(() => deedsStore.errors);
+const title = computed(() => hasDeed() ? 'Deed bearbeiten' : 'Deed erstellen');
 
-    data() {
-        return {
-            form: {
-                id: this.id,
-                name: null,
-                value: null,
-            }
-        }
-    },
+const close = () => drawerStore.close();
+const hasDeed = () => props.id !== undefined && props.id !== null;
 
-    computed: {
-        errors() {
-            return this.deedsStore.errors;
-        },
-        title() {
-            return this.hasDeed() ? 'Deed bearbeiten' : 'Deed erstellen';
-        }
-    },
+const submit = async () => {
+    hasDeed() === true
+        ? await deedsStore.update(form.value)
+        : await deedsStore.store(form.value);
+    await deedsStore.fetchAll();
+    close();
+};
 
-    methods: {
-        async submit() {
-            this.hasDeed()
-                ? await this.deedsStore.update(this.form)
-                : await this.deedsStore.store(this.form);
-            await this.deedsStore.fetchAll();
-            this.close();
-        },
+const loadDeedById = async () => {
+    await deedsStore.fetchById(props.id);
+    form.value.id = deedsStore.deed.id;
+    form.value.name = deedsStore.deed.name;
+    form.value.value = deedsStore.deed.value;
+};
 
-        async loadDeedById() {
-            await this.deedsStore.fetchById(this.id);
-            this.form.id = this.deedsStore.deed.id;
-            this.form.name = this.deedsStore.deed.name;
-            this.form.value = this.deedsStore.deed.value;
-        },
-
-        hasDeed() {
-            return this.id !== undefined && this.id !== null;
-        }
-    },
-
-    async mounted() {
-        if (this.hasDeed() === true) {
-            await this.loadDeedById();
-        }
-    },
-}
+onMounted(async () => {
+    if (hasDeed() === true) {
+        await loadDeedById();
+    }
+});
 </script>

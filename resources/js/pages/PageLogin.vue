@@ -34,47 +34,30 @@
         </div>
     </auth-screen>
 </template>
-<script>
+<script setup>
 import AuthScreen from '../components/AuthScreen';
 import FormLabel from '../components/FormLabel';
 import FormInput from '../components/FormInput';
-import { RouterLink } from 'vue-router';
+import {RouterLink, useRouter, useRoute} from 'vue-router';
 import useAuthStore from '@/stores/auth';
+import {ref} from 'vue';
 
-export default {
-    setup() {
-        const authStore = useAuthStore();
+const authStore = useAuthStore();
+const router = useRouter();
+const route = useRoute();
 
-        return {
-            authStore
-        };
-    },
-    components: {
-        AuthScreen,
-        FormInput,
-        FormLabel,
-        RouterLink,
-    },
+const form = ref({
+    email: '',
+    password: '',
+});
 
-    data() {
-        return {
-            form: {
-                email: '',
-                password: '',
-            }
-        };
-    },
-
-    methods: {
-        async submit() {
-            await this.authStore.login({
-                email: this.form.email,
-                password: this.form.password
-            });
-            await this.$router.push({
-                path: this.$route.query.redirect || '/dashboard'
-            });
-        }
-    }
+const submit = async () => {
+    await authStore.login({
+        email: form.value.email,
+        password: form.value.password
+    });
+    await router.push({
+        path: route.query.redirect || '/dashboard'
+    });
 }
 </script>

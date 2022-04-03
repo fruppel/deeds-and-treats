@@ -4,10 +4,8 @@
     </div>
 </template>
 
-<script>
-export default {
-    props: {
-        error: Object
-    }
-}
+<script setup>
+const props = defineProps({
+    error: Object
+});
 </script>

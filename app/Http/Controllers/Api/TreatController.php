@@ -32,7 +32,7 @@ class TreatController extends AbstractApiController
     public function store(Request $request): JsonResponse
     {
         $validated = $request->validate([
-            'name' => 'required|max:25',
+            'name' => 'required|max:35',
             'costs' => 'required|numeric',
             'bought' => 'date',
             'unlocked' => 'date|nullable',
@@ -50,7 +50,7 @@ class TreatController extends AbstractApiController
         }
 
         $validated = $request->validate([
-            'name' => 'required|max:25',
+            'name' => 'required|max:35',
             'costs' => 'required|numeric',
             'bought' => 'date',
             'unlocked' => 'date|nullable',

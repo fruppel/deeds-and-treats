@@ -41,7 +41,7 @@
             <dashboard-headline>Mehr</dashboard-headline>
 
             <div class="mt-4">
-                <toggable-content label="Alle Treats &raquo;">
+                <toggable-content label="Verfügbare Treats &raquo;">
                     <dashboard-treat-list :treats="treatStore.unlockableTreats" />
                 </toggable-content>
             </div>

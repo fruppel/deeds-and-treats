@@ -7,7 +7,7 @@
             <button
                 v-if="isActiveTreat(treat)"
                 @click="removeActiveTreat()"
-                class="p-1"
+                class="p-2"
             >
                 <star-icon class="text-yellow-600" />
             </button>
@@ -15,7 +15,7 @@
             <button
                 v-else
                 @click="setActiveTreat(treat)"
-                class="p-1"
+                class="p-2"
             >
                 <star-icon class="text-gray-400" />
             </button>

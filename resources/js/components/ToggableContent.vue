@@ -1,5 +1,5 @@
 <template>
-    <a @click="toggleVisibility">{{ label }}</a>
+    <a @click="toggleVisibility" class="text-lg">{{ label }}</a>
     <div
         v-if="contentVisible"
         class="bg-gray-50"

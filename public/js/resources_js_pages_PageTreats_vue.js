@@ -756,6 +756,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       treats: []
     };
   },
+  getters: {
+    unlockableTreats: function unlockableTreats(state) {
+      return state.treats.filter(function (treat) {
+        return treat.unlocked === null;
+      });
+    }
+  },
   actions: {
     fetchById: function fetchById(id) {
       var _this = this;

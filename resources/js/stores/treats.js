@@ -8,6 +8,11 @@ export default defineStore({
         treat: null,
         treats: []
     }),
+    getters: {
+        unlockableTreats(state) {
+            return state.treats.filter(treat => treat.unlocked === null);
+        },
+    },
     actions: {
         async fetchById(id) {
             const { data } = await apiClient.get(`/api/treats/${id}`);

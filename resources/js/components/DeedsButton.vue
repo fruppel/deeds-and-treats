@@ -1,7 +1,7 @@
 <template>
     <div
         @click="toggleDeed(deed, date)"
-        class="flex-1 text-center items-center py-3 border bg-gray-100 rounded-md"
+        class="select-none flex-1 text-center items-center py-3 border bg-gray-100 rounded-md"
         :class="{'bg-gray-600 text-gray-200' : hasDeedDone(deed, date)}"
     >
         {{ deed.name }}

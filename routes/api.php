@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\Api\ActiveTreatController;
 use App\Http\Controllers\Api\DeedController;
 use App\Http\Controllers\Api\DeedLogController;
+use App\Http\Controllers\Api\UnlockController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\TreatController;
 use App\Http\Controllers\AuthenticationController;
@@ -25,4 +26,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/treats', TreatController::class);
     Route::post('/activetreat/{treat}', [ActiveTreatController::class, 'store']);
     Route::delete('/activetreat', [ActiveTreatController::class, 'destroy']);
+    Route::post('/unlock/{treat}', [UnlockController::class, 'store']);
 });

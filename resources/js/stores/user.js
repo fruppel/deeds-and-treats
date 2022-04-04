@@ -20,6 +20,9 @@ export default defineStore({
             return Math.min(1, this.available / state.activeTreat.costs);
         },
         hasActiveTreat: (state) => state.activeTreat && Object.keys(state.activeTreat).length !== 0,
+        canUnlock(state) {
+            return this.hasActiveTreat && this.available >= state.activeTreat.costs;
+        },
     },
     actions: {
         async fetch() {
@@ -38,5 +41,9 @@ export default defineStore({
             const response = await apiClient.delete('/api/activetreat');
             await this.fetch();
         },
+        async unlock() {
+            const response = await apiClient.post('/api/unlock/' + this.activeTreat.id);
+            await this.fetch();
+        }
     }
 });

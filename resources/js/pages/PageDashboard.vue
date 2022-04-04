@@ -4,14 +4,14 @@
     <app-page-content>
         <div>
             <dashboard-headline>Heute</dashboard-headline>
-            <deeds-row :date="today"></deeds-row>
+            <deeds-row></deeds-row>
             <div class="mt-3 flex justify-between items-center">
                 <div>Insgesamt verfügbar</div>
                 <div class="text-xl font-semibold text-teal-500">{{ formatEuro(userStore.available) }}</div>
             </div>
         </div>
 
-        <div class="mt-5">
+        <div class="mt-6">
             <dashboard-headline>Derzeit aktiv</dashboard-headline>
             <div v-if="userStore.hasActiveTreat">
                 <div class="flex justify-between">
@@ -19,7 +19,7 @@
                     <div>{{ formatEuro(userStore.activeTreat.costs) }}</div>
                 </div>
                 <div>
-                    <div class="mt-1 relative w-full bg-gray-200 rounded-full h-5 text-center">
+                    <div class="mt-1 w-full bg-gray-200 rounded-full h-5 text-center">
                         <div
                             class="bg-teal-500 h-5 rounded-full"
                             :style="{ width: formatPercent(userStore.activeReached) }"
@@ -29,40 +29,51 @@
                         {{ formatPercent(userStore.activeReached) }}
                     </div>
                 </div>
+                <div v-if="userStore.canUnlock">
+                    <button @click="userStore.unlock()">
+                        Freischalten
+                    </button>
+                </div>
             </div>
         </div>
 
-        <div class="mt-4">
-            <toggable-content label="Alle &raquo;">
-                <dashboard-treat-list :treats="treatStore.treats" />
-            </toggable-content>
-        </div>
+        <div class="mt-6">
+            <dashboard-headline>Mehr</dashboard-headline>
 
-        <div class="mt-4">
-            <toggable-content label="Statistik &raquo;">
-                <div class="mt-2 flex justify-between border-b border-gray-100">
-                    <div>Gespart gesamt</div>
-                    <div>{{ formatEuro(userStore.savings) }}</div>
-                </div>
-                <div class="flex justify-between border-b border-gray-100">
-                    <div>Kosten gesamt</div>
-                    <div>{{ formatEuro(userStore.costsAll) }}</div>
-                </div>
-                <div class="flex justify-between border-b border-gray-100">
-                    <div>Ausgegeben</div>
-                    <div>{{ formatEuro(userStore.costsSpent) }}</div>
-                </div>
-                <div class="flex justify-between border-b border-gray-100">
-                    <div>Offen</div>
-                    <div>{{ formatEuro(userStore.costsOpen) }}</div>
-                </div>
-            </toggable-content>
-        </div>
+            <div class="mt-4">
+                <toggable-content label="Alle Treats &raquo;">
+                    <dashboard-treat-list :treats="treatStore.unlockableTreats" />
+                </toggable-content>
+            </div>
 
-        <div class="mt-4">
-            <toggable-content label="Historie &raquo;">
-                <deedlog-calendar />
-            </toggable-content>
+            <div class="mt-4">
+                <toggable-content label="Statistik &raquo;">
+                    <div class="px-2 py-1">
+                        <div class="mt-2 py-1 flex justify-between border-b border-gray-200">
+                            <div>Gespart gesamt</div>
+                            <div class="font-semibold">{{ formatEuro(userStore.savings) }}</div>
+                        </div>
+                        <div class="mt-2 py-1 flex justify-between border-b border-gray-200">
+                            <div>Kosten gesamt</div>
+                            <div class="font-semibold">{{ formatEuro(userStore.costsAll) }}</div>
+                        </div>
+                        <div class="mt-2 py-1 flex justify-between border-b border-gray-200">
+                            <div>Ausgegeben</div>
+                            <div class="font-semibold">{{ formatEuro(userStore.costsSpent) }}</div>
+                        </div>
+                        <div class="mt-2 py-1 flex justify-between">
+                            <div>Offen</div>
+                            <div class="font-semibold">{{ formatEuro(userStore.costsOpen) }}</div>
+                        </div>
+                    </div>
+                </toggable-content>
+            </div>
+
+            <div class="mt-4">
+                <toggable-content label="Historie &raquo;">
+                    <deedlog-calendar />
+                </toggable-content>
+            </div>
         </div>
     </app-page-content>
 </template>
@@ -93,8 +104,4 @@ await deedlogsStore.fetchAll();
 
 const treatStore = useTreatStore();
 await treatStore.fetchAll();
-
-console.log(userStore.hasActiveTreat);
-
-const today = getIsoDate(new Date().toISOString());
 </script>

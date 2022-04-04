@@ -1,7 +1,8 @@
 <template>
     <div>
         <div
-            class="px-1 py-1 text-lg"
+            v-if="date"
+            class="px-1 py-1 text-xs text-center"
         >
             {{ getGermanDate(date) }}
         </div>
@@ -26,7 +27,7 @@ const deedsStore = useDeedsStore();
 const props = defineProps({
     date: {
         type: String,
-        required: true,
+        default: '',
     },
 });
 </script>

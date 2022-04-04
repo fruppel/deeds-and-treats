@@ -4,7 +4,7 @@
     <app-page-content>
         <div>
             <dashboard-headline>Heute</dashboard-headline>
-            <deeds-row></deeds-row>
+            <deeds-row :date="today"></deeds-row>
             <div class="mt-3 flex justify-between items-center">
                 <div>Insgesamt verfügbar</div>
                 <div class="text-xl font-semibold text-teal-500">{{ formatEuro(userStore.available) }}</div>
@@ -79,6 +79,7 @@
 </template>
 
 <script setup>
+import {getIsoDate} from '@/services/date-service';
 import {formatEuro, formatPercent} from '@/services/formatting-service';
 import DeedlogCalendar from '@/components/DeedlogCalendar';
 import AppPageTitle from '@/components/AppPageTitle';
@@ -103,6 +104,8 @@ await deedlogsStore.fetchAll();
 
 const treatStore = useTreatStore();
 await treatStore.fetchAll();
+
+const today = getIsoDate(new Date().toISOString());
 
 const unlock = async () => {
     await userStore.unlock();

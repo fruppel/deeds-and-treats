@@ -279,9 +279,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_AppPageTitle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/AppPageTitle */ "./resources/js/components/AppPageTitle.vue");
 /* harmony import */ var _components_AppPageContent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/AppPageContent */ "./resources/js/components/AppPageContent.vue");
 /* harmony import */ var _components_TreatsForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/TreatsForm */ "./resources/js/components/TreatsForm.vue");
-/* harmony import */ var vue_tabler_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-tabler-icons */ "./node_modules/vue-tabler-icons/dist/vue-tabler-icons.es.js");
+/* harmony import */ var vue_tabler_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-tabler-icons */ "./node_modules/vue-tabler-icons/dist/vue-tabler-icons.es.js");
 /* harmony import */ var _stores_drawer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/stores/drawer */ "./resources/js/stores/drawer.js");
 /* harmony import */ var _stores_treats__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/stores/treats */ "./resources/js/stores/treats.js");
+/* harmony import */ var _services_formatting_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/services/formatting-service */ "./resources/js/services/formatting-service.js");
+/* harmony import */ var _services_date_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/services/date-service */ "./resources/js/services/date-service.js");
 
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -299,6 +301,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
 
 
 
@@ -369,9 +373,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 AppPageTitle: _components_AppPageTitle__WEBPACK_IMPORTED_MODULE_2__["default"],
                 AppPageContent: _components_AppPageContent__WEBPACK_IMPORTED_MODULE_3__["default"],
                 TreatsForm: _components_TreatsForm__WEBPACK_IMPORTED_MODULE_4__["default"],
-                PencilIcon: vue_tabler_icons__WEBPACK_IMPORTED_MODULE_7__.PencilIcon,
+                PencilIcon: vue_tabler_icons__WEBPACK_IMPORTED_MODULE_9__.PencilIcon,
                 useDrawerStore: _stores_drawer__WEBPACK_IMPORTED_MODULE_5__["default"],
-                useTreatsStore: _stores_treats__WEBPACK_IMPORTED_MODULE_6__["default"]
+                useTreatsStore: _stores_treats__WEBPACK_IMPORTED_MODULE_6__["default"],
+                formatEuro: _services_formatting_service__WEBPACK_IMPORTED_MODULE_7__.formatEuro,
+                getGermanDate: _services_date_service__WEBPACK_IMPORTED_MODULE_8__.getGermanDate
               };
               Object.defineProperty(__returned__, '__isScriptSetup', {
                 enumerable: false,
@@ -660,27 +666,24 @@ var _hoisted_2 = {
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
   "class": "text-left"
-}, "Name"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
-  "class": "text-left"
 }, "Gekauft"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  "class": "text-left"
+}, "Name"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
   "class": "text-right"
 }, "Kosten"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th")], -1
 /* HOISTED */
 );
 
 var _hoisted_4 = {
-  "class": "py-1 border-b"
-};
-var _hoisted_5 = {
   "class": "py-1 border-b text-left"
 };
-var _hoisted_6 = {
+var _hoisted_5 = {
   "class": "py-1 border-b text-right"
 };
-var _hoisted_7 = {
+var _hoisted_6 = {
   "class": "py-1 border-b flex justify-end"
 };
-var _hoisted_8 = ["onClick"];
+var _hoisted_7 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AppPageTitle"], null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -697,20 +700,24 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: $setup.loadCreateForm,
         "class": "border font-semibold inline-flex items-center px-3 py-1 rounded-md text-xs uppercase text-gray-100 bg-teal-500"
       }, " Neu ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_2, [_hoisted_3, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.treatsStore.treats, function (treat) {
-        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(treat.name), 1
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.getGermanDate(treat.bought)), 1
         /* TEXT */
-        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(treat.bought), 1
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
+          "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["py-1 border-b", {
+            'text-teal-500 font-semibold': treat.unlocked !== null
+          }])
+        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(treat.name), 3
+        /* TEXT, CLASS */
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formatEuro(treat.costs)), 1
         /* TEXT */
-        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(treat.costs), 1
-        /* TEXT */
-        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
           onClick: function onClick($event) {
             return $setup.loadEditForm(treat.id);
           },
           "class": "mr-1 border rounded-md block p-1 border-teal-500 text-teal-500"
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["PencilIcon"])], 8
         /* PROPS */
-        , _hoisted_8)])]);
+        , _hoisted_7)])]);
       }), 256
       /* UNKEYED_FRAGMENT */
       ))])];
@@ -721,6 +728,149 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   })], 64
   /* STABLE_FRAGMENT */
   );
+}
+
+/***/ }),
+
+/***/ "./resources/js/services/date-service.js":
+/*!***********************************************!*\
+  !*** ./resources/js/services/date-service.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getDatesForCurrentMonth": () => (/* binding */ getDatesForCurrentMonth),
+/* harmony export */   "getDatesForMonthAndYear": () => (/* binding */ getDatesForMonthAndYear),
+/* harmony export */   "getGermanDate": () => (/* binding */ getGermanDate),
+/* harmony export */   "getGermanMonth": () => (/* binding */ getGermanMonth),
+/* harmony export */   "getIsoDate": () => (/* binding */ getIsoDate)
+/* harmony export */ });
+/**
+ * @returns {String[]}
+ */
+function getDatesForCurrentMonth() {
+  var lastDay = getDayBefore(new Date());
+  var firstDay = new Date(lastDay.getFullYear(), lastDay.getMonth(), 1);
+  return getDates(firstDay, lastDay);
+}
+/**
+ * @param {Number} month
+ * @param {Number} year
+ * @returns {String[]}
+ */
+
+function getDatesForMonthAndYear(month, year) {
+  var firstDayOfMonth = new Date(year, month, 1);
+  var lastDayOfMonth = new Date(year, month + 1, 0);
+  return getDates(firstDayOfMonth, lastDayOfMonth);
+}
+/**
+ * @param {number} monthIndex
+ * @returns {string}
+ */
+
+function getGermanMonth(monthIndex) {
+  var date = new Date();
+  date.setMonth(monthIndex);
+  return date.toLocaleString('de-DE', {
+    month: 'long'
+  });
+}
+/**
+ * @param {string} isoDate
+ * @returns {string}
+ */
+
+function getGermanDate(isoDate) {
+  var date = new Date(isoDate);
+  return date.toLocaleDateString('de-DE', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  });
+}
+/**
+ * Returns a string formatted as YYYY-MM-DD
+ *
+ * @param {string} isoDate
+ * @return {string}
+ */
+
+function getIsoDate(isoDate) {
+  return extractIsoDate(new Date(isoDate));
+}
+/**
+ * @param {Date} firstDay
+ * @param {Date} lastDay
+ * @returns {String[]}
+ */
+
+function getDates(firstDay, lastDay) {
+  var dates = [extractIsoDate(firstDay)];
+  var currentDay = firstDay;
+
+  while (currentDay < lastDay) {
+    currentDay.setDate(getNextDay(currentDay));
+    dates.push(extractIsoDate(currentDay));
+  }
+
+  return dates.reverse();
+}
+/**
+ * @param {Date} currentDay
+ * @returns {number}
+ */
+
+
+function getNextDay(currentDay) {
+  return new Date(currentDay).getDate() + 1;
+}
+/**
+ * @param {Date} date
+ * @returns {string}
+ */
+
+
+function extractIsoDate(date) {
+  var offset = date.getTimezoneOffset();
+  var dateWithTimezone = new Date(date.getTime() - offset * 60 * 1000);
+  return dateWithTimezone.toISOString().split('T')[0];
+}
+/**
+ * @param {Date} date
+ * @returns {Date}
+ */
+
+
+function getDayBefore(date) {
+  var lastDay = new Date(date);
+  lastDay.setDate(lastDay.getDate() - 1);
+  lastDay.setHours(0, 0, 0, 0);
+  return lastDay;
+}
+
+/***/ }),
+
+/***/ "./resources/js/services/formatting-service.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/services/formatting-service.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "formatEuro": () => (/* binding */ formatEuro),
+/* harmony export */   "formatPercent": () => (/* binding */ formatPercent)
+/* harmony export */ });
+function formatEuro(value) {
+  return new Intl.NumberFormat('de-DE', {
+    style: 'currency',
+    currency: 'EUR'
+  }).format(value);
+}
+function formatPercent(value) {
+  return Math.trunc(value * 100) + '%';
 }
 
 /***/ }),

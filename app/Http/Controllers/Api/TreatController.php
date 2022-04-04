@@ -14,7 +14,12 @@ class TreatController extends AbstractApiController
 {
     public function index(): JsonResponse
     {
-        return response()->json(Auth::user()->treats);
+        return response()->json(
+            Auth::user()
+                ->treats()
+                ->orderBy('bought')
+                ->get()
+        );
     }
 
     public function show(int $id): JsonResponse

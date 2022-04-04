@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name', 100);
             $table->decimal('costs', 10);
             $table->date('bought');
-            $table->date('unlocked');
+            $table->date('unlocked')->nullable();
         });
     }
 

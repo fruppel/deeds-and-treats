@@ -9,28 +9,49 @@
                 Neu
             </button>
         </div>
+
+        <table class="table-auto border-collapse w-full">
+            <tr>
+                <th class="text-left">Name</th>
+                <th class="text-left">Gekauft</th>
+                <th class="text-right">Kosten</th>
+                <th></th>
+            </tr>
+
+            <tr v-for="treat in treatsStore.treats">
+                <td class="py-1 border-b">{{ treat.name }}</td>
+                <td class="py-1 border-b text-left">{{ treat.bought }}</td>
+                <td class="py-1 border-b text-right">{{ treat.costs }}</td>
+                <td  class="py-1 border-b flex justify-end">
+                    <a
+                        @click="loadEditForm(treat.id)"
+                        class="mr-1 border rounded-md block p-1 border-teal-500 text-teal-500"
+                    >
+                        <pencil-icon></pencil-icon>
+                    </a>
+                </td>
+            </tr>
+        </table>
     </app-page-content>
 </template>
 
-<script>
+<script setup>
 import {markRaw} from 'vue';
 import AppPageTitle from '../components/AppPageTitle';
 import AppPageContent from '../components/AppPageContent';
 import TreatsForm from '../components/TreatsForm';
+import {PencilIcon} from 'vue-tabler-icons';
+import useDrawerStore from '@/stores/drawer';
+import useTreatsStore from '@/stores/treats';
 
-export default {
-    components: {
-        AppPageContent,
-        AppPageTitle
-    },
-    methods: {
-        async loadEditForm(treatId) {
-            //await store.dispatch(DRAWER_OPEN, {component: markRaw(TreatsForm), componentProps: {id: treatId}});
-        },
+const drawerStore = useDrawerStore();
+const treatsStore = useTreatsStore();
+await treatsStore.fetchAll();
 
-        loadCreateForm() {
-            //store.dispatch(DRAWER_OPEN, {component: markRaw(TreatsForm)})
-        }
-    },
-}
+const loadEditForm = async (id) => {
+    drawerStore.open(markRaw(TreatsForm), {id: id});
+};
+
+const loadCreateForm = () => drawerStore.open(markRaw(TreatsForm));
+
 </script>

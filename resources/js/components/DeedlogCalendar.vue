@@ -37,16 +37,18 @@
             {{ currentYear + 1 }}
         </button>
     </div>
-    <template
-        v-for="date in historyDates"
-        :key="date"
-    >
-        <deeds-row :date="date"></deeds-row>
-    </template>
+    <div class="space-y-2">
+        <template
+            v-for="date in historyDates"
+            :key="date"
+        >
+            <deeds-row :date="date"></deeds-row>
+        </template>
+    </div>
 </template>
 
 <script setup>
-import {computed, defineProps, ref} from 'vue';
+import {computed, ref} from 'vue';
 import DeedsRow from '@/components/DeedsRow';
 import {getDatesForCurrentMonth, getDatesForMonthAndYear, getGermanMonth} from '@/services/date-service';
 

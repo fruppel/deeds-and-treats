@@ -1,8 +1,8 @@
 <template>
     <div
         @click="toggleDeed(deed, date)"
-        class="flex-1 text-center items-center py-3 border bg-gray-50 rounded-md m-1"
-        :class="{'bg-gray-700 text-gray-200' : hasDeedDone(deed, date)}"
+        class="flex-1 text-center items-center py-3 border bg-gray-100 rounded-md"
+        :class="{'bg-gray-600 text-gray-200' : hasDeedDone(deed, date)}"
     >
         {{ deed.name }}
     </div>
@@ -10,7 +10,7 @@
 
 <script setup>
 import useDeedlogsStore from '@/stores/deedlogs';
-import useSavingsStore from '@/stores/savings';
+import useUserStore from '@/stores/user';
 
 const props = defineProps({
     deed: {
@@ -24,7 +24,7 @@ const props = defineProps({
 })
 
 const deedlogsStore = useDeedlogsStore();
-const savingsStore = useSavingsStore();
+const userStore = useUserStore();
 
 const hasDeedDone = (deed, day) => {
     return deedlogsStore.deedlogs[day]?.[deed.id] !== undefined;
@@ -43,6 +43,6 @@ const toggleDeed = async (deed, day) => {
     }
 
     await deedlogsStore.fetchAll();
-    await savingsStore.fetch();
+    await userStore.fetch();
 }
 </script>

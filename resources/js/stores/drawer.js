@@ -9,6 +9,7 @@ export default defineStore({
     }),
     actions: {
         open(component, componentProps = null) {
+            console.log(componentProps);
             this.setComponent(component, componentProps);
             this.drawerOpen = true;
         },

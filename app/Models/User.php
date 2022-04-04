@@ -9,6 +9,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @property ?int $active_treat
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -22,6 +25,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'active_treat',
     ];
 
     /**
@@ -51,6 +55,11 @@ class User extends Authenticatable
     public function treats(): Relation
     {
         return $this->hasMany(Treat::class);
+    }
+
+    public function activeTreat(): Relation
+    {
+        return $this->hasOne(Treat::class, 'id', 'active_treat');
     }
 
     public function deedLogs(): Relation

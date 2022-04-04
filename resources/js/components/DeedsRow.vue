@@ -1,16 +1,18 @@
 <template>
-    <div class="flex">
+    <div>
         <div
-            class="flex-1 text-center items-center py-3 my-1"
+            class="px-1 py-1 text-lg"
         >
             {{ getGermanDate(date) }}
         </div>
-        <template v-for="deed in deedsStore.deeds.slice(0, 3)">
-            <deeds-button
-                :deed="deed"
-                :date="date"
-            />
-        </template>
+        <div class="flex justify-between space-x-1.5">
+            <template v-for="deed in deedsStore.deeds.slice(0, 3)">
+                <deeds-button
+                    :deed="deed"
+                    :date="date"
+                />
+            </template>
+        </div>
     </div>
 </template>
 
@@ -18,7 +20,6 @@
 import DeedsButton from '@/components/DeedsButton.vue';
 import {getGermanDate} from '@/services/date-service';
 import useDeedsStore from '@/stores/deeds';
-import {defineProps} from 'vue';
 
 const deedsStore = useDeedsStore();
 

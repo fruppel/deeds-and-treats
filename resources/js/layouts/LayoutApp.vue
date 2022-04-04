@@ -3,7 +3,7 @@
         <nav class="bg-white border-b border-gray-100">
             <div class="flex justify-between px-4 h-16">
                 <div class="flex items-center font-semibold">
-                    Deeds & Treats
+                    <router-link to="/dashboard">Deeds & Treats</router-link>
                 </div>
 
                 <mobile-menu :routes="{}"></mobile-menu>

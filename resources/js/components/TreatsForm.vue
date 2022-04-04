@@ -11,9 +11,21 @@
         </div>
 
         <div class="mt-4">
-            <form-label>Belohnung</form-label>
-            <form-input v-model="form.value" />
-            <form-error :error="errors.value" />
+            <form-label>Kosten</form-label>
+            <form-input v-model="form.costs" />
+            <form-error :error="errors.costs" />
+        </div>
+
+        <div class="mt-4">
+            <form-label>Gekauft</form-label>
+            <form-input v-model="form.bought" />
+            <form-error :error="errors.bought" />
+        </div>
+
+        <div class="mt-4">
+            <form-label>Freigeschaltet</form-label>
+            <form-input v-model="form.unlocked" />
+            <form-error :error="errors.unlocked" />
         </div>
 
         <div class="mt-6 flex">
@@ -37,62 +49,60 @@
     </div>
 </template>
 
-<script>
+<script setup>
+import {computed, onMounted, ref} from 'vue';
 import FormLabel from './FormLabel';
 import FormInput from './FormInput';
 import FormError from './FormError';
+import useTreatsStore from '@/stores/treats';
+import useDrawerStore from '@/stores/drawer';
 
-export default {
-    components: {FormInput, FormLabel, FormError},
+const treatsStore = useTreatsStore();
+const drawerStore = useDrawerStore();
 
-    props: {
-        id: Number,
-    },
+const props = defineProps({
+    id: {
+        type: Number,
+    }
+});
 
-    data() {
-        return {
-            form: {
-                id: this.id,
-                name: null,
-                value: null,
-            }
-        }
-    },
+const form = ref({
+    id: props.id,
+    name: null,
+    costs: null,
+    bought: null,
+    unlocked: null,
+});
 
-    computed: {
-        title() {
-            return this.hasTreat() ? 'Treat bearbeiten' : 'Treat erstellen';
-        }
-    },
+const errors = computed(() => treatsStore.errors);
+const title = computed(() => exists()
+    ? 'Treat bearbeiten'
+    : 'Treat erstellen'
+);
 
-    methods: {
-        async submit() {
-            // const action = this.id ? TREAT_UPDATE : TREAT_STORE;
-            // await this.$store.dispatch(action, this.form);
-            // await this.$store.dispatch(TREAT_FETCH_ALL);
-            this.close();
-        },
+const close = () => drawerStore.close();
+const exists = () => props.id !== undefined && props.id !== null;
 
-        close() {
-            // this.$store.dispatch(DRAWER_CLOSE);
-        },
+const submit = async () => {
+    exists() === true
+        ? await treatsStore.update(form.value)
+        : await treatsStore.store(form.value);
+    await treatsStore.fetchAll();
+    close();
+};
 
-        async loadTreatById() {
-            // await this.$store.dispatch(TREAT_FETCH_BY_ID, this.id);
-            // this.form.id = this.treat.id;
-            // this.form.name = this.treat.name;
-            // this.form.value = this.treat.value;
-        },
+const loadTreatById = async () => {
+    await treatsStore.fetchById(props.id);
+    form.value.id = treatsStore.treat.id;
+    form.value.name = treatsStore.treat.name;
+    form.value.costs = treatsStore.treat.costs;
+    form.value.bought = treatsStore.treat.bought;
+    form.value.unlocked = treatsStore.treat.unlocked;
+};
 
-        hasTreat() {
-            return this.id !== undefined && this.id !== null;
-        }
-    },
-
-    async mounted() {
-        if (this.hasTreat() === true) {
-            await this.loadTreatById();
-        }
-    },
-}
+onMounted(async () => {
+    if (exists()) {
+        await loadTreatById();
+    }
+})
 </script>

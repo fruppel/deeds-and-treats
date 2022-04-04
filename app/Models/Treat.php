@@ -9,5 +9,5 @@ class Treat extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
+    protected $fillable = ['name', 'costs', 'bought', 'unlocked'];
 }

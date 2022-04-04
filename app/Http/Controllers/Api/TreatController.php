@@ -14,10 +14,10 @@ class TreatController extends AbstractApiController
 {
     public function index(): JsonResponse
     {
-        return response()->json(['deeds' => Auth::user()->treats]);
+        return response()->json(Auth::user()->treats);
     }
 
-    public function edit(int $id): JsonResponse
+    public function show(int $id): JsonResponse
     {
         $treat = Auth::user()->treats()->find($id);
 
@@ -28,7 +28,9 @@ class TreatController extends AbstractApiController
     {
         $validated = $request->validate([
             'name' => 'required|max:25',
-            'value' => 'required|numeric',
+            'costs' => 'required|numeric',
+            'bought' => 'date',
+            'unlocked' => 'date|nullable',
         ]);
 
         $treat = Auth::user()->treats()->create($validated);
@@ -44,12 +46,14 @@ class TreatController extends AbstractApiController
 
         $validated = $request->validate([
             'name' => 'required|max:25',
-            'value' => 'required|numeric',
+            'costs' => 'required|numeric',
+            'bought' => 'date',
+            'unlocked' => 'date|nullable',
         ]);
 
         $treat->update($validated);
 
-        return response()->json(['deed' => $treat->fresh()]);
+        return response()->json(['treat' => $treat->fresh()]);
 
     }
 

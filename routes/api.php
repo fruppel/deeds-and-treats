@@ -1,29 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
+use App\Http\Controllers\Api\ActiveTreatController;
 use App\Http\Controllers\Api\DeedController;
 use App\Http\Controllers\Api\DeedLogController;
-use App\Http\Controllers\Api\SavingController;
+use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\TreatController;
 use App\Http\Controllers\AuthenticationController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 
 Route::post('/login', [AuthenticationController::class, 'store']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
     Route::post('/logout', [AuthenticationController::class, 'destroy']);
     Route::get('/deeds', [DeedController::class, 'index']);
     Route::get('/deeds/{deed}/edit', [DeedController::class, 'edit']);
@@ -32,5 +21,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/deedlogs', [DeedLogController::class, 'index']);
     Route::post('/deedlogs', [DeedLogController::class, 'store']);
     Route::delete('/deedlogs/{deedLog}', [DeedLogController::class, 'destroy']);
-    Route::get('/savings', [SavingController::class, 'index']);
+    Route::get('/user', [UserController::class, 'index']);
+    Route::apiResource('/treats', TreatController::class);
+    Route::post('/activetreat/{treat}', [ActiveTreatController::class, 'store']);
+    Route::delete('/activetreat', [ActiveTreatController::class, 'destroy']);
 });

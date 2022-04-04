@@ -4,3 +4,7 @@ export function formatEuro(value) {
         { style: 'currency', currency: 'EUR' }
     ).format(value);
 }
+
+export function formatPercent(value) {
+    return Math.trunc(value * 100) + '%';
+}

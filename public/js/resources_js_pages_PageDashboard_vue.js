@@ -372,19 +372,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _services_date_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/services/date-service */ "./resources/js/services/date-service.js");
-/* harmony import */ var _services_formatting_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/services/formatting-service */ "./resources/js/services/formatting-service.js");
-/* harmony import */ var _components_DeedlogCalendar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/DeedlogCalendar */ "./resources/js/components/DeedlogCalendar.vue");
-/* harmony import */ var _components_AppPageTitle__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/AppPageTitle */ "./resources/js/components/AppPageTitle.vue");
-/* harmony import */ var _components_AppPageContent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/components/AppPageContent */ "./resources/js/components/AppPageContent.vue");
-/* harmony import */ var _components_DeedsRow__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/components/DeedsRow */ "./resources/js/components/DeedsRow.vue");
-/* harmony import */ var _stores_user__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/stores/user */ "./resources/js/stores/user.js");
-/* harmony import */ var _stores_deeds__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/stores/deeds */ "./resources/js/stores/deeds.js");
-/* harmony import */ var _stores_deedlogs__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @/stores/deedlogs */ "./resources/js/stores/deedlogs.js");
-/* harmony import */ var _stores_treats__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @/stores/treats */ "./resources/js/stores/treats.js");
-/* harmony import */ var _components_DashboardHeadline__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @/components/DashboardHeadline */ "./resources/js/components/DashboardHeadline.vue");
-/* harmony import */ var _components_ToggableContent__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @/components/ToggableContent */ "./resources/js/components/ToggableContent.vue");
-/* harmony import */ var _components_DashboardTreatList__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @/components/DashboardTreatList */ "./resources/js/components/DashboardTreatList.vue");
+/* harmony import */ var _services_formatting_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/services/formatting-service */ "./resources/js/services/formatting-service.js");
+/* harmony import */ var _components_DeedlogCalendar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/DeedlogCalendar */ "./resources/js/components/DeedlogCalendar.vue");
+/* harmony import */ var _components_AppPageTitle__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/AppPageTitle */ "./resources/js/components/AppPageTitle.vue");
+/* harmony import */ var _components_AppPageContent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/AppPageContent */ "./resources/js/components/AppPageContent.vue");
+/* harmony import */ var _components_DeedsRow__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/components/DeedsRow */ "./resources/js/components/DeedsRow.vue");
+/* harmony import */ var _stores_user__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/stores/user */ "./resources/js/stores/user.js");
+/* harmony import */ var _stores_deeds__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/stores/deeds */ "./resources/js/stores/deeds.js");
+/* harmony import */ var _stores_deedlogs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/stores/deedlogs */ "./resources/js/stores/deedlogs.js");
+/* harmony import */ var _stores_treats__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @/stores/treats */ "./resources/js/stores/treats.js");
+/* harmony import */ var _components_DashboardHeadline__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @/components/DashboardHeadline */ "./resources/js/components/DashboardHeadline.vue");
+/* harmony import */ var _components_ToggableContent__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @/components/ToggableContent */ "./resources/js/components/ToggableContent.vue");
+/* harmony import */ var _components_DashboardTreatList__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @/components/DashboardTreatList */ "./resources/js/components/DashboardTreatList.vue");
 
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -416,96 +415,121 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   setup: function setup(__props, _ref) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
       var _withAsyncContext2, _withAsyncContext3, _withAsyncContext4, _withAsyncContext5, _withAsyncContext6, _withAsyncContext7, _withAsyncContext8, _withAsyncContext9;
 
-      var expose, __temp, __restore, userStore, deedsStore, deedlogsStore, treatStore, __returned__;
+      var expose, __temp, __restore, userStore, deedsStore, deedlogsStore, treatStore, unlock, __returned__;
 
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
         while (1) {
-          switch (_context.prev = _context.next) {
+          switch (_context2.prev = _context2.next) {
             case 0:
               expose = _ref.expose;
               expose();
-              userStore = (0,_stores_user__WEBPACK_IMPORTED_MODULE_8__["default"])();
+              userStore = (0,_stores_user__WEBPACK_IMPORTED_MODULE_7__["default"])();
               ;
               _withAsyncContext2 = (0,vue__WEBPACK_IMPORTED_MODULE_1__.withAsyncContext)(function () {
                 return userStore.fetch();
               }), _withAsyncContext3 = _slicedToArray(_withAsyncContext2, 2), __temp = _withAsyncContext3[0], __restore = _withAsyncContext3[1], _withAsyncContext2;
-              _context.next = 7;
+              _context2.next = 7;
               return __temp;
 
             case 7:
               __restore();
 
-              deedsStore = (0,_stores_deeds__WEBPACK_IMPORTED_MODULE_9__["default"])();
+              deedsStore = (0,_stores_deeds__WEBPACK_IMPORTED_MODULE_8__["default"])();
               ;
               _withAsyncContext4 = (0,vue__WEBPACK_IMPORTED_MODULE_1__.withAsyncContext)(function () {
                 return deedsStore.fetchAll();
               }), _withAsyncContext5 = _slicedToArray(_withAsyncContext4, 2), __temp = _withAsyncContext5[0], __restore = _withAsyncContext5[1], _withAsyncContext4;
-              _context.next = 13;
+              _context2.next = 13;
               return __temp;
 
             case 13:
               __restore();
 
-              deedlogsStore = (0,_stores_deedlogs__WEBPACK_IMPORTED_MODULE_10__["default"])();
+              deedlogsStore = (0,_stores_deedlogs__WEBPACK_IMPORTED_MODULE_9__["default"])();
               ;
               _withAsyncContext6 = (0,vue__WEBPACK_IMPORTED_MODULE_1__.withAsyncContext)(function () {
                 return deedlogsStore.fetchAll();
               }), _withAsyncContext7 = _slicedToArray(_withAsyncContext6, 2), __temp = _withAsyncContext7[0], __restore = _withAsyncContext7[1], _withAsyncContext6;
-              _context.next = 19;
+              _context2.next = 19;
               return __temp;
 
             case 19:
               __restore();
 
-              treatStore = (0,_stores_treats__WEBPACK_IMPORTED_MODULE_11__["default"])();
+              treatStore = (0,_stores_treats__WEBPACK_IMPORTED_MODULE_10__["default"])();
               ;
               _withAsyncContext8 = (0,vue__WEBPACK_IMPORTED_MODULE_1__.withAsyncContext)(function () {
                 return treatStore.fetchAll();
               }), _withAsyncContext9 = _slicedToArray(_withAsyncContext8, 2), __temp = _withAsyncContext9[0], __restore = _withAsyncContext9[1], _withAsyncContext8;
-              _context.next = 25;
+              _context2.next = 25;
               return __temp;
 
             case 25:
               __restore();
+
+              unlock = /*#__PURE__*/function () {
+                var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+                    while (1) {
+                      switch (_context.prev = _context.next) {
+                        case 0:
+                          _context.next = 2;
+                          return userStore.unlock();
+
+                        case 2:
+                          _context.next = 4;
+                          return treatStore.fetchAll();
+
+                        case 4:
+                        case "end":
+                          return _context.stop();
+                      }
+                    }
+                  }, _callee);
+                }));
+
+                return function unlock() {
+                  return _ref2.apply(this, arguments);
+                };
+              }();
 
               __returned__ = {
                 userStore: userStore,
                 deedsStore: deedsStore,
                 deedlogsStore: deedlogsStore,
                 treatStore: treatStore,
-                getIsoDate: _services_date_service__WEBPACK_IMPORTED_MODULE_2__.getIsoDate,
-                formatEuro: _services_formatting_service__WEBPACK_IMPORTED_MODULE_3__.formatEuro,
-                formatPercent: _services_formatting_service__WEBPACK_IMPORTED_MODULE_3__.formatPercent,
-                DeedlogCalendar: _components_DeedlogCalendar__WEBPACK_IMPORTED_MODULE_4__["default"],
-                AppPageTitle: _components_AppPageTitle__WEBPACK_IMPORTED_MODULE_5__["default"],
-                AppPageContent: _components_AppPageContent__WEBPACK_IMPORTED_MODULE_6__["default"],
-                DeedsRow: _components_DeedsRow__WEBPACK_IMPORTED_MODULE_7__["default"],
-                useUserStore: _stores_user__WEBPACK_IMPORTED_MODULE_8__["default"],
-                useDeedsStore: _stores_deeds__WEBPACK_IMPORTED_MODULE_9__["default"],
-                useDeedlogsStore: _stores_deedlogs__WEBPACK_IMPORTED_MODULE_10__["default"],
-                useTreatStore: _stores_treats__WEBPACK_IMPORTED_MODULE_11__["default"],
-                DashboardHeadline: _components_DashboardHeadline__WEBPACK_IMPORTED_MODULE_12__["default"],
-                ToggableContent: _components_ToggableContent__WEBPACK_IMPORTED_MODULE_13__["default"],
-                DashboardTreatList: _components_DashboardTreatList__WEBPACK_IMPORTED_MODULE_14__["default"]
+                unlock: unlock,
+                formatEuro: _services_formatting_service__WEBPACK_IMPORTED_MODULE_2__.formatEuro,
+                formatPercent: _services_formatting_service__WEBPACK_IMPORTED_MODULE_2__.formatPercent,
+                DeedlogCalendar: _components_DeedlogCalendar__WEBPACK_IMPORTED_MODULE_3__["default"],
+                AppPageTitle: _components_AppPageTitle__WEBPACK_IMPORTED_MODULE_4__["default"],
+                AppPageContent: _components_AppPageContent__WEBPACK_IMPORTED_MODULE_5__["default"],
+                DeedsRow: _components_DeedsRow__WEBPACK_IMPORTED_MODULE_6__["default"],
+                useUserStore: _stores_user__WEBPACK_IMPORTED_MODULE_7__["default"],
+                useDeedsStore: _stores_deeds__WEBPACK_IMPORTED_MODULE_8__["default"],
+                useDeedlogsStore: _stores_deedlogs__WEBPACK_IMPORTED_MODULE_9__["default"],
+                useTreatStore: _stores_treats__WEBPACK_IMPORTED_MODULE_10__["default"],
+                DashboardHeadline: _components_DashboardHeadline__WEBPACK_IMPORTED_MODULE_11__["default"],
+                ToggableContent: _components_ToggableContent__WEBPACK_IMPORTED_MODULE_12__["default"],
+                DashboardTreatList: _components_DashboardTreatList__WEBPACK_IMPORTED_MODULE_13__["default"]
               };
               Object.defineProperty(__returned__, '__isScriptSetup', {
                 enumerable: false,
                 value: true
               });
-              return _context.abrupt("return", __returned__);
+              return _context2.abrupt("return", __returned__);
 
-            case 29:
+            case 30:
             case "end":
-              return _context.stop();
+              return _context2.stop();
           }
         }
-      }, _callee);
+      }, _callee2);
     }))();
   }
 });
@@ -949,7 +973,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* TEXT */
       )]), $setup.userStore.canUnlock ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
         onClick: _cache[0] || (_cache[0] = function ($event) {
-          return $setup.userStore.unlock();
+          return $setup.unlock();
         })
       }, " Freischalten ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DashboardHeadline"], null, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {

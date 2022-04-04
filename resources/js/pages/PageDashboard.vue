@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div v-if="userStore.canUnlock">
-                    <button @click="userStore.unlock()">
+                    <button @click="unlock()">
                         Freischalten
                     </button>
                 </div>
@@ -79,7 +79,6 @@
 </template>
 
 <script setup>
-import {getIsoDate} from '@/services/date-service';
 import {formatEuro, formatPercent} from '@/services/formatting-service';
 import DeedlogCalendar from '@/components/DeedlogCalendar';
 import AppPageTitle from '@/components/AppPageTitle';
@@ -104,4 +103,9 @@ await deedlogsStore.fetchAll();
 
 const treatStore = useTreatStore();
 await treatStore.fetchAll();
+
+const unlock = async () => {
+    await userStore.unlock();
+    await treatStore.fetchAll();
+}
 </script>

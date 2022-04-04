@@ -26,7 +26,7 @@
                         ></div>
                     </div>
                     <div class="text-xs w-full text-center">
-                        {{ formatPercent(userStore.activeReached) }}
+                        {{ formatPercent(userStore.activeReached) }} - {{ formatEuro(userStore.activeRest) }} - ETA: {{ userStore.activeEta }}
                     </div>
                 </div>
                 <div v-if="userStore.canUnlock">
@@ -61,9 +61,17 @@
                             <div>Ausgegeben</div>
                             <div class="font-semibold">{{ formatEuro(userStore.costsSpent) }}</div>
                         </div>
-                        <div class="mt-2 py-1 flex justify-between">
+                        <div class="mt-2 py-1 flex justify-between border-b border-gray-200">
                             <div>Offen</div>
                             <div class="font-semibold">{{ formatEuro(userStore.costsOpen) }}</div>
+                        </div>
+                        <div class="mt-2 py-1 flex justify-between border-b border-gray-200">
+                            <div>10-Tage Schnitt</div>
+                            <div class="font-semibold">{{ formatEuro(userStore.intersectionTenDays) }}</div>
+                        </div>
+                        <div class="mt-2 py-1 flex justify-between">
+                            <div>ETA (offen)</div>
+                            <div class="font-semibold">{{ userStore.openEta }} Tage</div>
                         </div>
                     </div>
                 </toggable-content>

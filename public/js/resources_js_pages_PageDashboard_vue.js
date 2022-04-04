@@ -925,7 +925,7 @@ var _hoisted_26 = {
   "class": "font-semibold"
 };
 var _hoisted_27 = {
-  "class": "mt-2 py-1 flex justify-between"
+  "class": "mt-2 py-1 flex justify-between border-b border-gray-200"
 };
 
 var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Offen", -1
@@ -936,6 +936,28 @@ var _hoisted_29 = {
   "class": "font-semibold"
 };
 var _hoisted_30 = {
+  "class": "mt-2 py-1 flex justify-between border-b border-gray-200"
+};
+
+var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "10-Tage Schnitt", -1
+/* HOISTED */
+);
+
+var _hoisted_32 = {
+  "class": "font-semibold"
+};
+var _hoisted_33 = {
+  "class": "mt-2 py-1 flex justify-between"
+};
+
+var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "ETA (offen)", -1
+/* HOISTED */
+);
+
+var _hoisted_35 = {
+  "class": "font-semibold"
+};
+var _hoisted_36 = {
   "class": "mt-4"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -979,7 +1001,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, null, 4
       /* STYLE */
-      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formatPercent($setup.userStore.activeReached)), 1
+      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formatPercent($setup.userStore.activeReached)) + " - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formatEuro($setup.userStore.activeRest)) + " - ETA: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.userStore.activeEta), 1
       /* TEXT */
       )]), $setup.userStore.canUnlock ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
         onClick: _cache[0] || (_cache[0] = function ($event) {
@@ -993,7 +1015,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* STABLE */
 
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["ToggableContent"], {
-        label: "Alle Treats »"
+        label: "Verfügbare Treats »"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DashboardTreatList"], {
@@ -1017,12 +1039,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           /* TEXT */
           )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formatEuro($setup.userStore.costsOpen)), 1
           /* TEXT */
+          )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [_hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formatEuro($setup.userStore.intersectionTenDays)), 1
+          /* TEXT */
+          )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [_hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.userStore.openEta) + " Tage", 1
+          /* TEXT */
           )])])];
         }),
         _: 1
         /* STABLE */
 
-      })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["ToggableContent"], {
+      })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["ToggableContent"], {
         label: "Historie »"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -1622,6 +1648,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   state: function state() {
     return {
       savings: 0,
+      intersectionTenDays: 0,
       costsAll: 0,
       costsSpent: 0,
       costsOpen: 0,
@@ -1638,6 +1665,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       return Math.min(1, this.available / state.activeTreat.costs);
+    },
+    activeRest: function activeRest(state) {
+      return Math.max(0, state.activeTreat.costs - this.available);
+    },
+    activeEta: function activeEta(state) {
+      return Math.round(this.activeRest / state.intersectionTenDays);
+    },
+    openEta: function openEta(state) {
+      return Math.round(state.costsOpen / state.intersectionTenDays);
     },
     hasActiveTreat: function hasActiveTreat(state) {
       return state.activeTreat && Object.keys(state.activeTreat).length !== 0;
@@ -1662,12 +1698,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 response = _context.sent;
                 _this.savings = response.data.savings;
+                _this.intersectionTenDays = response.data.intersectionTenDays;
                 _this.costsAll = response.data.costsAll;
                 _this.costsSpent = response.data.costsSpent;
                 _this.costsOpen = response.data.costsOpen;
                 _this.activeTreat = response.data.activeTreat;
 
-              case 8:
+              case 9:
               case "end":
                 return _context.stop();
             }

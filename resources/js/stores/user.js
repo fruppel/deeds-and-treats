@@ -5,6 +5,7 @@ export default defineStore({
     id: 'user',
     state: () => ({
         savings: 0,
+        intersectionTenDays: 0,
         costsAll: 0,
         costsSpent: 0,
         costsOpen: 0,
@@ -19,6 +20,15 @@ export default defineStore({
 
             return Math.min(1, this.available / state.activeTreat.costs);
         },
+        activeRest(state) {
+            return Math.max(0, state.activeTreat.costs - this.available);
+        },
+        activeEta(state) {
+            return Math.round(this.activeRest / state.intersectionTenDays);
+        },
+        openEta(state) {
+            return Math.round(state.costsOpen / state.intersectionTenDays);
+        },
         hasActiveTreat: (state) => state.activeTreat && Object.keys(state.activeTreat).length !== 0,
         canUnlock(state) {
             return this.hasActiveTreat && this.available >= state.activeTreat.costs;
@@ -28,6 +38,7 @@ export default defineStore({
         async fetch() {
             const response = await apiClient.get('/api/user');
             this.savings = response.data.savings;
+            this.intersectionTenDays = response.data.intersectionTenDays;
             this.costsAll = response.data.costsAll;
             this.costsSpent = response.data.costsSpent;
             this.costsOpen = response.data.costsOpen;

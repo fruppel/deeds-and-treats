@@ -1,27 +1,19 @@
 <template>
     <div
         v-for="treat in treats"
-        class="flex items-center"
+        class="flex items-center mb-2"
     >
         <button
-            v-if="isActiveTreat(treat)"
-            @click="removeActiveTreat()"
-            class="p-2"
+            @click="toggleTreat(treat)"
+            class="py-2 pr-1"
         >
-            <star-icon class="text-yellow-600" />
+            <star-icon :class="toggleButtonClass(treat)" />
         </button>
-
-        <button
-            v-else
-            @click="setActiveTreat(treat)"
-            class="p-2"
-        >
-            <star-icon class="text-gray-400" />
-        </button>
-        <div class="ml-2">
-            {{ getGermanDate(treat.bought) }}
+        <div class="ml-2 flex-1">
+            <div class="text-xs text-gray-500">{{ getGermanDate(treat.bought) }}</div>
+            <div class="">{{ treat.name }}</div>
         </div>
-        <div class="flex-1 ml-2">{{ treat.name }}</div>
+
         <div>{{ formatEuro(treat.costs) }}</div>
     </div>
 </template>
@@ -43,13 +35,15 @@ const props = defineProps({
 
 const isActiveTreat = (treat) => {
     return userStore.hasActiveTreat && treat.id === userStore.activeTreat.id
-}
+};
 
-const removeActiveTreat = () => {
-    userStore.removeActiveTreat();
-}
+const toggleButtonClass = (treat) => {
+    return isActiveTreat(treat)
+        ? 'text-yellow-600'
+        : 'text-gray-400';
+};
 
-const setActiveTreat = (treat) => {
-    userStore.setActiveTreat(treat);
-}
+const toggleTreat = (treat) => {
+    isActiveTreat(treat) ? userStore.removeActiveTreat() : userStore.setActiveTreat(treat);
+};
 </script>

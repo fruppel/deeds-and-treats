@@ -70,20 +70,20 @@ __webpack_require__.r(__webpack_exports__);
       return userStore.hasActiveTreat && treat.id === userStore.activeTreat.id;
     };
 
-    var removeActiveTreat = function removeActiveTreat() {
-      userStore.removeActiveTreat();
+    var toggleButtonClass = function toggleButtonClass(treat) {
+      return isActiveTreat(treat) ? 'text-yellow-600' : 'text-gray-400';
     };
 
-    var setActiveTreat = function setActiveTreat(treat) {
-      userStore.setActiveTreat(treat);
+    var toggleTreat = function toggleTreat(treat) {
+      isActiveTreat(treat) ? userStore.removeActiveTreat() : userStore.setActiveTreat(treat);
     };
 
     var __returned__ = {
       userStore: userStore,
       props: props,
       isActiveTreat: isActiveTreat,
-      removeActiveTreat: removeActiveTreat,
-      setActiveTreat: setActiveTreat,
+      toggleButtonClass: toggleButtonClass,
+      toggleTreat: toggleTreat,
       formatEuro: _services_formatting_service__WEBPACK_IMPORTED_MODULE_0__.formatEuro,
       getGermanDate: _services_date_service__WEBPACK_IMPORTED_MODULE_1__.getGermanDate,
       useUserStore: _stores_user__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -768,40 +768,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "flex items-center"
+  "class": "flex items-center mb-2"
 };
 var _hoisted_2 = ["onClick"];
 var _hoisted_3 = {
-  "class": "ml-2"
+  "class": "ml-2 flex-1"
 };
 var _hoisted_4 = {
-  "class": "flex-1 ml-2"
+  "class": "text-xs text-gray-500"
+};
+var _hoisted_5 = {
+  "class": ""
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.treats, function (treat) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [$setup.isActiveTreat(treat) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
-      key: 0,
-      onClick: _cache[0] || (_cache[0] = function ($event) {
-        return $setup.removeActiveTreat();
-      }),
-      "class": "p-2"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["StarIcon"], {
-      "class": "text-yellow-600"
-    })])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
-      key: 1,
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       onClick: function onClick($event) {
-        return $setup.setActiveTreat(treat);
+        return $setup.toggleTreat(treat);
       },
-      "class": "p-2"
+      "class": "py-2 pr-1"
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["StarIcon"], {
-      "class": "text-gray-400"
-    })], 8
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($setup.toggleButtonClass(treat))
+    }, null, 8
     /* PROPS */
-    , _hoisted_2)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.getGermanDate(treat.bought)), 1
+    , ["class"])], 8
+    /* PROPS */
+    , _hoisted_2), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.getGermanDate(treat.bought)), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(treat.name), 1
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(treat.name), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formatEuro(treat.costs)), 1
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formatEuro(treat.costs)), 1
     /* TEXT */
     )]);
   }), 256
@@ -1015,7 +1011,7 @@ var _hoisted_2 = {
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [$setup.contentVisible ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     onClick: $setup.toggleVisibility,
-    "class": "mt-1 flex w-full items-end py-1 text-gray-600"
+    "class": "mt-1 flex w-full items-center py-1 text-gray-500"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.label), 1
   /* TEXT */
   ), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDynamicComponent)($setup.iconComponent), {

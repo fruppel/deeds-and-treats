@@ -4,11 +4,9 @@ import useAuthStore from '@/stores/auth';
 const routes = [
     {
         path: '/',
-        component: () => import('@/pages/PageLogin'),
-        meta: {
-            layout: 'LayoutGuest',
-            requiresAuth: false,
-        }
+        redirect: to => {
+            return { path: '/dashboard' };
+        },
     },
     {
         path: '/login',

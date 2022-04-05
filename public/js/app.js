@@ -22106,7 +22106,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var routes = [{
   path: '/',
-  redirect: function redirect(to) {
+  redirect: function redirect() {
     return {
       path: '/dashboard'
     };

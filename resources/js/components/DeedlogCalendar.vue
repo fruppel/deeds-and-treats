@@ -39,11 +39,20 @@
     </div>
     <div class="space-y-2">
         <template
-            v-for="date in historyDates"
+            v-for="date in historyDates.slice(0, 3)"
             :key="date"
         >
             <deeds-row :date="date"></deeds-row>
         </template>
+
+        <toggable-content>
+            <template
+                v-for="date in historyDates.slice(3)"
+                :key="date"
+            >
+                <deeds-row :date="date"></deeds-row>
+            </template>
+        </toggable-content>
     </div>
 </template>
 
@@ -51,6 +60,7 @@
 import {computed, ref} from 'vue';
 import DeedsRow from '@/components/DeedsRow';
 import {getDatesForCurrentMonth, getDatesForMonthAndYear, getGermanMonth} from '@/services/date-service';
+import ToggableContent from '@/components/ToggableContent';
 
 const MONTH_DECEMBER = 11;
 const MONTH_JANUARY = 0;

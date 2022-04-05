@@ -2,87 +2,67 @@
     <app-page-title>Dashboard</app-page-title>
 
     <app-page-content>
-        <div>
+
+        <dashboard-tile>
             <dashboard-headline>Heute</dashboard-headline>
             <deeds-row :date="today"></deeds-row>
             <div class="mt-3 flex justify-between items-center">
                 <div>Insgesamt verfügbar</div>
                 <div class="text-xl font-semibold text-teal-500">{{ formatEuro(userStore.available) }}</div>
             </div>
-        </div>
+        </dashboard-tile>
 
-        <div class="mt-6">
+        <dashboard-tile class="mt-6">
             <dashboard-headline>Derzeit aktiv</dashboard-headline>
             <div v-if="userStore.hasActiveTreat">
-                <div class="flex justify-between">
+                <div class="flex justify-between text-lg">
                     <div>{{ userStore.activeTreat.name }}</div>
                     <div>{{ formatEuro(userStore.activeTreat.costs) }}</div>
                 </div>
+
+                <progress-bar
+                    :percent="userStore.activeReached"
+                    class="mt-3 mb-4"
+                />
+
                 <div>
-                    <div class="mt-1 w-full bg-gray-200 rounded-full h-5 text-center">
-                        <div
-                            class="bg-teal-500 h-5 rounded-full"
-                            :style="{ width: formatPercent(userStore.activeReached) }"
-                        ></div>
-                    </div>
-                    <div class="text-xs w-full text-center">
-                        {{ formatPercent(userStore.activeReached) }} - {{ formatEuro(userStore.activeRest) }} - ETA: {{ userStore.activeEta }}
-                    </div>
+                    <dashboard-row label="Verbleibend">{{ formatEuro(userStore.activeRest) }}</dashboard-row>
+                    <dashboard-row label="Geschätzte Restzeit">{{ userStore.activeEta }} Tage</dashboard-row>
+
+                    <toggable-content>
+                        <dashboard-row label="Gespart gesamt">{{ formatEuro(userStore.savings) }}</dashboard-row>
+                        <dashboard-row label="Kosten gesamt">{{ formatEuro(userStore.costsAll) }}</dashboard-row>
+                        <dashboard-row label="Ausgegeben">{{ formatEuro(userStore.costsSpent) }}</dashboard-row>
+                        <dashboard-row label="Offen">{{ formatEuro(userStore.costsOpen) }}</dashboard-row>
+                        <dashboard-row label="10-Tage Schnitt">{{ formatEuro(userStore.intersectionTenDays) }}</dashboard-row>
+                        <dashboard-row label="ETA (offen)">{{ userStore.openEta }} Tage</dashboard-row>
+                    </toggable-content>
                 </div>
+
                 <div v-if="userStore.canUnlock">
                     <button @click="unlock()">
                         Freischalten
                     </button>
                 </div>
             </div>
-        </div>
+        </dashboard-tile>
 
-        <div class="mt-6">
-            <dashboard-headline>Mehr</dashboard-headline>
-
-            <div class="mt-4">
-                <toggable-content label="Verfügbare Treats &raquo;">
-                    <dashboard-treat-list :treats="treatStore.unlockableTreats" />
-                </toggable-content>
-            </div>
+        <dashboard-tile class="mt-6">
+            <dashboard-headline>Treats</dashboard-headline>
 
             <div class="mt-4">
-                <toggable-content label="Statistik &raquo;">
-                    <div class="px-2 py-1">
-                        <div class="mt-2 py-1 flex justify-between border-b border-gray-200">
-                            <div>Gespart gesamt</div>
-                            <div class="font-semibold">{{ formatEuro(userStore.savings) }}</div>
-                        </div>
-                        <div class="mt-2 py-1 flex justify-between border-b border-gray-200">
-                            <div>Kosten gesamt</div>
-                            <div class="font-semibold">{{ formatEuro(userStore.costsAll) }}</div>
-                        </div>
-                        <div class="mt-2 py-1 flex justify-between border-b border-gray-200">
-                            <div>Ausgegeben</div>
-                            <div class="font-semibold">{{ formatEuro(userStore.costsSpent) }}</div>
-                        </div>
-                        <div class="mt-2 py-1 flex justify-between border-b border-gray-200">
-                            <div>Offen</div>
-                            <div class="font-semibold">{{ formatEuro(userStore.costsOpen) }}</div>
-                        </div>
-                        <div class="mt-2 py-1 flex justify-between border-b border-gray-200">
-                            <div>10-Tage Schnitt</div>
-                            <div class="font-semibold">{{ formatEuro(userStore.intersectionTenDays) }}</div>
-                        </div>
-                        <div class="mt-2 py-1 flex justify-between">
-                            <div>ETA (offen)</div>
-                            <div class="font-semibold">{{ userStore.openEta }} Tage</div>
-                        </div>
-                    </div>
-                </toggable-content>
-            </div>
+                <dashboard-treat-list :treats="treatStore.unlockableTreats.slice(0, 3)" />
 
-            <div class="mt-4">
-                <toggable-content label="Historie &raquo;">
-                    <deedlog-calendar />
+                <toggable-content v-if="treatStore.unlockableTreats.length > 3">
+                    <dashboard-treat-list :treats="treatStore.unlockableTreats.slice(3)" />
                 </toggable-content>
             </div>
-        </div>
+        </dashboard-tile>
+
+        <dashboard-tile class="mt-6">
+            <dashboard-headline>Historie</dashboard-headline>
+            <deedlog-calendar />
+        </dashboard-tile>
     </app-page-content>
 </template>
 
@@ -100,6 +80,9 @@ import useTreatStore from '@/stores/treats';
 import DashboardHeadline from '@/components/DashboardHeadline';
 import ToggableContent from '@/components/ToggableContent';
 import DashboardTreatList from '@/components/DashboardTreatList';
+import DashboardRow from '@/components/DashboardRow';
+import DashboardTile from '@/components/DashboardTile';
+import ProgressBar from '@/components/ProgressBar';
 
 const userStore = useUserStore();
 await userStore.fetch();

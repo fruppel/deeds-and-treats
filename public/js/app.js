@@ -22006,7 +22006,7 @@ var _hoisted_1 = {
   "class": "bg-gray-100 min-h-screen"
 };
 var _hoisted_2 = {
-  "class": "bg-white border-b border-gray-100"
+  "class": "relative bg-white border-b border-gray-100 z-10"
 };
 var _hoisted_3 = {
   "class": "flex justify-between px-4 h-16"

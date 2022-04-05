@@ -1,30 +1,28 @@
 <template>
-    <div class="mb-1">
-        <div
-            v-for="treat in treats"
-            class="flex items-center"
+    <div
+        v-for="treat in treats"
+        class="flex items-center"
+    >
+        <button
+            v-if="isActiveTreat(treat)"
+            @click="removeActiveTreat()"
+            class="p-2"
         >
-            <button
-                v-if="isActiveTreat(treat)"
-                @click="removeActiveTreat()"
-                class="p-2"
-            >
-                <star-icon class="text-yellow-600" />
-            </button>
+            <star-icon class="text-yellow-600" />
+        </button>
 
-            <button
-                v-else
-                @click="setActiveTreat(treat)"
-                class="p-2"
-            >
-                <star-icon class="text-gray-400" />
-            </button>
-            <div class="ml-2">
-                {{ getGermanDate(treat.bought) }}
-            </div>
-            <div class="flex-1 ml-2">{{ treat.name }}</div>
-            <div>{{ formatEuro(treat.costs) }}</div>
+        <button
+            v-else
+            @click="setActiveTreat(treat)"
+            class="p-2"
+        >
+            <star-icon class="text-gray-400" />
+        </button>
+        <div class="ml-2">
+            {{ getGermanDate(treat.bought) }}
         </div>
+        <div class="flex-1 ml-2">{{ treat.name }}</div>
+        <div>{{ formatEuro(treat.costs) }}</div>
     </div>
 </template>
 

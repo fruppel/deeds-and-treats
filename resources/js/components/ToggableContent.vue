@@ -1,24 +1,38 @@
 <template>
-    <a @click="toggleVisibility" class="text-lg">{{ label }}</a>
-    <div
-        v-if="contentVisible"
-        class="bg-gray-50"
-    >
-        <slot />
+    <div>
+        <div
+            v-if="contentVisible"
+        >
+            <slot />
+        </div>
+        <a
+            @click="toggleVisibility"
+            class="mt-1 flex w-full items-end py-1 text-gray-600"
+        >
+            <span class="block mr-1">{{ label }}</span>
+            <component :is="iconComponent" class="w-5 h-5 text-gray-400"/>
+        </a>
     </div>
 </template>
 
 <script setup>
-import {ref} from 'vue';
+import {computed, ref} from 'vue';
+import {ChevronDownIcon, ChevronUpIcon} from 'vue-tabler-icons';
 
 const props = defineProps({
-    label: {
+    labelMore: {
         type: String,
-        required: true,
+        default: 'Mehr anzeigen'
+    },
+    labelLess: {
+        type: String,
+        default: 'Weniger anzeigen'
     }
 });
 
 const contentVisible = ref(false);
+const iconComponent = computed(() => contentVisible.value === true ? ChevronUpIcon : ChevronDownIcon);
+const label = computed(() => contentVisible.value === true ? props.labelLess : props.labelMore);
 
 const toggleVisibility = () => contentVisible.value = !contentVisible.value;
 </script>

@@ -226,7 +226,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     modelValue: {
-      type: String
+      type: [String, Number]
     },
     type: {
       type: String,
@@ -558,7 +558,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     value: $props.modelValue,
     type: $props.type,
     onInput: $setup.updateValue,
-    "class": "py-2 px-1 rounded-md shadow-sm focus:border-teal-400 focus:ring focus:ring-teal-300 focus:ring-opacity-50 block sm:inline-block w-full sm:w-80 border-gray-300 block mt-1 w-full"
+    "class": "py-2 px-2 rounded-md shadow-sm focus:border-teal-400 focus:ring focus:ring-teal-300 focus:ring-opacity-50 block sm:inline-block w-full sm:w-80 border-gray-300 block w-full"
   }, null, 40
   /* PROPS, HYDRATE_EVENTS */
   , _hoisted_1);
@@ -579,7 +579,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "block font-medium text-sm text-gray-700"
+  "class": "block font-medium text-sm text-gray-700 mb-1"
 };
 function render(_ctx, _cache) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")]);
@@ -799,22 +799,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
                 response = _context4.sent;
-                console.log(response);
-                _context4.next = 11;
+                _context4.next = 9;
                 break;
 
-              case 7:
-                _context4.prev = 7;
+              case 6:
+                _context4.prev = 6;
                 _context4.t0 = _context4["catch"](0);
-                console.log('CAUGHT');
                 _this4.errors = _context4.t0.response.data.errors;
 
-              case 11:
+              case 9:
               case "end":
                 return _context4.stop();
             }
           }
-        }, _callee4, null, [[0, 7]]);
+        }, _callee4, null, [[0, 6]]);
       }))();
     }
   }

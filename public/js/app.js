@@ -22445,7 +22445,6 @@ __webpack_require__.r(__webpack_exports__);
   actions: {
     open: function open(component) {
       var componentProps = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-      console.log(componentProps);
       this.setComponent(component, componentProps);
       this.drawerOpen = true;
     },

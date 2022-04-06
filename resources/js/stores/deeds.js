@@ -30,9 +30,7 @@ export default defineStore({
         async store(deed) {
             try {
                 const response = await apiClient.post('/api/deeds', deed);
-                console.log(response);
             } catch (error) {
-                console.log('CAUGHT');
                 this.errors = error.response.data.errors;
             }
         }

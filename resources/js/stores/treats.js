@@ -42,6 +42,23 @@ export default defineStore({
                 }
                 throw error;
             }
+        },
+        async destroy(treatId) {
+            await apiClient.delete(`/api/treats/${treatId}`);
+        },
+        async divide(treatId, divideInto) {
+            try {
+                await apiClient.post(`/api/treat/divide/${treatId}`, {
+                    divideInto
+                });
+                return true;
+            } catch (error) {
+                if (error.response.data.errors) {
+                    this.errors = error.response.data.errors;
+                }
+
+                return false;
+            }
         }
     }
 });

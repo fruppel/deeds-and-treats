@@ -1653,22 +1653,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
                 response = _context4.sent;
-                console.log(response);
-                _context4.next = 11;
+                _context4.next = 9;
                 break;
 
-              case 7:
-                _context4.prev = 7;
+              case 6:
+                _context4.prev = 6;
                 _context4.t0 = _context4["catch"](0);
-                console.log('CAUGHT');
                 _this4.errors = _context4.t0.response.data.errors;
 
-              case 11:
+              case 9:
               case "end":
                 return _context4.stop();
             }
           }
-        }, _callee4, null, [[0, 7]]);
+        }, _callee4, null, [[0, 6]]);
       }))();
     }
   }
@@ -1830,6 +1828,58 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee4, null, [[0, 5]]);
+      }))();
+    },
+    destroy: function destroy(treatId) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return _services_api_client__WEBPACK_IMPORTED_MODULE_1__["default"]["delete"]("/api/treats/".concat(treatId));
+
+              case 2:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
+    },
+    divide: function divide(treatId, divideInto) {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.prev = 0;
+                _context6.next = 3;
+                return _services_api_client__WEBPACK_IMPORTED_MODULE_1__["default"].post("/api/treat/divide/".concat(treatId), {
+                  divideInto: divideInto
+                });
+
+              case 3:
+                return _context6.abrupt("return", true);
+
+              case 6:
+                _context6.prev = 6;
+                _context6.t0 = _context6["catch"](0);
+
+                if (_context6.t0.response.data.errors) {
+                  _this5.errors = _context6.t0.response.data.errors;
+                }
+
+                return _context6.abrupt("return", false);
+
+              case 10:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, null, [[0, 6]]);
       }))();
     }
   }

@@ -1,0 +1,20 @@
+{
+    "name": "Deeds and Treats",
+    "short_name": "DaT",
+    "description": "Motivation App",
+    "start_url": "/",
+    "display": "fullscreen",
+    "icons": [
+        {
+            "src": "img/icon-512x512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        },
+        {
+            "src": "/img/icon-maskable.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any maskable"
+        }
+    ]
+}

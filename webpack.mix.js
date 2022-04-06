@@ -1,5 +1,6 @@
 const mix = require('laravel-mix');
 const path = require('path');
+require('laravel-mix-workbox');
 
 mix.js('resources/js/app.js', 'public/js')
     .vue()
@@ -12,4 +13,5 @@ mix.js('resources/js/app.js', 'public/js')
     )
     .alias({
         '@': path.join(__dirname, 'resources/js'),
-    });
+    })
+    .generateSW();

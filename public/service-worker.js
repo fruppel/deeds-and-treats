@@ -1,1 +1,112 @@
-if(!self.define){let e,s={};const r=(r,c)=>(r=new URL(r+".js",c).href,s[r]||new Promise((s=>{if("document"in self){const e=document.createElement("script");e.src=r,e.onload=s,document.head.appendChild(e)}else e=r,importScripts(r),s()})).then((()=>{let e=s[r];if(!e)throw new Error(`Module ${r} didn’t register its module`);return e})));self.define=(c,i)=>{const f=e||("document"in self?document.currentScript.src:"")||location.href;if(s[f])return;let o={};const b=e=>r(e,f),n={module:{uri:f},exports:o,require:b};s[f]=Promise.all(c.map((e=>n[e]||b(e)))).then((e=>(i(...e),o)))}}define(["./workbox-bd9393cf"],(function(e){"use strict";self.addEventListener("message",(e=>{e.data&&"SKIP_WAITING"===e.data.type&&self.skipWaiting()})),e.precacheAndRoute([{url:"/js/app.js",revision:"5d67822c62db8aa7f220cef0a25cf61a"},{url:"/js/app.js.LICENSE.txt",revision:"abdaf99b27e37195078f18c09490356b"},{url:"css/app.css",revision:"5bbcab133b21c7c284cb0f4ff459aa2c"},{url:"js/117.js",revision:"9dce37161e9014070b105d71ff1692c1"},{url:"js/209.js",revision:"a0d695036da72088bbbb9c0b13a6f1d8"},{url:"js/290.js",revision:"860ecd9386c3cf1a1388a6670eaeedd4"},{url:"js/39.js",revision:"06ce34d71953bf6e686b38e1ebbe3a3c"},{url:"js/818.js",revision:"eea5fe1388b349bb5ad5f770db56f1fa"},{url:"js/899.js",revision:"dbb6ce79c4b55b26f857cf62f98ebc93"}],{})}));
+/**
+ * Copyright 2018 Google Inc. All Rights Reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// If the loader is already loaded, just stop.
+if (!self.define) {
+  let registry = {};
+
+  // Used for `eval` and `importScripts` where we can't get script URL by other means.
+  // In both cases, it's safe to use a global var because those functions are synchronous.
+  let nextDefineUri;
+
+  const singleRequire = (uri, parentUri) => {
+    uri = new URL(uri + ".js", parentUri).href;
+    return registry[uri] || (
+      
+        new Promise(resolve => {
+          if ("document" in self) {
+            const script = document.createElement("script");
+            script.src = uri;
+            script.onload = resolve;
+            document.head.appendChild(script);
+          } else {
+            nextDefineUri = uri;
+            importScripts(uri);
+            resolve();
+          }
+        })
+      
+      .then(() => {
+        let promise = registry[uri];
+        if (!promise) {
+          throw new Error(`Module ${uri} didn’t register its module`);
+        }
+        return promise;
+      })
+    );
+  };
+
+  self.define = (depsNames, factory) => {
+    const uri = nextDefineUri || ("document" in self ? document.currentScript.src : "") || location.href;
+    if (registry[uri]) {
+      // Module is already loading or loaded.
+      return;
+    }
+    let exports = {};
+    const require = depUri => singleRequire(depUri, uri);
+    const specialDeps = {
+      module: { uri },
+      exports,
+      require
+    };
+    registry[uri] = Promise.all(depsNames.map(
+      depName => specialDeps[depName] || require(depName)
+    )).then(deps => {
+      factory(...deps);
+      return exports;
+    });
+  };
+}
+define(['./workbox-972ffac5'], (function (workbox) { 'use strict';
+
+  /**
+  * Welcome to your Workbox-powered service worker!
+  *
+  * You'll need to register this file in your web app.
+  * See https://goo.gl/nhQhGp
+  *
+  * The rest of the code is auto-generated. Please don't update this file
+  * directly; instead, make changes to your Workbox build configuration
+  * and re-run your build process.
+  * See https://goo.gl/2aRDsh
+  */
+
+  self.addEventListener('message', event => {
+    if (event.data && event.data.type === 'SKIP_WAITING') {
+      self.skipWaiting();
+    }
+  });
+  /**
+   * The precacheAndRoute() method efficiently caches and responds to
+   * requests for URLs in the manifest.
+   * See https://goo.gl/S9QRab
+   */
+
+  workbox.precacheAndRoute([{
+    "url": "/js/app.js",
+    "revision": "cb0c098cf37001a8dbb25f719e91b67a"
+  }, {
+    "url": "css/app.css",
+    "revision": "a352cb978d20f97aa8ba302f4912bd2d"
+  }, {
+    "url": "js/resources_js_pages_Page404_vue.js",
+    "revision": "c5ae41ac71161a1834396c93fc365d85"
+  }, {
+    "url": "js/resources_js_pages_PageLogin_vue.js",
+    "revision": "eba422f027d73f87e2b64e6e936abefc"
+  }, {
+    "url": "js/resources_js_pages_PageRegister_vue.js",
+    "revision": "b5eea2c96cbcad3755f8c8d99089ac83"
+  }], {});
+
+}));

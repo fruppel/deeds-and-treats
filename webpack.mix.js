@@ -14,4 +14,6 @@ mix.js('resources/js/app.js', 'public/js')
     .alias({
         '@': path.join(__dirname, 'resources/js'),
     })
-    .generateSW();
+    .generateSW({
+        exclude: [/\.(?:png|jpg|jpeg|svg|js|css)$/],
+    });

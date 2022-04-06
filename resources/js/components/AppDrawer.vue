@@ -4,7 +4,7 @@
         :class="drawerClass"
         class="fixed h-screen bg-gray-300 left-0 top-0 shadow-xl transition-width transition-slowest ease overflow-hidden"
     >
-        <component :is="this.drawerStore.component" v-bind="this.drawerStore.componentProps"></component>
+        <component :is="drawerStore.component" v-bind="drawerStore.componentProps"></component>
     </div>
 </template>
 

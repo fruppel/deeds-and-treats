@@ -389,7 +389,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return loadTreatById();
 
             case 3:
-              showDivide.value = unlocked === false;
+              showDivide.value = unlocked.value === false;
 
             case 4:
             case "end":

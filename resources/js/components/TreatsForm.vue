@@ -136,7 +136,7 @@ const showDivide = ref(false);
 onMounted(async () => {
     if (exists()) {
         await loadTreatById();
-        showDivide.value = unlocked === false;
+        showDivide.value = unlocked.value === false;
     }
 })
 </script>

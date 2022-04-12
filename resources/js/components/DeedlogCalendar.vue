@@ -4,7 +4,7 @@
             @click="decreaseMonth"
             class="p-2 block flex-1"
         >
-            {{ getGermanMonth(previousMonth) }}
+            &laquo; {{ getGermanMonth(previousMonth) }}
         </button>
         <button
             class="p-2 font-bold flex-1 mx-1"
@@ -15,7 +15,7 @@
             @click="increaseMonth"
             class="p-2 flex-1"
         >
-            {{ getGermanMonth(nextMonth) }}
+            {{ getGermanMonth(nextMonth) }} &raquo;
         </button>
     </div>
     <div class="flex">
@@ -23,7 +23,7 @@
             @click="decreaseYear"
             class="p-2 block flex-1"
         >
-            {{ currentYear - 1 }}
+            &laquo; {{ currentYear - 1 }}
         </button>
         <button
             class="p-2 font-bold flex-1 mx-1"
@@ -34,7 +34,7 @@
             @click="increaseYear"
             class="p-2 flex-1"
         >
-            {{ currentYear + 1 }}
+            {{ currentYear + 1 }} &raquo;
         </button>
     </div>
     <div class="space-y-2">

@@ -21,7 +21,7 @@ class UserController extends AbstractApiController
         return response()->json([
             'savings' => $deedlogs->sum('value'),
             'intersectionTenDays' => $user->deedLogs()
-                ->where('day', '>=', CarbonImmutable::now()->subDays(self::INTERSECTION_DAYS)->format('Y-m-d'))
+                ->where('day', '>', CarbonImmutable::now()->subDays(self::INTERSECTION_DAYS)->format('Y-m-d'))
                 ->sum('value') / self::INTERSECTION_DAYS,
             'costsAll' => $treats->sum('costs'),
             'costsSpent' => $treats->whereNotNull('unlocked')->sum('costs'),

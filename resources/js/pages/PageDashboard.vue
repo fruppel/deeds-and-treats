@@ -12,9 +12,9 @@
             </div>
         </dashboard-tile>
 
-        <dashboard-tile class="mt-6">
+        <dashboard-tile class="mt-6" v-if="userStore.hasActiveTreat">
             <dashboard-headline>Derzeit aktiv</dashboard-headline>
-            <div v-if="userStore.hasActiveTreat">
+            <div>
                 <div class="flex justify-between text-lg">
                     <div>{{ userStore.activeTreat.name }}</div>
                     <div>{{ formatEuro(userStore.activeTreat.costs) }}</div>
@@ -25,9 +25,20 @@
                     class="mt-3 mb-4"
                 />
 
+                <div v-if="userStore.canUnlock">
+                    <button
+                        @click="unlock()"
+                        class="w-full text-center bg-gray-700 rounded-md text-white mb-4 py-2 font-semibold uppercase"
+                    >
+                        Freischalten
+                    </button>
+                </div>
+
                 <div>
                     <dashboard-row label="Verbleibend">{{ formatEuro(userStore.activeRest) }}</dashboard-row>
-                    <dashboard-row label="Geschätzte Restzeit">{{ userStore.activeEta }} Tage</dashboard-row>
+                    <dashboard-row label="Geschätzte Restzeit">
+                        <span v-html="displayInfinityOrDays(userStore.activeEta)"/>
+                    </dashboard-row>
 
                     <toggable-content>
                         <dashboard-row label="Gespart gesamt">{{ formatEuro(userStore.savings) }}</dashboard-row>
@@ -35,14 +46,10 @@
                         <dashboard-row label="Ausgegeben">{{ formatEuro(userStore.costsSpent) }}</dashboard-row>
                         <dashboard-row label="Offen">{{ formatEuro(userStore.costsOpen) }}</dashboard-row>
                         <dashboard-row label="10-Tage Schnitt">{{ formatEuro(userStore.intersectionTenDays) }}</dashboard-row>
-                        <dashboard-row label="ETA (offen)">{{ userStore.openEta }} Tage</dashboard-row>
+                        <dashboard-row label="ETA (offen)">
+                            <span v-html="displayInfinityOrDays(userStore.openEta)"/>
+                        </dashboard-row>
                     </toggable-content>
-                </div>
-
-                <div v-if="userStore.canUnlock">
-                    <button @click="unlock()">
-                        Freischalten
-                    </button>
                 </div>
             </div>
         </dashboard-tile>
@@ -68,7 +75,7 @@
 
 <script setup>
 import {getIsoDate} from '@/services/date-service';
-import {formatEuro, formatPercent} from '@/services/formatting-service';
+import {formatEuro} from '@/services/formatting-service';
 import DeedlogCalendar from '@/components/DeedlogCalendar';
 import AppPageTitle from '@/components/AppPageTitle';
 import AppPageContent from '@/components/AppPageContent';
@@ -101,5 +108,13 @@ const today = getIsoDate(new Date().toISOString());
 const unlock = async () => {
     await userStore.unlock();
     await treatStore.fetchAll();
+}
+
+const displayInfinityOrDays = (eta) => {
+    if (isFinite(eta)) {
+        return `${eta} Tage`;
+    }
+
+    return '&infin;';
 }
 </script>

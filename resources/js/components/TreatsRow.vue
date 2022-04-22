@@ -2,7 +2,7 @@
     <div
         @click="loadEditForm"
         class="border rounded-md p-2 bg-white"
-        :class="{'border-green-600 border-2': isUnlocked}"
+        :class="{'border-teal-500 border-2': isUnlocked}"
     >
         <div
             class="flex text-xs justify-between text-gray-400"

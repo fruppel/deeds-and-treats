@@ -1,4 +1,4 @@
-const TOKEN_KEY = 'tad_token';
+const TOKEN_KEY = 'dat_token';
 
 export const getToken = () => {
     return window.localStorage.getItem(TOKEN_KEY);

@@ -11,11 +11,14 @@ export default defineStore({
     }),
     actions: {
         async login(credentials) {
-            return new Promise(async resolve => {
+            try {
                 const response = await apiClient.post('/api/login', credentials);
                 this.setLoggedIn(response.data.user);
-                resolve(response.data.user);
-            });
+            } catch (error) {
+                if (error.response.data.errors) {
+                    this.errors = error.response.data.errors;
+                }
+            }
         },
         logout() {
             return new Promise(async resolve => {
@@ -23,6 +26,15 @@ export default defineStore({
                 TokenService.destroyToken();
                 resolve();
             })
+        },
+        async resetPassword(email) {
+            try {
+                const response = await apiClient.post('/api/forgot-password', email);
+            } catch (error) {
+                if (error.response.data.errors) {
+                    this.errors = error.response.data.errors;
+                }
+            }
         },
         setLoggedIn(user) {
             this.isAuthenticated = true;

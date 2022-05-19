@@ -3,7 +3,7 @@
         :value="modelValue"
         :type="type"
         @input="updateValue"
-        class="py-2 px-2 rounded-md shadow-sm focus:border-teal-400 focus:ring focus:ring-teal-300 focus:ring-opacity-50 block sm:inline-block w-full sm:w-80 border-gray-300 block w-full"
+        class="py-2 px-2 rounded-md shadow-sm focus:border-teal-400 focus:ring focus:ring-teal-300 focus:ring-opacity-50 block sm:inline-block w-full border-gray-300 block w-full"
     >
 </template>
 <script setup>

@@ -25,6 +25,14 @@ const routes = [
         }
     },
     {
+        path: '/forgot-password',
+        component: () => import('@/pages/PageResetPassword'),
+        meta: {
+            layout: 'LayoutGuest',
+            requiresAuth: false,
+        }
+    },
+    {
         path: '/dashboard',
         component: () => import('@/pages/PageDashboard'),
         meta: {

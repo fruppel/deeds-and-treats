@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\Api\ActiveTreatController;
+use App\Http\Controllers\Api\Auth\PasswordResetController;
 use App\Http\Controllers\Api\DeedController;
 use App\Http\Controllers\Api\DeedLogController;
 use App\Http\Controllers\Api\TreatDivideController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\AuthenticationController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthenticationController::class, 'store']);
+Route::post('/forgot-password', [PasswordResetController::class, 'store']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthenticationController::class, 'destroy']);

@@ -4,7 +4,6 @@ import router from './router';
 import AppContainer from './components/AppContainer.vue';
 import LayoutApp from '@/layouts/LayoutApp';
 import LayoutGuest from '@/layouts/LayoutGuest';
-import {Workbox} from 'workbox-window';
 
 createApp({})
     .component('LayoutApp', LayoutApp)
@@ -15,6 +14,5 @@ createApp({})
     .mount('#app');
 
 if ('serviceWorker' in navigator) {
-    const wb = new Workbox('/service-worker.js');
-    wb.register();
+    navigator.serviceWorker.register('/service-worker.js');
 }

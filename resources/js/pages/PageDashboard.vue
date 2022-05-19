@@ -117,4 +117,11 @@ const displayInfinityOrDays = (eta) => {
 
     return '&infin;';
 }
+
+document.addEventListener('visibilitychange', () => {
+    alert(document.visibilityState);
+    if (document.visibilityState === 'visible') {
+        window.location.reload();
+    }
+});
 </script>

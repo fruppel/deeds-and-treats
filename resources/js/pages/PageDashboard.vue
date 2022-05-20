@@ -74,6 +74,7 @@
 </template>
 
 <script setup>
+import {ref} from 'vue';
 import {getIsoDate} from '@/services/date-service';
 import {formatEuro} from '@/services/formatting-service';
 import DeedlogCalendar from '@/components/DeedlogCalendar';
@@ -92,18 +93,20 @@ import DashboardTile from '@/components/DashboardTile';
 import ProgressBar from '@/components/ProgressBar';
 
 const userStore = useUserStore();
-await userStore.fetch();
-
 const deedsStore = useDeedsStore();
-await deedsStore.fetchAll();
-
 const deedlogsStore = useDeedlogsStore();
-await deedlogsStore.fetchAll();
-
 const treatStore = useTreatStore();
-await treatStore.fetchAll();
 
-const today = getIsoDate(new Date().toISOString());
+let today = ref(null);
+
+const fetchData = async (tabswitch) => {
+    today.value = getIsoDate(new Date().toISOString());
+
+    await userStore.fetch();
+    await deedsStore.fetchAll();
+    await deedlogsStore.fetchAll();
+    await treatStore.fetchAll();
+};
 
 const unlock = async () => {
     await userStore.unlock();
@@ -118,10 +121,11 @@ const displayInfinityOrDays = (eta) => {
     return '&infin;';
 }
 
-document.addEventListener('visibilitychange', () => {
-    alert(document.visibilityState);
+await fetchData();
+
+document.addEventListener('visibilitychange', async () => {
     if (document.visibilityState === 'visible') {
-        window.location.reload();
+        await fetchData(true);
     }
 });
 </script>

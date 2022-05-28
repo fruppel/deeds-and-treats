@@ -1,11 +1,11 @@
 <template>
     <div
         v-for="treat in treats"
-        class="flex items-center mb-2"
+        class="flex items-end mb-4"
     >
         <button
             @click="toggleTreat(treat)"
-            class="py-2 pr-1"
+            class="pt-2 pr-1 select-none outline-0"
         >
             <star-icon :class="toggleButtonClass(treat)" />
         </button>

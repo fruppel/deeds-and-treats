@@ -7,7 +7,7 @@
         </div>
         <a
             @click="toggleVisibility"
-            class="mt-1 flex w-full items-center py-1 text-gray-500 select-none"
+            class="mt-1 flex w-full items-center py-1 text-gray-500 dark:text-gray-300 select-none"
         >
             <span class="block mr-1">{{ label }}</span>
             <component :is="iconComponent" class="w-5 h-5 text-gray-400"/>

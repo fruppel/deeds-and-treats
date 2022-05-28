@@ -10,7 +10,7 @@
             <star-icon :class="toggleButtonClass(treat)" />
         </button>
         <div class="ml-2 flex-1">
-            <div class="text-xs text-gray-500">{{ getGermanDate(treat.bought) }}</div>
+            <div class="text-xs text-gray-500 dark:text-gray-400">{{ getGermanDate(treat.bought) }}</div>
             <div class="">{{ treat.name }}</div>
         </div>
 

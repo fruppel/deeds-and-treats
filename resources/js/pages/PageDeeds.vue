@@ -2,14 +2,6 @@
     <app-page-title>Deeds</app-page-title>
 
     <app-page-content>
-        <div class="mb-4">
-            <button
-                @click="loadCreateForm"
-                class="border font-semibold inline-flex items-center px-3 py-1 rounded-md text-xs uppercase text-gray-100 bg-teal-500">
-                Neu
-            </button>
-        </div>
-
         <table class="table-auto border-collapse w-full">
             <tr>
                 <th class="text-left">Name</th>
@@ -32,6 +24,8 @@
                 </td>
             </tr>
         </table>
+
+        <floating-action-button @click="loadCreateForm" />
     </app-page-content>
 </template>
 
@@ -43,6 +37,7 @@ import { PencilIcon } from 'vue-tabler-icons';
 import {markRaw} from 'vue';
 import useDrawerStore from '@/stores/drawer';
 import useDeedsStore from '@/stores/deeds';
+import FloatingActionButton from '@/components/FloatingActionButton';
 
 const drawerStore = useDrawerStore();
 

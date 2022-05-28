@@ -45,7 +45,7 @@ const routes = [
         component: () => import('@/pages/PageTreats'),
         meta: {
             layout: 'LayoutApp',
-            requiresAuth: true
+            requiresAuth: true,
         },
     },
     {
@@ -53,7 +53,15 @@ const routes = [
         component: () => import('@/pages/PageDeeds'),
         meta: {
             layout: 'LayoutApp',
-            requiresAuth: true
+            requiresAuth: true,
+        },
+    },
+    {
+        path: '/settings',
+        component: () => import('@/pages/PageSettings'),
+        meta: {
+            layout: 'LayoutApp',
+            requiresAuth: true,
         },
     },
     // Catch all

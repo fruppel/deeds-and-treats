@@ -36,14 +36,15 @@ const props = defineProps({
 
 const classes = computed(() => {
     const deedCount = deedsStore.deeds.length;
-    let numCols = DEFAULT_COLS_COUNT;
 
     if (deedCount === 1) {
-        numCols = 1;
-    } else if (deedCount === 2 || deedCount === 4) {
-        numCols = 2;
+        return 'grid-cols-1';
     }
 
-    return 'grid-cols-' + numCols;
+    if (deedCount === 2 || deedCount === 4) {
+        return 'grid-cols-2';
+    }
+
+    return 'grid-cols-3';
 });
 </script>

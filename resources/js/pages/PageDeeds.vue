@@ -1,7 +1,11 @@
 <template>
     <app-page-title>Deeds</app-page-title>
 
-    <app-page-content>
+    <app-page-content class="px-4">
+
+
+
+
         <table class="table-auto border-collapse w-full">
             <tr>
                 <th class="text-left">Name</th>

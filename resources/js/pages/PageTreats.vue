@@ -1,11 +1,9 @@
 <template>
     <app-page-title>Treats</app-page-title>
 
-    <app-page-content>
-        <div class="px-2">
-            <div class="space-y-2">
-                <treats-row :treat="treat" v-for="treat in treatsStore.treats" />
-            </div>
+    <app-page-content class="px-4">
+        <div class="space-y-2 divide-y bg-white dark:bg-gray-700 border dark:border-gray-900 dark:divide-gray-900 shadow rounded-md">
+            <treats-row :treat="treat" v-for="treat in treatsStore.treats" />
         </div>
 
         <floating-action-button @click="loadCreateForm"></floating-action-button>

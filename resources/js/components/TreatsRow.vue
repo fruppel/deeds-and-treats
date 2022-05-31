@@ -1,22 +1,26 @@
 <template>
     <div
         @click="loadEditForm"
-        class="border rounded-md p-2 bg-white"
-        :class="{'border-teal-500 border-2': isUnlocked}"
+        class="py-2 pr-2"
     >
-        <div
-            class="flex text-xs justify-between text-gray-400"
-        >
-            <div>{{ getGermanDate(treat.bought) }}</div>
-            <div v-if="isUnlocked">
-                Freigeschaltet:&nbsp;<span class="font-semibold">{{ getGermanDate(treat.unlocked) }}</span>
+        <div class="flex">
+            <span class="ml-1 w-1.5 mr-2" :class="{'bg-teal-600': isUnlocked}"></span>
+            <div class="flex-1">
+                <div class="text-xs text-gray-400 dark:text-gray-400">
+                    <div>Gekauft: {{ getGermanDate(treat.bought) }}</div>
+                    <div v-if="isUnlocked">
+                        Freigeschaltet:&nbsp;<span class="font-semibold">{{ getGermanDate(treat.unlocked) }}</span>
+                    </div>
+                </div>
+
+                <div class="flex justify-between dark:text-gray-100">
+                    <div>{{ treat.name }}</div>
+                    <div>{{ formatEuro(treat.costs) }}</div>
+                </div>
             </div>
         </div>
 
-        <div class="flex justify-between">
-            <div>{{ treat.name }}</div>
-            <div>{{ formatEuro(treat.costs) }}</div>
-        </div>
+
     </div>
 </template>
 

@@ -3,8 +3,8 @@
         @click="toggleDeed(deed, date)"
         class="select-none flex-1 text-center items-center py-3 border rounded-lg"
         :class="{
-            'bg-gray-600 dark:bg-gray-800 text-gray-200 dark:text-gray-300 dark:border-gray-500' : hasDeedDone(deed, date),
-            'bg-gray-100 dark:bg-gray-500 text-gray-900 dark:text-gray-100 dark:border-gray-600': !hasDeedDone(deed, date)
+            'bg-gray-600 dark:bg-gray-800 text-gray-200 dark:text-gray-300 dark:border-gray-900' : hasDeedDone(deed, date),
+            'bg-gray-100 dark:bg-gray-600 text-gray-900 dark:text-gray-300 dark:border-gray-600': !hasDeedDone(deed, date)
         }"
     >
         {{ deed.name }}

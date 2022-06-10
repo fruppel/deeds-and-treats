@@ -37,7 +37,8 @@ const routes = [
         component: () => import('@/pages/PageDashboard'),
         meta: {
             layout: 'LayoutApp',
-            requiresAuth: true
+            requiresAuth: true,
+            title: 'Dashboard',
         }
     },
     {
@@ -46,6 +47,7 @@ const routes = [
         meta: {
             layout: 'LayoutApp',
             requiresAuth: true,
+            title: 'Treats',
         },
     },
     {
@@ -54,6 +56,7 @@ const routes = [
         meta: {
             layout: 'LayoutApp',
             requiresAuth: true,
+            title: 'Deeds',
         },
     },
     {
@@ -62,6 +65,7 @@ const routes = [
         meta: {
             layout: 'LayoutApp',
             requiresAuth: true,
+            title: 'Einstellungen',
         },
     },
     // Catch all

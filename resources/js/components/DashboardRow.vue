@@ -1,5 +1,5 @@
 <template>
-    <div class="py-1 flex justify-between text-lg">
+    <div class="py-1 flex justify-between text-base">
         <div>{{ label }}</div>
         <div class="font-semibold">
             <slot />

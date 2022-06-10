@@ -1,6 +1,4 @@
 <template>
-    <app-page-title>Dashboard</app-page-title>
-
     <app-page-content>
 
         <dashboard-tile>
@@ -15,7 +13,7 @@
         <dashboard-tile class="mt-6" v-if="userStore.hasActiveTreat">
             <dashboard-headline>Derzeit aktiv</dashboard-headline>
             <div>
-                <div class="flex justify-between text-lg">
+                <div class="flex justify-between text-base">
                     <div>{{ userStore.activeTreat.name }}</div>
                     <div>{{ formatEuro(userStore.activeTreat.costs) }}</div>
                 </div>
@@ -78,7 +76,6 @@ import {ref} from 'vue';
 import {getIsoDate} from '@/services/date-service';
 import {formatEuro} from '@/services/formatting-service';
 import DeedlogCalendar from '@/components/DeedlogCalendar';
-import AppPageTitle from '@/components/AppPageTitle';
 import AppPageContent from '@/components/AppPageContent';
 import DeedsRow from '@/components/DeedsRow';
 import useUserStore from '@/stores/user';

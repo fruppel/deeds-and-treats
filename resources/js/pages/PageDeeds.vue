@@ -1,47 +1,35 @@
 <template>
-    <app-page-title>Deeds</app-page-title>
-
     <app-page-content class="px-4">
 
 
+        <div class="space-y-2 divide-y bg-white dark:bg-gray-700 border dark:border-gray-900 dark:divide-gray-900 shadow rounded-md">
+            <template v-for="deed in deedsStore.deeds">
+                <div
+                    @click="loadEditForm(deed.id)"
+                    class="py-2 px-2 flex justify-between dark:text-gray-200"
+                >
+                    <div>
+                        <div class="dark:text-gray-400 text-xs">{{ getGermanDate(deed.created_at) }}</div>
+                        <div>{{ deed.name }}</div>
+                    </div>
+                    <div>{{ deed.value }}</div>
+                </div>
 
-
-        <table class="table-auto border-collapse w-full">
-            <tr>
-                <th class="text-left">Name</th>
-                <th class="text-right">Belohnung</th>
-                <th class="hidden sm:table-cell text-left">Erstellt</th>
-                <th></th>
-            </tr>
-
-            <tr v-for="deed in deedsStore.deeds">
-                <td class="py-1 border-b">{{ deed.name }}</td>
-                <td class="py-1 border-b text-right">{{ deed.value }}</td>
-                <td>{{ deed.created }}</td>
-                <td class="py-1 border-b flex justify-end">
-                    <a
-                        @click="loadEditForm(deed.id)"
-                        class="mr-1 border rounded-md block p-1 border-teal-500 text-teal-500"
-                    >
-                        <pencil-icon></pencil-icon>
-                    </a>
-                </td>
-            </tr>
-        </table>
+            </template>
+        </div>
 
         <floating-action-button @click="loadCreateForm" />
     </app-page-content>
 </template>
 
 <script setup>
-import AppPageTitle from '../components/AppPageTitle';
 import AppPageContent from '../components/AppPageContent';
 import DeedsForm from '../components/DeedsForm';
-import { PencilIcon } from 'vue-tabler-icons';
 import {markRaw} from 'vue';
 import useDrawerStore from '@/stores/drawer';
 import useDeedsStore from '@/stores/deeds';
 import FloatingActionButton from '@/components/FloatingActionButton';
+import {getGermanDate} from '@/services/date-service';
 
 const drawerStore = useDrawerStore();
 

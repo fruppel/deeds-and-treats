@@ -9,15 +9,15 @@
             </div>
         </button>
         <div :class="maskClasses" @click="close" class="fixed h-screen left-0 top-0 filter bg-white/30 backdrop-blur-sm"></div>
-        <div :class="drawerClasses" class="fixed h-screen bg-teal-300 left-0 top-0 shadow-xl transition-width transition-slowest ease overflow-hidden">
+        <div :class="drawerClasses" class="fixed h-screen bg-teal-300 dark:bg-gray-900 left-0 top-0 shadow-xl transition-width transition-slowest ease overflow-hidden">
             <div class="py-4">
-                <div class="px-4 my-2 uppercase font-semibold text-gray-900">Menü</div>
+                <div class="px-4 my-2 uppercase font-semibold text-gray-900 dark:text-gray-300">Menü</div>
                 <ul class="mt-4 mb-4">
                     <li v-for="route in routes">
                         <router-link
                             :to="route.href"
-                            active-class="bg-teal-200"
-                            class="block px-4 py-2 text-lg font-semibold text-black"
+                            active-class="bg-teal-200 dark:bg-teal-800 text-black dark:text-gray-100"
+                            class="block px-4 py-2 text-lg font-semibold text-black dark:text-gray-300"
                             @click="close"
                         >
                             {{ route.label }}
@@ -25,7 +25,7 @@
                     </li>
                 </ul>
 
-                <a class="px-4 text-black" @click="logout">
+                <a class="px-4 text-black dark:text-gray-300" @click="logout">
                     Abmelden
                 </a>
             </div>

@@ -1,6 +1,4 @@
 <template>
-    <app-page-title>Treats</app-page-title>
-
     <app-page-content class="px-4">
         <div class="space-y-2 divide-y bg-white dark:bg-gray-700 border dark:border-gray-900 dark:divide-gray-900 shadow rounded-md">
             <treats-row :treat="treat" v-for="treat in treatsStore.treats" />
@@ -12,7 +10,6 @@
 
 <script setup>
 import {markRaw} from 'vue';
-import AppPageTitle from '../components/AppPageTitle';
 import AppPageContent from '../components/AppPageContent';
 import TreatsForm from '../components/TreatsForm';
 import useDrawerStore from '@/stores/drawer';

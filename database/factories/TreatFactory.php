@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends Factory
  */
-class DeedFactory extends Factory
+class TreatFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,9 +20,11 @@ class DeedFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => ucfirst($this->faker->word()),
             'user_id' => self::factoryForModel(User::class),
-            'value' => $this->faker->randomElement([0.50, 1, 2, 3]),
+            'name' => ucfirst($this->faker->word()) . ' ' . $this->faker->word(),
+            'costs' => $this->faker->randomFloat(2, 5, 150),
+            'bought' => $this->faker->dateTimeBetween('-1 years')->format('Y-m-d H:i:s'),
+            'unlocked' => null,
         ];
     }
 }

@@ -5,7 +5,9 @@ require('laravel-mix-workbox');
 mix.js('resources/js/app.js', 'public/js');
 mix.vue();
 mix.postCss(
-'resources/css/app.css', 'public/css', [
+    'resources/css/app.css',
+    'public/css',
+    [
         require('postcss-import'),
         require('tailwindcss'),
         require('autoprefixer'),

@@ -6,7 +6,11 @@ export default defineStore({
     state: () => ({
         errors: {},
         treat: null,
-        treats: []
+        treats: [],
+        sort: {
+            by: null,
+            direction: null,
+        },
     }),
     getters: {
         unlockableTreats(state) {
@@ -19,7 +23,12 @@ export default defineStore({
             this.treat = data.treat;
         },
         async fetchAll() {
-            const response = await apiClient.get('/api/treats');
+            const response = await apiClient.get('/api/treats', {
+                params: {
+                    sortBy: this.sort.by,
+                    sortDirection: this.sort.direction,
+                }
+            });
 
             if (response !== undefined) {
                 this.treats = response.data;
@@ -59,6 +68,16 @@ export default defineStore({
 
                 return false;
             }
+        },
+        /**
+         * @param {String} by
+         * @param {String} direction
+         * @returns {Promise<void>}
+         */
+        async applySort(by, direction) {
+            this.sort.by = by;
+            this.sort.direction = direction;
+            await this.fetchAll();
         }
     }
 });

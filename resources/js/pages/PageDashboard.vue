@@ -1,6 +1,5 @@
 <template>
-    <app-page-content>
-
+    <app-page-content class="pb-32">
         <dashboard-tile>
             <dashboard-headline>Heute</dashboard-headline>
             <deeds-row :date="today"></deeds-row>

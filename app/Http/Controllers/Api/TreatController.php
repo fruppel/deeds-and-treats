@@ -12,12 +12,15 @@ use Illuminate\Support\Facades\Auth;
 
 class TreatController extends AbstractApiController
 {
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
+        $sortBy = $request->get('sortBy', 'bought');
+        $sortDirection = $request->get('sortDirection', 'asc');
+
         return response()->json(
             Auth::user()
                 ->treats()
-                ->orderBy('bought')
+                ->orderBy($sortBy, $sortDirection)
                 ->get()
         );
     }

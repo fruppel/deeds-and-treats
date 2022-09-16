@@ -16,5 +16,5 @@ import FormSelect from '@/components/FormSelect';
 
 const form = ref({
     theme: 'dark',
-})
+});
 </script>

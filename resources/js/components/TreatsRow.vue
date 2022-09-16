@@ -1,7 +1,7 @@
 <template>
     <div
         @click="loadEditForm"
-        class="py-2 pr-2"
+        class="pt-2 pr-2 last:pb-2"
     >
         <div class="flex">
             <span class="ml-1 w-1.5 mr-2" :class="{'bg-teal-600': isUnlocked}"></span>
@@ -19,8 +19,6 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 </template>
 
@@ -37,8 +35,6 @@ const props = defineProps({
         required: true,
     }
 });
-
-console.log(props.treat);
 
 const drawerStore = useDrawerStore();
 

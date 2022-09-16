@@ -1,5 +1,7 @@
 <template>
-    <app-page-content class="px-4">
+    <app-page-content class="px-4 pb-32">
+        <treats-filter class="mb-8" />
+
         <div class="space-y-2 divide-y bg-white dark:bg-gray-700 border dark:border-gray-900 dark:divide-gray-900 shadow rounded-md">
             <treats-row :treat="treat" v-for="treat in treatsStore.treats" />
         </div>
@@ -16,6 +18,7 @@ import useDrawerStore from '@/stores/drawer';
 import useTreatsStore from '@/stores/treats';
 import TreatsRow from '@/components/TreatsRow';
 import FloatingActionButton from '@/components/FloatingActionButton';
+import TreatsFilter from '@/components/TreatsFilter';
 
 const drawerStore = useDrawerStore();
 const treatsStore = useTreatsStore();

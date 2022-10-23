@@ -22,6 +22,8 @@ const sortOptions = {
     'bought_desc': 'Gekauft (absteigend)',
     'costs_asc': 'Preis (aufsteigend)',
     'costs_desc': 'Preis (absteigend)',
+    'unlocked_asc': 'Freigeschaltet (aufsteigend)',
+    'unlocked_desc': 'Freigeschaltet (absteigend',
 };
 
 const form = ref({

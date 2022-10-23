@@ -27,7 +27,7 @@ export default defineStore({
             return Math.round(this.activeRest / state.intersectionTenDays);
         },
         openEta(state) {
-            return Math.round(state.costsOpen / state.intersectionTenDays);
+            return Math.round((state.costsOpen - state.available) / state.intersectionTenDays);
         },
         hasActiveTreat: (state) => state.activeTreat && Object.keys(state.activeTreat).length !== 0,
         canUnlock(state) {

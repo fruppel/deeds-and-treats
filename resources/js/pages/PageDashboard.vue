@@ -43,7 +43,7 @@
                         <dashboard-row label="Ausgegeben">{{ formatEuro(userStore.costsSpent) }}</dashboard-row>
                         <dashboard-row label="Offen">{{ formatEuro(userStore.costsOpen) }}</dashboard-row>
                         <dashboard-row label="10-Tage Schnitt">{{ formatEuro(userStore.intersectionTenDays) }}</dashboard-row>
-                        <dashboard-row label="ETA (offen)">
+                        <dashboard-row label="ETA (Rest)">
                             <span v-html="displayInfinityOrDays(userStore.openEta)"/>
                         </dashboard-row>
                     </toggable-content>

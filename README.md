@@ -2,8 +2,11 @@
 
 ## Installation
 ```
+cp .env.example .env
 composer install
 npm ci 
+sail up -d
+sail artisan key:generate
 ```
 
 ## Technology stack

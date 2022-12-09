@@ -6,4 +6,12 @@
     html {
         -webkit-tap-highlight-color: transparent;
     }
+
+    input:checked + div {
+        @apply border-teal-500;
+    }
+
+    input:checked + div svg {
+        @apply block;
+    }
 }

@@ -37,7 +37,7 @@
             {{ currentYear + 1 }} &raquo;
         </button>
     </div>
-    <div class="space-y-2">
+    <div class="space-y-6 mt-4">
         <template
             v-for="date in historyDates.slice(0, 3)"
             :key="date"

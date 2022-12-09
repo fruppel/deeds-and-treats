@@ -1,50 +1,39 @@
 <template>
-    <div>
-        <div
-            v-if="date"
-            class="px-1 py-1 text-left text-xs dark:text-gray-400"
-        >
-            {{ getGermanDate(date) }}
-        </div>
-        <div class="grid gap-2" :class="classes">
+    <div class="flex justify-between">
+
+        <div class="space-y-2">
             <template v-for="deed in deedsStore.deeds">
-                <deeds-button
-                    :deed="deed"
+                <deeds-checkbox
                     :date="date"
+                    :deed="deed"
                 />
             </template>
+        </div>
+        <div
+            v-if="date !== null && date !== '' && showDate === true"
+            class="px-1 py-1 text-left text-xs dark:text-gray-400 text-center"
+            style="writing-mode: tb-rl;"
+        >
+            {{ getGermanDate(date) }}
         </div>
     </div>
 </template>
 
 <script setup>
-import DeedsButton from '@/components/DeedsButton.vue';
 import {getGermanDate} from '@/services/date-service';
 import useDeedsStore from '@/stores/deeds';
-import {computed} from 'vue';
-
-const DEFAULT_COLS_COUNT = 3;
+import DeedsCheckbox from '@/components/DeedsCheckbox.vue';
 
 const deedsStore = useDeedsStore();
 
 const props = defineProps({
+    showDate: {
+        type: Boolean,
+        default: true,
+    },
     date: {
         type: String,
-        default: '',
+        required: true,
     },
-});
-
-const classes = computed(() => {
-    const deedCount = deedsStore.deeds.length;
-
-    if (deedCount === 1) {
-        return 'grid-cols-1';
-    }
-
-    if (deedCount === 2 || deedCount === 4) {
-        return 'grid-cols-2';
-    }
-
-    return 'grid-cols-3';
 });
 </script>

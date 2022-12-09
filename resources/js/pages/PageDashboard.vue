@@ -2,7 +2,7 @@
     <app-page-content class="pb-32">
         <dashboard-tile>
             <dashboard-headline>Heute</dashboard-headline>
-            <deeds-row :date="today"></deeds-row>
+            <deeds-row :date="today" :show-date="false"></deeds-row>
             <div class="mt-3 flex justify-between items-center">
                 <div>Insgesamt verfügbar</div>
                 <div class="text-xl font-semibold text-teal-500">{{ formatEuro(userStore.available) }}</div>

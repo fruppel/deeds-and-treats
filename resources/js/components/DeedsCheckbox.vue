@@ -7,7 +7,7 @@
             :checked="hasDeedDone()"
             @change="toggleDeed(deed, date)"
         >
-        <div class="bg-gray-700 border-2 rounded-md border-gray-600 w-6 h-6 flex items-center justify-center">
+        <div class="border-2 rounded-md border-gray-400 dark:bg-gray-700 dark:border-gray-600 w-6 h-6 flex items-center justify-center">
             <svg class="fill-current hidden w-4 h-4 text-teal-600 pointer-events-none" viewBox="0 0 17 12" xmlns="http://www.w3.org/2000/svg">
                 <g fill="none" fill-rule="evenodd">
                     <g transform="translate(-9 -11)" fill="currentColor" fill-rule="nonzero">

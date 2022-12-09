@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use Carbon\CarbonImmutable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
@@ -39,8 +42,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast.
-     *
      * @var array<string, string>
      */
     protected $casts = [
@@ -50,6 +51,13 @@ class User extends Authenticatable
     public function deeds(): Relation
     {
         return $this->hasMany(Deed::class);
+    }
+
+    public function activeDeeds(): Collection
+    {
+        return $this->deeds->filter(function ($deed) {
+            return $deed->activated_at <= CarbonImmutable::now();
+        });
     }
 
     public function treats(): Relation

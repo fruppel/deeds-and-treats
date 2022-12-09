@@ -14,5 +14,12 @@ class Deed extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'user_id', 'value'];
+    protected $fillable = ['name', 'user_id', 'value', 'activated_at', 'archived_at'];
+
+    /**
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'activated_at' => 'datetime',
+    ];
 }

@@ -33,8 +33,8 @@
 
                 <div>
                     <dashboard-row label="Verbleibend">{{ formatEuro(userStore.activeRest) }}</dashboard-row>
-                    <dashboard-row label="Geschätzte Restzeit">
-                        <span v-html="displayInfinityOrDays(userStore.activeEta)"/>
+                    <dashboard-row label="Geschätzte Restzeit (10-Tage)">
+                        <span v-html="displayInfinityOrDays(userStore.activeEtaTenDays)"/>
                     </dashboard-row>
 
                     <toggable-content>
@@ -42,9 +42,20 @@
                         <dashboard-row label="Kosten gesamt">{{ formatEuro(userStore.costsAll) }}</dashboard-row>
                         <dashboard-row label="Ausgegeben">{{ formatEuro(userStore.costsSpent) }}</dashboard-row>
                         <dashboard-row label="Offen">{{ formatEuro(userStore.costsOpen) }}</dashboard-row>
+
+                        <dashboard-row label="3-Tage Schnitt">{{ formatEuro(userStore.intersectionThreeDays) }}</dashboard-row>
+                        <dashboard-row label="ETA Rest (3-Tage)">
+                            <span v-html="displayInfinityOrDays(userStore.openEtaThreeDays)"/>
+                        </dashboard-row>
+
                         <dashboard-row label="10-Tage Schnitt">{{ formatEuro(userStore.intersectionTenDays) }}</dashboard-row>
-                        <dashboard-row label="ETA (Rest)">
-                            <span v-html="displayInfinityOrDays(userStore.openEta)"/>
+                        <dashboard-row label="ETA Rest (10-Tage)">
+                            <span v-html="displayInfinityOrDays(userStore.openEtaTenDays)"/>
+                        </dashboard-row>
+
+                        <dashboard-row label="Maximal pro Tag">{{ formatEuro(userStore.maxSavingsPerDay) }}</dashboard-row>
+                        <dashboard-row label="ETA Rest (Maximal)">
+                            <span v-html="displayInfinityOrDays(userStore.openEtaMax)"/>
                         </dashboard-row>
                     </toggable-content>
                 </div>

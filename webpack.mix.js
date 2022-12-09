@@ -16,10 +16,10 @@ mix.postCss(
 mix.webpackConfig(require('./webpack.config.js'));
 
 if (mix.inProduction()) {
-    mix.injectManifest({
-        swSrc: './resources/js/service-worker.js',
-        exclude: [/\.(?:png|jpg|jpeg|svg|js|css)$/],
-    });
+    // mix.injectManifest({
+    //     swSrc: './resources/js/service-worker.js',
+    //     exclude: [/\.(?:png|jpg|jpeg|svg|js|css)$/],
+    // });
     mix.version();
 } else {
     mix.sourceMaps();

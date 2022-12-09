@@ -31,6 +31,9 @@ export default defineStore({
         activeEtaTenDays(state) {
             return Math.round(this.activeRest / state.intersectionTenDays);
         },
+        activeEtaMax(state) {
+            return Math.round(this.activeRest / state.maxSavingsPerDay);
+        },
         openEtaThreeDays(state) {
             return Math.round((state.costsOpen - state.available) / state.intersectionThreeDays);
         },

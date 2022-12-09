@@ -33,9 +33,6 @@
 
                 <div>
                     <dashboard-row label="Verbleibend">{{ formatEuro(userStore.activeRest) }}</dashboard-row>
-                    <dashboard-row label="Geschätzte Restzeit (10-Tage)">
-                        <span v-html="displayInfinityOrDays(userStore.activeEtaTenDays)"/>
-                    </dashboard-row>
 
                     <toggable-content>
                         <dashboard-row label="Gespart gesamt">{{ formatEuro(userStore.savings) }}</dashboard-row>
@@ -43,20 +40,32 @@
                         <dashboard-row label="Ausgegeben">{{ formatEuro(userStore.costsSpent) }}</dashboard-row>
                         <dashboard-row label="Offen">{{ formatEuro(userStore.costsOpen) }}</dashboard-row>
 
-                        <dashboard-row label="3-Tage Schnitt">{{ formatEuro(userStore.intersectionThreeDays) }}</dashboard-row>
-                        <dashboard-row label="ETA Rest (3-Tage)">
-                            <span v-html="displayInfinityOrDays(userStore.openEtaThreeDays)"/>
-                        </dashboard-row>
-
-                        <dashboard-row label="10-Tage Schnitt">{{ formatEuro(userStore.intersectionTenDays) }}</dashboard-row>
-                        <dashboard-row label="ETA Rest (10-Tage)">
-                            <span v-html="displayInfinityOrDays(userStore.openEtaTenDays)"/>
-                        </dashboard-row>
-
-                        <dashboard-row label="Maximal pro Tag">{{ formatEuro(userStore.maxSavingsPerDay) }}</dashboard-row>
-                        <dashboard-row label="ETA Rest (Maximal)">
-                            <span v-html="displayInfinityOrDays(userStore.openEtaMax)"/>
-                        </dashboard-row>
+                        <table class="w-full">
+                            <tr>
+                                <th></th>
+                                <th class="text-center">&Oslash;</th>
+                                <th class="text-center">ETA (Aktuell)</th>
+                                <th class="text-center">ETA (Rest)</th>
+                            </tr>
+                            <tr>
+                                <td>Maximal</td>
+                                <td class="text-right">{{ formatEuro(userStore.maxSavingsPerDay) }}</td>
+                                <td class="text-right" v-html="displayInfinityOrDays(userStore.activeEtaMax)"></td>
+                                <td class="text-right" v-html="displayInfinityOrDays(userStore.openEtaMax)"></td>
+                            </tr>
+                            <tr>
+                                <td>3-Tage</td>
+                                <td class="text-right">{{ formatEuro(userStore.intersectionThreeDays) }}</td>
+                                <td class="text-right" v-html="displayInfinityOrDays(userStore.activeEtaThreeDays)"></td>
+                                <td class="text-right" v-html="displayInfinityOrDays(userStore.openEtaThreeDays)"></td>
+                            </tr>
+                            <tr>
+                                <td>10-Tage</td>
+                                <td class="text-right">{{ formatEuro(userStore.intersectionTenDays) }}</td>
+                                <td class="text-right" v-html="displayInfinityOrDays(userStore.activeEtaTenDays)"></td>
+                                <td class="text-right" v-html="displayInfinityOrDays(userStore.openEtaTenDays)"></td>
+                            </tr>
+                        </table>
                     </toggable-content>
                 </div>
             </div>

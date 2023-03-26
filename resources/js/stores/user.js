@@ -26,22 +26,22 @@ export default defineStore({
             return Math.max(0, state.activeTreat.costs - this.available);
         },
         activeEtaThreeDays(state) {
-            return Math.round(this.activeRest / state.intersectionThreeDays);
+            return Math.ceil(this.activeRest / state.intersectionThreeDays);
         },
         activeEtaTenDays(state) {
-            return Math.round(this.activeRest / state.intersectionTenDays);
+            return Math.ceil(this.activeRest / state.intersectionTenDays);
         },
         activeEtaMax(state) {
-            return Math.round(this.activeRest / state.maxSavingsPerDay);
+            return Math.ceil(this.activeRest / state.maxSavingsPerDay);
         },
         openEtaThreeDays(state) {
-            return Math.round((state.costsOpen - state.available) / state.intersectionThreeDays);
+            return Math.ceil((state.costsOpen - state.available) / state.intersectionThreeDays);
         },
         openEtaTenDays(state) {
-            return Math.round((state.costsOpen - state.available) / state.intersectionTenDays);
+            return Math.ceil((state.costsOpen - state.available) / state.intersectionTenDays);
         },
         openEtaMax(state) {
-            return Math.round((state.costsOpen - state.available) / state.maxSavingsPerDay);
+            return Math.ceil((state.costsOpen - state.available) / state.maxSavingsPerDay);
         },
         hasActiveTreat: (state) => state.activeTreat && Object.keys(state.activeTreat).length !== 0,
         canUnlock(state) {

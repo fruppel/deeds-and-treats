@@ -11,6 +11,7 @@ export default defineStore({
             by: null,
             direction: null,
         },
+        filter: null,
     }),
     getters: {
         unlockableTreats(state) {
@@ -27,6 +28,7 @@ export default defineStore({
                 params: {
                     sortBy: this.sort.by,
                     sortDirection: this.sort.direction,
+                    filter: this.filter,
                 }
             });
 
@@ -77,6 +79,15 @@ export default defineStore({
         async applySort(by, direction) {
             this.sort.by = by;
             this.sort.direction = direction;
+            await this.fetchAll();
+        },
+
+        /**
+         * @param {String} filter
+         * @returns {Promise<void>}
+         */
+        async applyFilter(filter) {
+            this.filter = filter;
             await this.fetchAll();
         }
     }

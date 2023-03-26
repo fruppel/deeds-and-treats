@@ -16,10 +16,18 @@ class TreatController extends AbstractApiController
     {
         $sortBy = $request->get('sortBy', 'bought');
         $sortDirection = $request->get('sortDirection', 'asc');
+        $filter = $request->get('filter', 'all');
+
+        $result = Auth::user()->treats();
+
+        if ($filter === 'unlocked') {
+            $result = $result->whereNotNull('unlocked');
+        } else if ($filter === 'not_unlocked') {
+            $result = $result->whereNull('unlocked');
+        }
 
         return response()->json(
-            Auth::user()
-                ->treats()
+            $result
                 ->orderBy($sortBy, $sortDirection)
                 ->get()
         );

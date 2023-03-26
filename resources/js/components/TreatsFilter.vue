@@ -22,10 +22,10 @@
 <script setup>
 import FormLabel from '@/components/FormLabel';
 import FormSelect from '@/components/FormSelect';
-import useTreatsStore from '@/stores/treats';
+import useTreatsFilteredStore from '@/stores/treatsFiltered';
 import {ref} from 'vue';
 
-const treatsStore = useTreatsStore();
+const treatsFilteredStore = useTreatsFilteredStore();
 
 const sortOptions = {
     'name_asc': 'Name (aufsteigend)',
@@ -51,9 +51,9 @@ const form = ref({
 
 const updateSort = () => {
     let [by, direction] = form.value.sort.split('_');
-    treatsStore.applySort(by, direction);
+    treatsFilteredStore.applySort(by, direction);
 };
 
-const updateFilter = () => treatsStore.applyFilter(form.value.filter);
+const updateFilter = () => treatsFilteredStore.applyFilter(form.value.filter);
 
 </script>

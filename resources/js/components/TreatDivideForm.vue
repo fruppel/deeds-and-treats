@@ -21,7 +21,7 @@
                 </button>
             </div>
 
-            <form-error :error="treatsStore.errors.divideInto" />
+            <form-error :error="treatStore.errors.divideInto" />
 
             <button
                 @click="divide"
@@ -39,7 +39,7 @@ import FormInput from '@/components/FormInput';
 import FormError from '@/components/FormError';
 import {PlusIcon, MinusIcon} from 'vue-tabler-icons';
 import {ref} from 'vue';
-import useTreatsStore from '@/stores/treats';
+import useTreatStore from '@/stores/treat';
 
 const props = defineProps({
     id: {
@@ -50,16 +50,16 @@ const props = defineProps({
 
 const emit = defineEmits(['divided']);
 
-const treatsStore = useTreatsStore();
+const treatStore = useTreatStore();
 
 const divideInto = ref(2);
 const increase = () => divideInto.value++;
 const decrease = () => divideInto.value--;
 const divide = async () => {
-    if (await treatsStore.divide(props.id, divideInto.value) === true) {
+    if (await treatStore.divide(props.id, divideInto.value) === true) {
         emit('divided');
     }
-    console.log(treatsStore.errors);
+    console.log(treatStore.errors);
 };
 
 </script>

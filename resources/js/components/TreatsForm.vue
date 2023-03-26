@@ -74,10 +74,12 @@ import FormLabel from './FormLabel';
 import FormInput from './FormInput';
 import FormError from './FormError';
 import useTreatsStore from '@/stores/treats';
+import useTreatStore from '@/stores/treat';
 import useDrawerStore from '@/stores/drawer';
 import TreatDivideForm from '@/components/TreatDivideForm';
 
 const treatsStore = useTreatsStore();
+const treatStore = useTreatStore();
 const drawerStore = useDrawerStore();
 
 const props = defineProps({
@@ -107,28 +109,28 @@ const close = async () => {
 }
 const exists = () => props.id !== undefined && props.id !== null;
 const unlocked = computed(() => {
-    return exists() && treatsStore.treat && treatsStore.treat.unlocked !== null
+    return exists() && treatStore.treat && treatStore.treat.unlocked !== null
 });
 
 const submit = async () => {
     exists() === true
-        ? await treatsStore.update(form.value)
-        : await treatsStore.store(form.value);
+        ? await treatStore.update(form.value)
+        : await treatStore.store(form.value);
     await close();
 };
 
 const deleteTreat = async () => {
-    await treatsStore.destroy(props.id);
+    await treatStore.destroy(props.id);
     await close();
 };
 
 const loadTreatById = async () => {
-    await treatsStore.fetchById(props.id);
-    form.value.id = treatsStore.treat.id;
-    form.value.name = treatsStore.treat.name;
-    form.value.costs = treatsStore.treat.costs;
-    form.value.bought = treatsStore.treat.bought;
-    form.value.unlocked = treatsStore.treat.unlocked;
+    await treatStore.fetchById(props.id);
+    form.value.id = treatStore.treat.id;
+    form.value.name = treatStore.treat.name;
+    form.value.costs = treatStore.treat.costs;
+    form.value.bought = treatStore.treat.bought;
+    form.value.unlocked = treatStore.treat.unlocked;
 };
 
 const showDivide = ref(false);

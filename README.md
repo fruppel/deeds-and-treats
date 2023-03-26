@@ -13,3 +13,10 @@ sail artisan key:generate
 - Laravel 9.x
 - Vue 3
 - Pinia
+
+## Development
+Import db:
+```shell
+docker ps | grep mysql
+docker exec -i <container> /usr/bin/mysql -usail -p<password> <db> < dbexport_20230227.sql
+```

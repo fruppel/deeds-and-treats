@@ -40,12 +40,12 @@
                         <dashboard-row label="Ausgegeben">{{ formatEuro(userStore.costsSpent) }}</dashboard-row>
                         <dashboard-row label="Offen">{{ formatEuro(userStore.costsOpen) }}</dashboard-row>
 
-                        <table class="w-full">
+                        <table class="w-full mt-4">
                             <tr>
                                 <th></th>
-                                <th class="text-center">&Oslash;</th>
-                                <th class="text-center">ETA (Aktuell)</th>
-                                <th class="text-center">ETA (Rest)</th>
+                                <th class="text-right">&Oslash;</th>
+                                <th class="text-right">ETA (Aktuell)</th>
+                                <th class="text-right">ETA (Rest)</th>
                             </tr>
                             <tr>
                                 <td>Maximal</td>

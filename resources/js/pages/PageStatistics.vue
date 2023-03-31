@@ -31,6 +31,7 @@ import {ref, watch} from 'vue';
 const statisticsStore = useStatisticsStore();
 const currentYear = ref((new Date()).getFullYear());
 await statisticsStore.receiveStatisticsByYear(currentYear.value);
+console.log(statisticsStore.statisticsByYear);
 
 watch(currentYear, async (currentYear) => {
     await statisticsStore.receiveStatisticsByYear(currentYear);

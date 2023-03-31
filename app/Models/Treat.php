@@ -39,7 +39,7 @@ class Treat extends Model
 
     public function scopeMonthAndYear(Builder $query, int $month, int $year): Builder
     {
-        $date = CarbonImmutable::createFromDate($year, $month);
+        $date = CarbonImmutable::createFromDate($year, $month, 1);
 
         return $query
             ->where('bought', '>=', $date->startOfMonth()->format('Y-m-d'))

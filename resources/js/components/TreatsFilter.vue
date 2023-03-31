@@ -45,8 +45,8 @@ const filterOptions = {
 };
 
 const form = ref({
-    sort: 'bought_asc',
-    filter: 'all',
+    sort: treatsFilteredStore.combinedSort ?? 'bought_asc',
+    filter: treatsFilteredStore.filter ?? 'all',
 });
 
 const updateSort = () => {

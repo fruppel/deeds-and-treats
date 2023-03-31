@@ -60,6 +60,15 @@ const routes = [
         },
     },
     {
+        path: '/statistics',
+        component: () => import('@/pages/PageStatistics'),
+        meta: {
+            layout: 'LayoutApp',
+            requiresAuth: true,
+            title: 'Statistiken',
+        },
+    },
+    {
         path: '/settings',
         component: () => import('@/pages/PageSettings'),
         meta: {

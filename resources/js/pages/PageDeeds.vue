@@ -12,7 +12,7 @@
                         <div class="dark:text-gray-400 text-xs">{{ getGermanDate(deed.created_at) }}</div>
                         <div>{{ deed.name }}</div>
                     </div>
-                    <div>{{ deed.value }}</div>
+                    <div>{{ formatEuro(deed.value) }}</div>
                 </div>
 
             </template>
@@ -30,9 +30,9 @@ import useDrawerStore from '@/stores/drawer';
 import useDeedsStore from '@/stores/deeds';
 import FloatingActionButton from '@/components/FloatingActionButton';
 import {getGermanDate} from '@/services/date-service';
+import {formatEuro} from '@/services/formatting-service';
 
 const drawerStore = useDrawerStore();
-
 const deedsStore = useDeedsStore();
 await deedsStore.fetchAll();
 

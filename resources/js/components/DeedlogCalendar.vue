@@ -18,25 +18,7 @@
             {{ getGermanMonth(nextMonth) }} &raquo;
         </button>
     </div>
-    <div class="flex">
-        <button
-            @click="decreaseYear"
-            class="p-2 block flex-1"
-        >
-            &laquo; {{ currentYear - 1 }}
-        </button>
-        <button
-            class="p-2 font-bold flex-1 mx-1"
-        >
-            {{ currentYear }}
-        </button>
-        <button
-            @click="increaseYear"
-            class="p-2 flex-1"
-        >
-            {{ currentYear + 1 }} &raquo;
-        </button>
-    </div>
+    <navigation-year v-model="currentYear"></navigation-year>
     <div class="space-y-6 mt-4">
         <template
             v-for="date in historyDates.slice(0, 3)"
@@ -61,6 +43,7 @@ import {computed, ref} from 'vue';
 import DeedsRow from '@/components/DeedsRow';
 import {getDatesForCurrentMonth, getDatesForMonthAndYear, getGermanMonth} from '@/services/date-service';
 import ToggableContent from '@/components/ToggableContent';
+import NavigationYear from '@/components/NavigationYear.vue';
 
 const MONTH_DECEMBER = 11;
 const MONTH_JANUARY = 0;
@@ -88,13 +71,10 @@ const historyDates = computed(() => {
         : getDatesForMonthAndYear(currentMonth.value, currentYear.value)
 });
 
-const increaseYear = () => currentYear.value++;
-const decreaseYear = () => currentYear.value--;
-
 const increaseMonth = () => {
     if (currentMonth.value + 1 > MONTH_DECEMBER) {
         currentMonth.value = MONTH_JANUARY;
-        increaseYear();
+        currentYear.value++;
         return;
     }
 
@@ -104,7 +84,7 @@ const increaseMonth = () => {
 const decreaseMonth = () => {
     if (currentMonth.value - 1 < MONTH_JANUARY) {
         currentMonth.value = MONTH_DECEMBER;
-        decreaseYear();
+        currentYear.value--;
         return;
     }
 

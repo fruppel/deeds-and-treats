@@ -62,6 +62,10 @@ export default {
                     label: 'Deeds',
                 },
                 {
+                    href: '/statistics',
+                    label: 'Statistiken',
+                },
+                {
                     href: '/settings',
                     label: 'Einstellungen',
                 },

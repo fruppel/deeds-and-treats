@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\ActiveTreatController;
 use App\Http\Controllers\Api\Auth\PasswordResetController;
 use App\Http\Controllers\Api\DeedController;
 use App\Http\Controllers\Api\DeedLogController;
+use App\Http\Controllers\Api\StatisticsPerYearController;
 use App\Http\Controllers\Api\TreatDivideController;
 use App\Http\Controllers\Api\UnlockController;
 use App\Http\Controllers\Api\UserController;
@@ -31,4 +32,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/activetreat', [ActiveTreatController::class, 'destroy']);
     Route::post('/unlock/{treat}', [UnlockController::class, 'store']);
     Route::post('/treat/divide/{treat}', [TreatDivideController::class, 'store']);
+    Route::get('/statistics/{year}', [StatisticsPerYearController::class, 'index']);
 });

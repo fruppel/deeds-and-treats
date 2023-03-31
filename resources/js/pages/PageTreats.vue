@@ -23,6 +23,5 @@ import TreatsFilter from '@/components/TreatsFilter';
 const drawerStore = useDrawerStore();
 const treatsFilteredStore = useTreatsFilteredStore();
 await treatsFilteredStore.fetch();
-
 const loadCreateForm = () => drawerStore.open(markRaw(TreatsForm));
 </script>

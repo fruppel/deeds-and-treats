@@ -11,6 +11,15 @@ export default defineStore({
         },
         filter: null,
     }),
+    getters: {
+        combinedSort() {
+            if (this.sort.by !== null && this.sort.direction !== null) {
+                return `${this.sort.by}_${this.sort.direction}`;
+            }
+
+            return null;
+        }
+    },
     actions: {
         async fetch() {
             const response = await apiClient.get('/api/treats', {

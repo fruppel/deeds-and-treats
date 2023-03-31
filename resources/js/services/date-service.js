@@ -25,9 +25,7 @@ export function getDatesForMonthAndYear(month, year) {
  * @returns {string}
  */
 export function getGermanMonth(monthIndex) {
-    const date = new Date();
-    date.setMonth(monthIndex);
-
+    let date = new Date((new Date()).getFullYear(), monthIndex, 1);
     return date.toLocaleString('de-DE', {
         month: 'long'
     });

@@ -97,7 +97,9 @@ const form = ref({
     unlocked: null,
 });
 
-const errors = computed(() => treatsStore.errors);
+console.log(form);
+
+const errors = computed(() => treatStore.errors);
 const title = computed(() => exists()
     ? 'Treat bearbeiten'
     : 'Treat erstellen'

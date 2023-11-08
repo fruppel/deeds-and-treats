@@ -38,13 +38,13 @@
     </auth-screen>
 </template>
 <script setup>
-import AuthScreen from '../components/AuthScreen';
-import FormLabel from '../components/FormLabel';
-import FormInput from '../components/FormInput';
+import AuthScreen from '../components/AuthScreen.vue';
+import FormLabel from '../components/FormLabel.vue';
+import FormInput from '../components/FormInput.vue';
 import {RouterLink, useRouter, useRoute} from 'vue-router';
 import useAuthStore from '@/stores/auth';
 import {ref, computed} from 'vue';
-import FormError from '@/components/FormError';
+import FormError from '@/components/FormError.vue';
 
 const authStore = useAuthStore();
 const router = useRouter();

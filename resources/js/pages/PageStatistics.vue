@@ -21,17 +21,19 @@
 </template>
 
 <script setup>
-import AppPageContent from '../components/AppPageContent';
+import AppPageContent from '../components/AppPageContent.vue';
 import useStatisticsStore from '@/stores/statistics';
 import {getGermanMonth} from '@/services/date-service';
 import {formatEuro} from '@/services/formatting-service';
 import NavigationYear from '@/components/NavigationYear.vue';
-import {ref, watch} from 'vue';
+import {onMounted, ref, watch} from 'vue';
 
 const statisticsStore = useStatisticsStore();
 const currentYear = ref((new Date()).getFullYear());
-await statisticsStore.receiveStatisticsByYear(currentYear.value);
-console.log(statisticsStore.statisticsByYear);
+
+onMounted(async () => {
+    await statisticsStore.receiveStatisticsByYear(currentYear.value);
+});
 
 watch(currentYear, async (currentYear) => {
     await statisticsStore.receiveStatisticsByYear(currentYear);

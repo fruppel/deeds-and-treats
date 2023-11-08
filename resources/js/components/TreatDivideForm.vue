@@ -35,11 +35,11 @@
 </template>
 
 <script setup>
-import FormInput from '@/components/FormInput';
-import FormError from '@/components/FormError';
-import {PlusIcon, MinusIcon} from 'vue-tabler-icons';
 import {ref} from 'vue';
+import {PlusIcon, MinusIcon} from 'vue-tabler-icons';
 import useTreatStore from '@/stores/treat';
+import FormInput from '@/components/FormInput.vue';
+import FormError from '@/components/FormError.vue';
 
 const props = defineProps({
     id: {
@@ -59,7 +59,6 @@ const divide = async () => {
     if (await treatStore.divide(props.id, divideInto.value) === true) {
         emit('divided');
     }
-    console.log(treatStore.errors);
 };
 
 </script>

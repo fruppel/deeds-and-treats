@@ -20,10 +20,10 @@
 </template>
 
 <script setup>
-import FormLabel from '@/components/FormLabel';
-import FormSelect from '@/components/FormSelect';
-import useTreatsFilteredStore from '@/stores/treatsFiltered';
 import {ref} from 'vue';
+import useTreatsFilteredStore from '@/stores/treatsFiltered';
+import FormLabel from '@/components/FormLabel.vue';
+import FormSelect from '@/components/FormSelect.vue';
 
 const treatsFilteredStore = useTreatsFilteredStore();
 
@@ -35,7 +35,7 @@ const sortOptions = {
     'costs_asc': 'Preis (aufsteigend)',
     'costs_desc': 'Preis (absteigend)',
     'unlocked_asc': 'Freigeschaltet (aufsteigend)',
-    'unlocked_desc': 'Freigeschaltet (absteigend',
+    'unlocked_desc': 'Freigeschaltet (absteigend)',
 };
 
 const filterOptions = {

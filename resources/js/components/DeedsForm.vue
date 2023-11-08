@@ -36,12 +36,12 @@
 </template>
 
 <script setup>
-import FormLabel from './FormLabel';
-import FormInput from './FormInput';
-import FormError from './FormError';
+import {computed, onMounted, ref} from 'vue';
 import useDeedsStore from '@/stores/deeds';
 import useDrawerStore from '@/stores/drawer';
-import {computed, onMounted, ref} from 'vue';
+import FormLabel from './FormLabel.vue';
+import FormInput from './FormInput.vue';
+import FormError from './FormError.vue';
 
 const props = defineProps({
     id: {

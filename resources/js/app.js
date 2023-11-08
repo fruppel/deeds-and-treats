@@ -1,9 +1,11 @@
-import {createApp} from 'vue';
+import '../css/app.css';
+
+import {createApp} from 'vue/dist/vue.esm-bundler';
 import {createPinia} from 'pinia';
 import router from './router';
 import AppContainer from './components/AppContainer.vue';
-import LayoutApp from '@/layouts/LayoutApp';
-import LayoutGuest from '@/layouts/LayoutGuest';
+import LayoutApp from '@/layouts/LayoutApp.vue';
+import LayoutGuest from '@/layouts/LayoutGuest.vue';
 
 createApp({})
     .component('LayoutApp', LayoutApp)
@@ -12,7 +14,3 @@ createApp({})
     .use(createPinia())
     .use(router)
     .mount('#app');
-
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js');
-}

@@ -26,10 +26,10 @@
 import {ref, computed} from 'vue';
 import {useRouter, useRoute} from 'vue-router';
 import useAuthStore from '@/stores/auth';
-import AuthScreen from '@/components/AuthScreen';
-import FormLabel from '@/components/FormLabel';
-import FormInput from '@/components/FormInput';
-import FormError from '@/components/FormError';
+import AuthScreen from '@/components/AuthScreen.vue';
+import FormLabel from '@/components/FormLabel.vue';
+import FormInput from '@/components/FormInput.vue';
+import FormError from '@/components/FormError.vue';
 
 const authStore = useAuthStore();
 const router = useRouter();

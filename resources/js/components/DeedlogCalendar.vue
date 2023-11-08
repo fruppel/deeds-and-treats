@@ -40,9 +40,9 @@
 
 <script setup>
 import {computed, ref} from 'vue';
-import DeedsRow from '@/components/DeedsRow';
+import DeedsRow from '@/components/DeedsRow.vue';
 import {getDatesForCurrentMonth, getDatesForMonthAndYear, getGermanMonth} from '@/services/date-service';
-import ToggableContent from '@/components/ToggableContent';
+import ToggableContent from '@/components/ToggableContent.vue';
 import NavigationYear from '@/components/NavigationYear.vue';
 
 const MONTH_DECEMBER = 11;

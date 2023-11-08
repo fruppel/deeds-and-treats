@@ -70,13 +70,13 @@
 
 <script setup>
 import {computed, onMounted, ref} from 'vue';
-import FormLabel from './FormLabel';
-import FormInput from './FormInput';
-import FormError from './FormError';
 import useTreatsStore from '@/stores/treats';
 import useTreatStore from '@/stores/treat';
 import useDrawerStore from '@/stores/drawer';
-import TreatDivideForm from '@/components/TreatDivideForm';
+import FormLabel from './FormLabel.vue';
+import FormInput from './FormInput.vue';
+import FormError from './FormError.vue';
+import TreatDivideForm from '@/components/TreatDivideForm.vue';
 
 const treatsStore = useTreatsStore();
 const treatStore = useTreatStore();

@@ -10,9 +10,9 @@
 
 <script setup>
 import {ref} from 'vue';
-import AppPageContent from '@/components/AppPageContent';
-import FormLabel from '@/components/FormLabel';
-import FormSelect from '@/components/FormSelect';
+import AppPageContent from '@/components/AppPageContent.vue';
+import FormLabel from '@/components/FormLabel.vue';
+import FormSelect from '@/components/FormSelect.vue';
 
 const form = ref({
     theme: 'dark',

@@ -23,7 +23,8 @@
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/img/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
-        <script src="{{ asset('js/app.js') }}" defer></script>
+
+        @vite('resources/js/app.js')
     </head>
     <body id="app">
         <app-container></app-container>

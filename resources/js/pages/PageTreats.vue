@@ -11,17 +11,20 @@
 </template>
 
 <script setup>
-import {markRaw} from 'vue';
-import AppPageContent from '../components/AppPageContent';
-import TreatsForm from '../components/TreatsForm';
+import {markRaw, onMounted} from 'vue';
 import useDrawerStore from '@/stores/drawer';
 import useTreatsFilteredStore from '@/stores/treatsFiltered';
-import TreatsRow from '@/components/TreatsRow';
-import FloatingActionButton from '@/components/FloatingActionButton';
-import TreatsFilter from '@/components/TreatsFilter';
+import AppPageContent from '../components/AppPageContent.vue';
+import TreatsForm from '../components/TreatsForm.vue';
+import TreatsRow from '@/components/TreatsRow.vue';
+import FloatingActionButton from '@/components/FloatingActionButton.vue';
+import TreatsFilter from '@/components/TreatsFilter.vue';
 
 const drawerStore = useDrawerStore();
 const treatsFilteredStore = useTreatsFilteredStore();
-await treatsFilteredStore.fetch();
 const loadCreateForm = () => drawerStore.open(markRaw(TreatsForm));
+
+onMounted(async () => {
+    await treatsFilteredStore.fetch();
+});
 </script>

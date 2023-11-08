@@ -5,17 +5,15 @@
                 <div class="flex items-center font-semibold text-lg">
                     {{ title }}
                 </div>
-
                 <mobile-menu :routes="{}"></mobile-menu>
-
                 <app-drawer></app-drawer>
             </div>
         </nav>
 
         <div>
-            <suspense>
+
                 <router-view></router-view>
-            </suspense>
+
         </div>
     </div>
 </template>
@@ -24,8 +22,8 @@
 import {computed} from 'vue';
 import { RouterView } from 'vue-router';
 import router from '@/router';
-import MobileMenu from '../components/layout/MobileMenu';
-import AppDrawer from '../components/AppDrawer';
+import MobileMenu from '../components/layout/MobileMenu.vue';
+import AppDrawer from '../components/AppDrawer.vue';
 
 const title = computed(() => router.currentRoute.value.meta?.title || 'Deeds & Treats');
 </script>

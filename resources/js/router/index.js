@@ -10,7 +10,7 @@ const routes = [
     },
     {
         path: '/login',
-        component: () => import('@/pages/PageLogin'),
+        component: () => import('@/pages/PageLogin.vue'),
         meta: {
             layout: 'LayoutGuest',
             requiresAuth: false,
@@ -18,7 +18,7 @@ const routes = [
     },
     {
         path: '/register',
-        component: () => import('@/pages/PageRegister'),
+        component: () => import('@/pages/PageRegister.vue'),
         meta: {
             layout: 'LayoutGuest',
             requiresAuth: false,
@@ -26,7 +26,7 @@ const routes = [
     },
     {
         path: '/forgot-password',
-        component: () => import('@/pages/PageResetPassword'),
+        component: () => import('@/pages/PageResetPassword.vue'),
         meta: {
             layout: 'LayoutGuest',
             requiresAuth: false,
@@ -34,7 +34,7 @@ const routes = [
     },
     {
         path: '/dashboard',
-        component: () => import('@/pages/PageDashboard'),
+        component: () => import('@/pages/PageDashboard.vue'),
         meta: {
             layout: 'LayoutApp',
             requiresAuth: true,
@@ -43,7 +43,7 @@ const routes = [
     },
     {
         path: '/treats',
-        component: () => import('@/pages/PageTreats'),
+        component: () => import('@/pages/PageTreats.vue'),
         meta: {
             layout: 'LayoutApp',
             requiresAuth: true,
@@ -52,7 +52,7 @@ const routes = [
     },
     {
         path: '/deeds',
-        component: () => import('@/pages/PageDeeds'),
+        component: () => import('@/pages/PageDeeds.vue'),
         meta: {
             layout: 'LayoutApp',
             requiresAuth: true,
@@ -61,7 +61,7 @@ const routes = [
     },
     {
         path: '/statistics',
-        component: () => import('@/pages/PageStatistics'),
+        component: () => import('@/pages/PageStatistics.vue'),
         meta: {
             layout: 'LayoutApp',
             requiresAuth: true,
@@ -70,7 +70,7 @@ const routes = [
     },
     {
         path: '/settings',
-        component: () => import('@/pages/PageSettings'),
+        component: () => import('@/pages/PageSettings.vue'),
         meta: {
             layout: 'LayoutApp',
             requiresAuth: true,
@@ -81,7 +81,7 @@ const routes = [
     {
         path: '/:pathMatch(.*)*',
         name: 'NotFound',
-        component: () => import('@/pages/Page404'),
+        component: () => import('@/pages/Page404.vue'),
         meta: {
             layout: 'LayoutGuest',
         }

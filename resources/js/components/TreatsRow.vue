@@ -24,10 +24,10 @@
 
 <script setup>
 import {computed, markRaw} from 'vue';
+import useDrawerStore from '@/stores/drawer';
 import {getGermanDate} from '@/services/date-service';
 import {formatEuro} from '@/services/formatting-service';
-import useDrawerStore from '@/stores/drawer';
-import TreatsForm from '@/components/TreatsForm';
+import TreatsForm from '@/components/TreatsForm.vue';
 
 const props = defineProps({
     treat: {

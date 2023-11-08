@@ -3,7 +3,8 @@
 </template>
 
 <script>
-import AuthScreen from '../components/AuthScreen';
+import AuthScreen from '../components/AuthScreen.vue';
+
 export default {
     components: {AuthScreen}
 }

@@ -22,7 +22,7 @@ class UserController extends AbstractApiController
         $deedlogs = $user->deedLogs;
 
         return response()->json([
-            'savings' => $deedlogs->sum('value'),
+            'savings' => (float) $deedlogs->sum('value'),
             'intersectionThreeDays' => $user->deedLogs()
                 ->where('day', '>', CarbonImmutable::now()->subDays(self::INTERSECTION_DAYS_3)->format('Y-m-d'))
                 ->sum('value') / self::INTERSECTION_DAYS_3,
@@ -34,6 +34,7 @@ class UserController extends AbstractApiController
             'costsSpent' => $treats->whereNotNull('unlocked')->sum('costs'),
             'costsOpen' => $treats->whereNull('unlocked')->sum('costs'),
             'activeTreat' => $user->activeTreat,
+            'inpaymentsSum' => (float) $user->inpayments()->sum('amount'),
         ]);
     }
 }

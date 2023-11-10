@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\ActiveTreatController;
 use App\Http\Controllers\Api\Auth\PasswordResetController;
 use App\Http\Controllers\Api\DeedController;
 use App\Http\Controllers\Api\DeedLogController;
+use App\Http\Controllers\Api\InpaymentController;
 use App\Http\Controllers\Api\StatisticsPerYearController;
 use App\Http\Controllers\Api\TreatDivideController;
 use App\Http\Controllers\Api\UnlockController;
@@ -28,6 +29,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/deedlogs/{deedLog}', [DeedLogController::class, 'destroy']);
     Route::get('/user', [UserController::class, 'index']);
     Route::apiResource('/treats', TreatController::class);
+    Route::apiResource('/inpayments', InpaymentController::class);
     Route::post('/activetreat/{treat}', [ActiveTreatController::class, 'store']);
     Route::delete('/activetreat', [ActiveTreatController::class, 'destroy']);
     Route::post('/unlock/{treat}', [UnlockController::class, 'store']);

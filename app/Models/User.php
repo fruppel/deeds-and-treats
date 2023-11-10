@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
+ * @property int $id
  * @property ?int $active_treat
  */
 class User extends Authenticatable
@@ -63,6 +64,11 @@ class User extends Authenticatable
     public function treats(): Relation
     {
         return $this->hasMany(Treat::class);
+    }
+
+    public function inpayments(): Relation
+    {
+        return $this->hasMany(Inpayment::class);
     }
 
     public function activeTreat(): Relation

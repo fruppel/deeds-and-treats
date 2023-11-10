@@ -10,6 +10,5 @@
 import router from '@/router';
 import {computed} from 'vue';
 
-const title = computed(() => router.currentRoute.value.meta?.title || 'asd');
-console.log(router.currentRoute.value.meta?.title);
+const title = computed(() => router.currentRoute.value.meta?.title || '');
 </script>

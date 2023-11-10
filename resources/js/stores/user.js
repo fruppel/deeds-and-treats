@@ -12,9 +12,12 @@ export default defineStore({
         costsSpent: 0,
         costsOpen: 0,
         activeTreat: {},
+        inpaymentsSum: 0,
     }),
     getters: {
-        available: (state) => state.savings - state.costsSpent,
+        available: (state) => {
+            return state.savings + state.inpaymentsSum - state.costsSpent;
+        },
         activeReached(state) {
             if (state.activeTreat.unlocked !== null) {
                 return 1;
@@ -59,6 +62,7 @@ export default defineStore({
             this.costsSpent = response.data.costsSpent;
             this.costsOpen = response.data.costsOpen;
             this.activeTreat = response.data.activeTreat;
+            this.inpaymentsSum = response.data.inpaymentsSum;
         },
         async setActiveTreat(treat) {
             const response = await apiClient.post(`/api/activetreat/${treat.id}`)

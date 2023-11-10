@@ -12,7 +12,6 @@
                     </div>
                     <div>{{ formatEuro(deed.value) }}</div>
                 </div>
-
             </template>
         </div>
 

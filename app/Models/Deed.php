@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $value
+ * @property int $user_id
  * @mixin Builder
  */
 class Deed extends Model

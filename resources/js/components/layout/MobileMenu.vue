@@ -62,6 +62,10 @@ export default {
                     label: 'Deeds',
                 },
                 {
+                    href: '/inpayments',
+                    label: 'Einzahlungen',
+                },
+                {
                     href: '/statistics',
                     label: 'Statistiken',
                 },

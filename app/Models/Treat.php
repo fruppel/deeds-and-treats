@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 /**
  * @property string $name
  * @property float $costs
+ * @property int $user_id
  */
 class Treat extends Model
 {

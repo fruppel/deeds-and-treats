@@ -60,6 +60,15 @@ const routes = [
         },
     },
     {
+        path: '/inpayments',
+        component: () => import('@/pages/PageInpayments.vue'),
+        meta: {
+            layout: 'LayoutApp',
+            requiresAuth: true,
+            title: 'Einzahlungen',
+        },
+    },
+    {
         path: '/statistics',
         component: () => import('@/pages/PageStatistics.vue'),
         meta: {
@@ -97,7 +106,6 @@ router.beforeEach((to, from) => {
     const authStore = useAuthStore();
 
     if (to.meta.requiresAuth && authStore.isAuthenticated === false) {
-        console.log('Redirect to login');
         return {
             path: '/login',
             query: { redirect: to.fullPath },

@@ -4,7 +4,7 @@
             <dashboard-headline>Heute</dashboard-headline>
             <deeds-row :date="today" :show-date="false"></deeds-row>
             <div class="mt-3 flex justify-between items-center">
-                <div>Insgesamt verfügbar::</div>
+                <div>Insgesamt verfügbar</div>
                 <div class="text-xl font-semibold text-teal-500">{{ formatEuro(userStore.available) }}</div>
             </div>
         </dashboard-tile>
@@ -34,39 +34,42 @@
                 <div>
                     <dashboard-row label="Verbleibend">{{ formatEuro(userStore.activeRest) }}</dashboard-row>
 
-                    <toggable-content>
-                        <dashboard-row label="Gespart gesamt">{{ formatEuro(userStore.savings) }}</dashboard-row>
-                        <dashboard-row label="Kosten gesamt">{{ formatEuro(userStore.costsAll) }}</dashboard-row>
-                        <dashboard-row label="Ausgegeben">{{ formatEuro(userStore.costsSpent) }}</dashboard-row>
-                        <dashboard-row label="Offen">{{ formatEuro(userStore.costsOpen) }}</dashboard-row>
+                    <div class="mt-4">
+                        <toggable-content>
+                            <dashboard-row label="Kosten gesamt">{{ formatEuro(userStore.costsAll) }}</dashboard-row>
+                            <dashboard-row label="Gespart gesamt">{{ formatEuro(userStore.savings) }}</dashboard-row>
+                            <dashboard-row label="Einzahlungen">{{ formatEuro(userStore.inpaymentsSum) }}</dashboard-row>
+                            <dashboard-row label="Ausgegeben">{{ formatEuro(userStore.costsSpent) }}</dashboard-row>
+                            <dashboard-row label="Offen">{{ formatEuro(userStore.costsOpen) }}</dashboard-row>
 
-                        <table class="w-full mt-4">
-                            <tr>
-                                <th></th>
-                                <th class="text-right">&Oslash;</th>
-                                <th class="text-right">ETA (Aktuell)</th>
-                                <th class="text-right">ETA (Rest)</th>
-                            </tr>
-                            <tr>
-                                <td>Maximal</td>
-                                <td class="text-right">{{ formatEuro(userStore.maxSavingsPerDay) }}</td>
-                                <td class="text-right" v-html="displayInfinityOrDays(userStore.activeEtaMax)"></td>
-                                <td class="text-right" v-html="displayInfinityOrDays(userStore.openEtaMax)"></td>
-                            </tr>
-                            <tr>
-                                <td>3-Tage</td>
-                                <td class="text-right">{{ formatEuro(userStore.intersectionThreeDays) }}</td>
-                                <td class="text-right" v-html="displayInfinityOrDays(userStore.activeEtaThreeDays)"></td>
-                                <td class="text-right" v-html="displayInfinityOrDays(userStore.openEtaThreeDays)"></td>
-                            </tr>
-                            <tr>
-                                <td>10-Tage</td>
-                                <td class="text-right">{{ formatEuro(userStore.intersectionTenDays) }}</td>
-                                <td class="text-right" v-html="displayInfinityOrDays(userStore.activeEtaTenDays)"></td>
-                                <td class="text-right" v-html="displayInfinityOrDays(userStore.openEtaTenDays)"></td>
-                            </tr>
-                        </table>
-                    </toggable-content>
+                            <table class="w-full mt-4">
+                                <tr>
+                                    <th></th>
+                                    <th class="text-right">&Oslash;</th>
+                                    <th class="text-right">ETA (Aktuell)</th>
+                                    <th class="text-right">ETA (Rest)</th>
+                                </tr>
+                                <tr>
+                                    <td>Maximal</td>
+                                    <td class="text-right">{{ formatEuro(userStore.maxSavingsPerDay) }}</td>
+                                    <td class="text-right" v-html="displayInfinityOrDays(userStore.activeEtaMax)"></td>
+                                    <td class="text-right" v-html="displayInfinityOrDays(userStore.openEtaMax)"></td>
+                                </tr>
+                                <tr>
+                                    <td>3-Tage</td>
+                                    <td class="text-right">{{ formatEuro(userStore.intersectionThreeDays) }}</td>
+                                    <td class="text-right" v-html="displayInfinityOrDays(userStore.activeEtaThreeDays)"></td>
+                                    <td class="text-right" v-html="displayInfinityOrDays(userStore.openEtaThreeDays)"></td>
+                                </tr>
+                                <tr>
+                                    <td>10-Tage</td>
+                                    <td class="text-right">{{ formatEuro(userStore.intersectionTenDays) }}</td>
+                                    <td class="text-right" v-html="displayInfinityOrDays(userStore.activeEtaTenDays)"></td>
+                                    <td class="text-right" v-html="displayInfinityOrDays(userStore.openEtaTenDays)"></td>
+                                </tr>
+                            </table>
+                        </toggable-content>
+                    </div>
                 </div>
             </div>
         </dashboard-tile>
@@ -94,13 +97,14 @@
 import {onMounted, ref} from 'vue';
 import {getIsoDate} from '@/services/date-service';
 import {formatEuro} from '@/services/formatting-service';
+import useUserStore from '@/stores/user.js';
+import useDeedsStore from '@/stores/deeds.js';
+import useDeedlogsStore from '@/stores/deedlogs.js';
+import useTreatStore from '@/stores/treats.js';
+import useInpaymentsStore from '@/stores/inpayments.js';
 import DeedlogCalendar from '@/components/DeedlogCalendar.vue';
 import AppPageContent from '@/components/AppPageContent.vue';
 import DeedsRow from '@/components/DeedsRow.vue';
-import useUserStore from '@/stores/user';
-import useDeedsStore from '@/stores/deeds';
-import useDeedlogsStore from '@/stores/deedlogs';
-import useTreatStore from '@/stores/treats';
 import DashboardHeadline from '@/components/DashboardHeadline.vue';
 import ToggableContent from '@/components/ToggableContent.vue';
 import DashboardTreatList from '@/components/DashboardTreatList.vue';
@@ -112,6 +116,7 @@ const userStore = useUserStore();
 const deedsStore = useDeedsStore();
 const deedlogsStore = useDeedlogsStore();
 const treatStore = useTreatStore();
+const inpaymentsStore = useInpaymentsStore();
 
 let today = ref(getIsoDate(new Date().toISOString()));
 
@@ -122,6 +127,7 @@ const fetchData = async (tabswitch) => {
     await deedsStore.fetchAll();
     await deedlogsStore.fetchAll();
     await treatStore.fetchAll();
+    await inpaymentsStore.fetchAll();
 };
 
 const unlock = async () => {

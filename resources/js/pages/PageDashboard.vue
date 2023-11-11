@@ -42,7 +42,7 @@
                             <dashboard-row label="Ausgegeben">{{ formatEuro(userStore.costsSpent) }}</dashboard-row>
                             <dashboard-row label="Offen">{{ formatEuro(userStore.costsOpen) }}</dashboard-row>
 
-                            <table class="w-full mt-4">
+                            <table class="w-full mt-4 mb-4">
                                 <tr>
                                     <th></th>
                                     <th class="text-right">&Oslash;</th>
@@ -51,21 +51,47 @@
                                 </tr>
                                 <tr>
                                     <td>Maximal</td>
-                                    <td class="text-right">{{ formatEuro(userStore.maxSavingsPerDay) }}</td>
-                                    <td class="text-right" v-html="displayInfinityOrDays(userStore.activeEtaMax)"></td>
-                                    <td class="text-right" v-html="displayInfinityOrDays(userStore.openEtaMax)"></td>
+                                    <td class="text-right">
+                                        {{ formatEuro(userStore.maxSavingsPerDay) }}
+                                    </td>
+                                    <td
+                                        class="text-right"
+                                        v-html="displayInfinityOrDays(userStore.activeEtaMax)"
+                                        @click="showDateToast(userStore.activeEtaMax)"
+                                    ></td>
+                                    <td
+                                        class="text-right"
+                                        v-html="displayInfinityOrDays(userStore.openEtaMax)"
+                                        @click="showDateToast(userStore.openEtaMax)"
+                                    ></td>
                                 </tr>
                                 <tr>
                                     <td>3-Tage</td>
                                     <td class="text-right">{{ formatEuro(userStore.intersectionThreeDays) }}</td>
-                                    <td class="text-right" v-html="displayInfinityOrDays(userStore.activeEtaThreeDays)"></td>
-                                    <td class="text-right" v-html="displayInfinityOrDays(userStore.openEtaThreeDays)"></td>
+                                    <td
+                                        class="text-right"
+                                        v-html="displayInfinityOrDays(userStore.activeEtaThreeDays)"
+                                        @click="showDateToast(userStore.activeEtaThreeDays)"
+                                    ></td>
+                                    <td
+                                        class="text-right"
+                                        v-html="displayInfinityOrDays(userStore.openEtaThreeDays)"
+                                        @click="showDateToast(userStore.openEtaThreeDays)"
+                                    ></td>
                                 </tr>
                                 <tr>
                                     <td>10-Tage</td>
                                     <td class="text-right">{{ formatEuro(userStore.intersectionTenDays) }}</td>
-                                    <td class="text-right" v-html="displayInfinityOrDays(userStore.activeEtaTenDays)"></td>
-                                    <td class="text-right" v-html="displayInfinityOrDays(userStore.openEtaTenDays)"></td>
+                                    <td
+                                        class="text-right"
+                                        v-html="displayInfinityOrDays(userStore.activeEtaTenDays)"
+                                        @click="showDateToast(userStore.activeEtaTenDays)"
+                                    ></td>
+                                    <td
+                                        class="text-right"
+                                        v-html="displayInfinityOrDays(userStore.openEtaTenDays)"
+                                        @click="showDateToast(userStore.openEtaTenDays)"
+                                    ></td>
                                 </tr>
                             </table>
                         </toggable-content>
@@ -95,13 +121,14 @@
 
 <script setup>
 import {onMounted, ref} from 'vue';
-import {getIsoDate} from '@/services/date-service';
+import {getGermanDate, getIsoDate} from '@/services/date-service';
 import {formatEuro} from '@/services/formatting-service';
 import useUserStore from '@/stores/user.js';
 import useDeedsStore from '@/stores/deeds.js';
 import useDeedlogsStore from '@/stores/deedlogs.js';
 import useTreatStore from '@/stores/treats.js';
 import useInpaymentsStore from '@/stores/inpayments.js';
+import useToastStore from '@/stores/toast.js';
 import DeedlogCalendar from '@/components/DeedlogCalendar.vue';
 import AppPageContent from '@/components/AppPageContent.vue';
 import DeedsRow from '@/components/DeedsRow.vue';
@@ -117,6 +144,7 @@ const deedsStore = useDeedsStore();
 const deedlogsStore = useDeedlogsStore();
 const treatStore = useTreatStore();
 const inpaymentsStore = useInpaymentsStore();
+const toastStore = useToastStore();
 
 let today = ref(getIsoDate(new Date().toISOString()));
 
@@ -142,6 +170,12 @@ const displayInfinityOrDays = (eta) => {
 
     return '&infin;';
 }
+
+const showDateToast = (days) => {
+    let date = new Date();
+    date.setDate(date.getDate() + days);
+    toastStore.show(getGermanDate(date.toDateString()));
+};
 
 onMounted(async () => {
     await fetchData();

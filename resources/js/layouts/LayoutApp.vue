@@ -11,11 +11,10 @@
         </nav>
 
         <div>
-
-                <router-view></router-view>
-
+            <router-view></router-view>
         </div>
     </div>
+    <toast-container></toast-container>
 </template>
 
 <script setup>
@@ -24,6 +23,7 @@ import { RouterView } from 'vue-router';
 import router from '@/router';
 import MobileMenu from '../components/layout/MobileMenu.vue';
 import AppDrawer from '../components/AppDrawer.vue';
+import ToastContainer from "@/components/ToastContainer.vue";
 
 const title = computed(() => router.currentRoute.value.meta?.title || 'Deeds & Treats');
 </script>

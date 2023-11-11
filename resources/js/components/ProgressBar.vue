@@ -23,9 +23,10 @@ const props = defineProps({
 });
 
 const progressbarWidth = (percent) => {
-    let minPercent = 5;
+    console.log(percent);
+    let minPercent = 0.5;
 
-    if (percent > 5) {
+    if (percent > 0.5) {
         minPercent = percent;
     }
 

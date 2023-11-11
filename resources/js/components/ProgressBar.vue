@@ -14,10 +14,21 @@
 
 <script setup>
 import {formatPercent} from '@/services/formatting-service';
+
 const props = defineProps({
     percent: {
         type: Number,
         required: true,
     }
-})
+});
+
+const progressbarWidth = (percent) => {
+    let minPercent = 5;
+
+    if (percent > 5) {
+        minPercent = percent;
+    }
+
+    return formatPercent(minPercent);
+};
 </script>

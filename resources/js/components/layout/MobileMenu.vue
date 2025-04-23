@@ -107,6 +107,6 @@ export default {
 
 <style scoped>
 .router-link-active {
-    @apply bg-teal-700;
+    @reference bg-teal-700;
 }
 </style>

@@ -1,8 +1,6 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import 'tailwindcss';
 
-@layer base {
+@layer utilities {
     html {
         -webkit-tap-highlight-color: transparent;
     }

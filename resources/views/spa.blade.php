@@ -6,7 +6,6 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>{{ config('app.name') }}</title>
         <link rel="manifest" href="{{ asset('tad.webmanifest') }}">
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="/img/apple-icon-60x60.png">
         <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-icon-72x72.png">

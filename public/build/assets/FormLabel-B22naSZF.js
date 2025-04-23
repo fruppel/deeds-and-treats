@@ -1,0 +1,1 @@
+import{_ as t,k as o,o as s,l as r}from"./app-fm232Leb.js";const c={},a={class:"block font-medium text-sm text-gray-700 mb-1"};function n(e,l){return s(),o("label",a,[r(e.$slots,"default")])}const m=t(c,[["render",n]]);export{m as F};

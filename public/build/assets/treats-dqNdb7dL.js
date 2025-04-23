@@ -1,0 +1,1 @@
+import{m as a,n as s}from"./app-fm232Leb.js";const n=a({id:"treats",state:()=>({treats:[]}),getters:{unlockableTreats(t){return t.treats.filter(e=>e.unlocked===null)}},actions:{async fetchAll(){const t=await s.get("/api/treats");t!==void 0&&(this.treats=t.data)}}});export{n as u};

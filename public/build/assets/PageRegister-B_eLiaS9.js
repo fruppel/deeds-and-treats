@@ -1,0 +1,1 @@
+import{A as o}from"./AuthScreen-BsIZy1BI.js";import{_ as t,a as n,j as s,o as r}from"./app-fm232Leb.js";const c={components:{AuthScreen:o}};function a(p,_,m,f,u,i){const e=s("auth-screen");return r(),n(e)}const l=t(c,[["render",a]]);export{l as default};

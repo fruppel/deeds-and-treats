@@ -1,0 +1,237 @@
+{
+  "_AppPageContent-Cgu7BwA4.js": {
+    "file": "assets/AppPageContent-Cgu7BwA4.js",
+    "name": "AppPageContent",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "_AuthScreen-BsIZy1BI.js": {
+    "file": "assets/AuthScreen-BsIZy1BI.js",
+    "name": "AuthScreen",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "_FloatingActionButton-w2P_xo-Y.js": {
+    "file": "assets/FloatingActionButton-w2P_xo-Y.js",
+    "name": "FloatingActionButton",
+    "imports": [
+      "_vue-tabler-icons.es-B6aNxJ30.js",
+      "resources/js/app.js"
+    ]
+  },
+  "_FormError-mP4jGLzB.js": {
+    "file": "assets/FormError-mP4jGLzB.js",
+    "name": "FormError",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "_FormLabel-B22naSZF.js": {
+    "file": "assets/FormLabel-B22naSZF.js",
+    "name": "FormLabel",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "_FormSelect-QFHuBrV2.js": {
+    "file": "assets/FormSelect-QFHuBrV2.js",
+    "name": "FormSelect",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "_NavigationYear-BSkqyRnn.js": {
+    "file": "assets/NavigationYear-BSkqyRnn.js",
+    "name": "NavigationYear",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "_deeds-B22SkmIc.js": {
+    "file": "assets/deeds-B22SkmIc.js",
+    "name": "deeds",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "_formatting-service-CQyrWaM7.js": {
+    "file": "assets/formatting-service-CQyrWaM7.js",
+    "name": "formatting-service"
+  },
+  "_inpayments-DIPociuH.js": {
+    "file": "assets/inpayments-DIPociuH.js",
+    "name": "inpayments",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "_treats-dqNdb7dL.js": {
+    "file": "assets/treats-dqNdb7dL.js",
+    "name": "treats",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "_vue-tabler-icons.es-B6aNxJ30.js": {
+    "file": "assets/vue-tabler-icons.es-B6aNxJ30.js",
+    "name": "vue-tabler-icons.es",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-fm232Leb.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "dynamicImports": [
+      "resources/js/pages/PageLogin.vue",
+      "resources/js/pages/PageRegister.vue",
+      "resources/js/pages/PageResetPassword.vue",
+      "resources/js/pages/PageDashboard.vue",
+      "resources/js/pages/PageTreats.vue",
+      "resources/js/pages/PageDeeds.vue",
+      "resources/js/pages/PageInpayments.vue",
+      "resources/js/pages/PageStatistics.vue",
+      "resources/js/pages/PageSettings.vue",
+      "resources/js/pages/Page404.vue"
+    ],
+    "css": [
+      "assets/app-BSslbfpw.css"
+    ]
+  },
+  "resources/js/pages/Page404.vue": {
+    "file": "assets/Page404-BCOia5Yg.js",
+    "name": "Page404",
+    "src": "resources/js/pages/Page404.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/pages/PageDashboard.vue": {
+    "file": "assets/PageDashboard-CwZyKNPP.js",
+    "name": "PageDashboard",
+    "src": "resources/js/pages/PageDashboard.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_formatting-service-CQyrWaM7.js",
+      "resources/js/app.js",
+      "_deeds-B22SkmIc.js",
+      "_treats-dqNdb7dL.js",
+      "_inpayments-DIPociuH.js",
+      "_vue-tabler-icons.es-B6aNxJ30.js",
+      "_NavigationYear-BSkqyRnn.js",
+      "_AppPageContent-Cgu7BwA4.js"
+    ]
+  },
+  "resources/js/pages/PageDeeds.vue": {
+    "file": "assets/PageDeeds-nWEumWxs.js",
+    "name": "PageDeeds",
+    "src": "resources/js/pages/PageDeeds.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_deeds-B22SkmIc.js",
+      "_formatting-service-CQyrWaM7.js",
+      "_AppPageContent-Cgu7BwA4.js",
+      "_FormLabel-B22naSZF.js",
+      "_FormError-mP4jGLzB.js",
+      "_FloatingActionButton-w2P_xo-Y.js",
+      "_vue-tabler-icons.es-B6aNxJ30.js"
+    ]
+  },
+  "resources/js/pages/PageInpayments.vue": {
+    "file": "assets/PageInpayments-BOWUlt_T.js",
+    "name": "PageInpayments",
+    "src": "resources/js/pages/PageInpayments.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_inpayments-DIPociuH.js",
+      "_AppPageContent-Cgu7BwA4.js",
+      "_FormLabel-B22naSZF.js",
+      "_FormError-mP4jGLzB.js",
+      "_FloatingActionButton-w2P_xo-Y.js",
+      "_formatting-service-CQyrWaM7.js",
+      "_vue-tabler-icons.es-B6aNxJ30.js"
+    ]
+  },
+  "resources/js/pages/PageLogin.vue": {
+    "file": "assets/PageLogin-uo5u4fVX.js",
+    "name": "PageLogin",
+    "src": "resources/js/pages/PageLogin.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_AuthScreen-BsIZy1BI.js",
+      "_FormLabel-B22naSZF.js",
+      "_FormError-mP4jGLzB.js"
+    ]
+  },
+  "resources/js/pages/PageRegister.vue": {
+    "file": "assets/PageRegister-B_eLiaS9.js",
+    "name": "PageRegister",
+    "src": "resources/js/pages/PageRegister.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_AuthScreen-BsIZy1BI.js",
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/pages/PageResetPassword.vue": {
+    "file": "assets/PageResetPassword-CKL3gyCE.js",
+    "name": "PageResetPassword",
+    "src": "resources/js/pages/PageResetPassword.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_AuthScreen-BsIZy1BI.js",
+      "_FormLabel-B22naSZF.js",
+      "_FormError-mP4jGLzB.js"
+    ]
+  },
+  "resources/js/pages/PageSettings.vue": {
+    "file": "assets/PageSettings-DHhnJFly.js",
+    "name": "PageSettings",
+    "src": "resources/js/pages/PageSettings.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_AppPageContent-Cgu7BwA4.js",
+      "_FormLabel-B22naSZF.js",
+      "_FormSelect-QFHuBrV2.js",
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/pages/PageStatistics.vue": {
+    "file": "assets/PageStatistics-Ce0fIFWe.js",
+    "name": "PageStatistics",
+    "src": "resources/js/pages/PageStatistics.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_AppPageContent-Cgu7BwA4.js",
+      "resources/js/app.js",
+      "_formatting-service-CQyrWaM7.js",
+      "_NavigationYear-BSkqyRnn.js"
+    ]
+  },
+  "resources/js/pages/PageTreats.vue": {
+    "file": "assets/PageTreats-CF2RcrL2.js",
+    "name": "PageTreats",
+    "src": "resources/js/pages/PageTreats.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_AppPageContent-Cgu7BwA4.js",
+      "_treats-dqNdb7dL.js",
+      "_FormLabel-B22naSZF.js",
+      "_FormError-mP4jGLzB.js",
+      "_vue-tabler-icons.es-B6aNxJ30.js",
+      "_formatting-service-CQyrWaM7.js",
+      "_FloatingActionButton-w2P_xo-Y.js",
+      "_FormSelect-QFHuBrV2.js"
+    ]
+  }
+}

@@ -2,7 +2,7 @@
     <app-page-content class="px-4">
         <form-label>Theme</form-label>
         <form-select
-            :options="{'dark': 'Dark', 'light': 'Light'}"
+            :options="{'system': 'System', 'dark': 'Dark', 'light': 'Light'}"
             v-model="form.theme"
         />
     </app-page-content>
@@ -15,6 +15,6 @@ import FormLabel from '@/components/FormLabel.vue';
 import FormSelect from '@/components/FormSelect.vue';
 
 const form = ref({
-    theme: 'dark',
+    theme: 'system',
 });
 </script>

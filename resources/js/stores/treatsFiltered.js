@@ -1,8 +1,7 @@
 import {defineStore} from 'pinia';
 import apiClient from '@/services/api-client';
 
-export default defineStore({
-    id: 'treatsFiltered',
+export default defineStore('treatsFiltered', {
     state: () => ({
         treats: [],
         sort: {

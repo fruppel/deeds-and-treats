@@ -1,8 +1,6 @@
 import {defineStore} from 'pinia';
 
-export default defineStore({
-    id: 'toast',
-
+export default defineStore('toast', {
     state: () => ({
         message: null,
     }),

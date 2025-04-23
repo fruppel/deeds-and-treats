@@ -2,8 +2,7 @@ import {defineStore} from 'pinia';
 import TokenService from '@/services/token-service';
 import apiClient from '@/services/api-client';
 
-export default defineStore({
-    id: 'auth',
+export default defineStore('auth', {
     state: () => ({
         errors: {},
         user: {},

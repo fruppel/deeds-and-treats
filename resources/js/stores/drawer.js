@@ -1,7 +1,6 @@
 import {defineStore} from 'pinia';
 
-export default defineStore({
-    id: 'drawer',
+export default defineStore('drawer', {
     state: () => ({
         drawerOpen: false,
         component: null,

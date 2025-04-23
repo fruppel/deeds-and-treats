@@ -1,8 +1,7 @@
 import {defineStore} from 'pinia';
 import apiClient from '@/services/api-client';
 
-export default defineStore({
-    id: 'treat',
+export default defineStore('treat', {
     state: () => ({
         treat: null,
         errors: {},

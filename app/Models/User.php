@@ -78,4 +78,20 @@ class User extends Authenticatable
     {
         return $this->hasMany(DeedLog::class);
     }
+
+    public function settings(): Relation
+    {
+        return $this->hasOne(Setting::class);
+    }
+
+    protected static function booted(): void
+    {
+        static::created(function ($user) {
+            $user->settings()->create(['theme' => 'system']);
+        });
+
+        static::deleted(function ($user) {
+            $user->settings()->get()->each->delete();
+        });
+    }
 }

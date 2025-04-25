@@ -33,6 +33,14 @@ const routes = [
         }
     },
     {
+        path: '/verify-email/:id/:hash',
+        component: () => import('@/pages/PageEmailVerification.vue'),
+        meta: {
+            layout: 'LayoutGuest',
+            requiresAuth: false,
+        }
+    },
+    {
         path: '/dashboard',
         component: () => import('@/pages/PageDashboard.vue'),
         meta: {

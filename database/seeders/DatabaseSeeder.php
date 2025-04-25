@@ -6,6 +6,7 @@ use App\Models\Deed;
 use App\Models\Treat;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,7 +15,7 @@ class DatabaseSeeder extends Seeder
          $user = User::factory()->create([
              'name' => 'Flo',
              'email' => 'ruppel.florian@gmail.com',
-             'password' => '$2y$10$3PkEMdG2ltaLYrmX3p9GLOG7svzPMIfvMt63F0R2bi7AsGrSfef0q', // asdasdasd
+             'password' => Hash::make('asdasdasd'),
          ]);
 
          Deed::factory()->create([

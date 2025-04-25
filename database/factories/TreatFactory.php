@@ -22,8 +22,8 @@ class TreatFactory extends Factory
         return [
             'user_id' => self::factoryForModel(User::class),
             'name' => ucfirst($this->faker->word()) . ' ' . $this->faker->word(),
-            'costs' => $this->faker->randomFloat(2, 5, 150),
-            'bought' => $this->faker->dateTimeBetween('-1 years')->format('Y-m-d H:i:s'),
+            'costs' => fake()->randomFloat(2, 5, 150),
+            'bought' => fake()->dateTimeBetween('-1 years')->format('Y-m-d H:i:s'),
             'unlocked' => null,
         ];
     }

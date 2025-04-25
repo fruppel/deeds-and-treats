@@ -20,9 +20,9 @@ class DeedFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => ucfirst($this->faker->word()),
+            'name' => ucfirst(fake()->word()),
             'user_id' => self::factoryForModel(User::class),
-            'value' => $this->faker->randomElement([0.50, 1, 2, 3]),
+            'value' => fake()->randomElement([0.50, 1, 2, 3]),
         ];
     }
 }

@@ -29,5 +29,5 @@ import useUserStore from '@/stores/user.js';
 
 const title = computed(() => router.currentRoute.value.meta?.title || 'Deeds & Treats');
 const userStore = useUserStore();
-await userStore.fetch();
+//await userStore.fetch();
 </script>

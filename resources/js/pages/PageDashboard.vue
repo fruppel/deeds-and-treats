@@ -43,6 +43,7 @@
                             <dashboard-row label="Offen">{{ formatEuro(userStore.costsOpen) }}</dashboard-row>
 
                             <table class="w-full mt-4 mb-4">
+                                <tbody>
                                 <tr>
                                     <th></th>
                                     <th class="text-right">&Oslash;</th>
@@ -93,6 +94,7 @@
                                         @click="showDateToast(userStore.openEtaTenDays)"
                                     ></td>
                                 </tr>
+                                </tbody>
                             </table>
                         </toggable-content>
                     </div>

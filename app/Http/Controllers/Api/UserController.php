@@ -20,6 +20,7 @@ class UserController extends AbstractApiController
         $user = Auth::user();
         $treats = $user->treats;
         $deedlogs = $user->deedLogs;
+        $settings = $user->settings->only(['theme']);
 
         return response()->json([
             'savings' => (float) $deedlogs->sum('value'),
@@ -35,6 +36,7 @@ class UserController extends AbstractApiController
             'costsOpen' => $treats->whereNull('unlocked')->sum('costs'),
             'activeTreat' => $user->activeTreat,
             'inpaymentsSum' => (float) $user->inpayments()->sum('amount'),
+            'settings' => $settings,
         ]);
     }
 }

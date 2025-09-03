@@ -12,6 +12,7 @@ export default defineStore('user', {
         costsOpen: 0,
         activeTreat: {},
         inpaymentsSum: 0,
+        settings: {},
     }),
     getters: {
         available: (state) => {
@@ -62,6 +63,7 @@ export default defineStore('user', {
             this.costsOpen = response.data.costsOpen;
             this.activeTreat = response.data.activeTreat;
             this.inpaymentsSum = response.data.inpaymentsSum;
+            this.settings = response.data.settings;
         },
         async setActiveTreat(treat) {
             const response = await apiClient.post(`/api/activetreat/${treat.id}`)

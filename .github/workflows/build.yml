@@ -62,9 +62,9 @@ jobs:
       - name: SSH & deploy
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.SERVER_HOST }}      # z.B. vserver.fruppel.de
-          username: ${{ secrets.SERVER_USER }}  # z.B. dein Linux-User mit sudo
-          key: ${{ secrets.SERVER_SSH_KEY }}    # private SSH key (PEM)
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT || 22 }}
           script: |
             GHCR_USER=${{ secrets.GHCR_USER }} GHCR_PAT=${{ secrets.GHCR_PAT }} \
